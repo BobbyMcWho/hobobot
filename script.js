@@ -7,7 +7,7 @@ bot.on("message", function(message)
        {
     if(message.content === "Who is hobo?")
     {
-    message.reply("Hey there!");
+    message.reply("I am Hobo!");
     }
 });
 
