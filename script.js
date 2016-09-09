@@ -1,6 +1,6 @@
 var Discord = require("discord.js");
 var Key = require('./token.json');
-
+var Sesame = Key.token;
 var bot = new Discord.Client();
 
 bot.on("message", function(message)
@@ -11,4 +11,4 @@ bot.on("message", function(message)
     }
 });
 
-bot.login(Key[0]);
+bot.login(Sesame);
