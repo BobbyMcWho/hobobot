@@ -1,0 +1,6 @@
+{
+  "name": "Hobobot",
+  "tagline": "A hobobot for discord",
+  "body": "A Hobobot for Discord using discord.js running on node.js\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
