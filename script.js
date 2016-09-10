@@ -25,11 +25,10 @@ var    Sesame = Key.token;
 //   var timePhrase = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
 // }
 
-client.on("message", function(message)
-       {
-    if(message.content === "Who is hobo?")
+client.on('message', message => {
+    if(message.content === 'Who is hobo?')
     {
-    message.reply("I am Hobo!");
+    message.reply('I am Hobo!');
     }
 });
 
