@@ -53,6 +53,9 @@ client.on('message', message => {
       joke();
       message.channel.sendMessage(line);
     }
+    else if (message.content.toLowerCase().startsWith(prefix + "clefable")) {
+      message.channel.sendFile('./clefable.gif');
+    }
 
 });
 
