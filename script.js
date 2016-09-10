@@ -1,15 +1,8 @@
-var Discord = require("discord.js"),
-    Key = require('./token.json'),
-    Sesame = Key.token,
-    bot = new Discord.Client(),
-    deadline = '2015-11-10';
-bot.on("message", function(message)
-       {
-    if(message.content === "Who is hobo?")
-    {
-    message.reply("I am Hobo!");
-    }
-});
+const Discord = require("discord.js");
+const cLient = newDiscord.Client();
+const Key = require('./token.json');
+var    Sesame = Key.token;
+var    deadline = '2015-11-10';
 
 function hobobaby(){
   var now = new Date();
@@ -32,7 +25,16 @@ function hobobaby(){
 
   var timePhrase = d + " days, " + h + " hours, " + m + " minutes, " + s + " seconds remaining until hobobaby is born.";
 }
-bot.on("message", function(message)
+
+client.on("message", function(message)
+       {
+    if(message.content === "Who is hobo?")
+    {
+    message.reply("I am Hobo!");
+    }
+});
+
+client.on("message", function(message)
        {
     if(message.content === "!hobobaby")
     {hobobaby();
@@ -40,4 +42,4 @@ bot.on("message", function(message)
     }
 });
 
-bot.login(Sesame);
+client.login(Sesame);
