@@ -3,8 +3,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const Key = require('./token.json');
+const phrases = require('./phrases.json');
 const Sesame = Key.token;
 var babybaby;
+var line;
+function joke() {line = phrases.pickups[Math.floor(Math.random()*pickups.length)].line;}
 
 function hobobaby(){
   var now = new Date();
@@ -45,6 +48,10 @@ client.on('message', message => {
     }
     else if (message.content.toLowerCase().includes('i am hobo')) {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
+    }
+    else if (message.content.toLowerCase().startsWith(prefix + "zzz")) {
+      joke();
+      message.channel.sendMessage(line);
     }
 
 });
