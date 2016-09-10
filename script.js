@@ -35,7 +35,7 @@ function hobobaby(){
 bot.on("message", function(message)
        {
     if(message.content === "!hobobaby")
-    {
+    {hobobaby();
     message.reply(timePhrase);
     }
 });
