@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const Key = require('./token.json');
 const Sesame = Key.token;
+var babybaby;
 
 function hobobaby(){
   var now = new Date();
@@ -24,7 +25,7 @@ function hobobaby(){
   m = (m < 10) ? "0" + m : m;
   s = (s < 10) ? "0" + s : s;
 
-  return d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
+  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
 }
 
 
@@ -35,7 +36,7 @@ client.on('message', message => {
     message.channel.sendMessage('bar');
     }
     else if (message.content.startsWith(prefix + 'hobobaby')) {
-      message.channel.sendMessage(hobobaby);
+      message.channel.sendMessage(hobobaby());
     }
 });
 
