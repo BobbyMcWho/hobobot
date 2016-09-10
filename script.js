@@ -1,12 +1,12 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const Key = require('./token.json');
-const Sesame = Key.token;
+var Discord = require('discord.js');
+var client = new Discord.Client();
+var Key = require('./token.json');
+var    Sesame = Key.token;
 
 client.on('message', message => {
-    if (message.content.startsWith('foo'))
+    if(message.content === 'Fuck you')
     {
-    message.channel.sendMessage('bar');
+    message.reply('No fuck you');
     }
 });
 
