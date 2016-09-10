@@ -57,7 +57,7 @@ client.on('message', message => {
       message.channel.sendFile('./clefable.gif');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "commands")) {
-      message.channel.sendMessage('```'+prefix+'whoishobo```,```'+prefix+'hoblet```,```'+prefix+'int```,```'+prefix+'zzz```,```'+prefix+'clefable```');
+      message.channel.sendMessage('```'+prefix+'whoishobo``````'+prefix+'hoblet``````'+prefix+'int``````'+prefix+'zzz``````'+prefix+'clefable```');
     }
 
 
