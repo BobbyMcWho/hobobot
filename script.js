@@ -7,7 +7,7 @@ const phrases = require('./phrases.json');
 const Sesame = Key.token;
 var babybaby;
 var line;
-function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].line;}
+function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
 function hobobaby(){
   var now = new Date();

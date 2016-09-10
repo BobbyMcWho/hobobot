@@ -1,9 +1,9 @@
 "pickups":[
-  {"line":"Hey girl, are you a beaver? Because dam!"},
-  {"line":"Do you live on a chicken farm? Cause you sure know how to raise a cock!"},
-  {"line":"On a scale from 1 to 10, you're a 9 and I'm the one you need."},
-  {"line":"I'm no weatherman, but you can expect a few inches tonight."},
-  {"line":"Oops I dropped my Monster condom for my Magnum dong."},
-  {"line":"There'll only be 7 planets after I destroy Uranus."},
-  {"line":"Girl, are you sitting on that F5 key? Because that ass is refreshing."}
+  {"pline":"Hey girl, are you a beaver? Because dam!"},
+  {"pline":"Do you live on a chicken farm? Cause you sure know how to raise a cock!"},
+  {"pline":"On a scale from 1 to 10, you're a 9 and I'm the one you need."},
+  {"pline":"I'm no weatherman, but you can expect a few inches tonight."},
+  {"pline":"Oops I dropped my Monster condom for my Magnum dong."},
+  {"pline":"There'll only be 7 planets after I destroy Uranus."},
+  {"pline":"Girl, are you sitting on that F5 key? Because that ass is refreshing."}
 ];
