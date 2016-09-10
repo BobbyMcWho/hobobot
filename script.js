@@ -4,9 +4,9 @@ var Key = require('./token.json');
 var    Sesame = Key.token;
 
 client.on('message', message => {
-    if(message.content === 'Fuck you')
+    if(message.content === 'Who is he?')
     {
-    message.reply('No fuck you');
+    message.reply('I am He!');
     }
 });
 
