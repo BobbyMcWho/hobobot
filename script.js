@@ -36,6 +36,7 @@ client.on('message', message => {
     message.channel.sendMessage('bar');
     }
     else if (message.content.startsWith(prefix + 'hobobaby')) {
+      hobobaby();
       message.channel.sendMessage(babybaby);
     }
 });
