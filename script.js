@@ -44,7 +44,7 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + 'int')) {
       message.channel.sendMessage('Ryuuji no kaioken!');
     }
-    else if (message.content.toLowerCase().contains('i am hobo')) {
+    else if (message.content.toLowerCase().includes('i am hobo')) {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
 
