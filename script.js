@@ -10,4 +10,8 @@ client.on('message', message => {
     }
 });
 
+client.on('ready', () => {
+  console.log('I am ready!');
+});
+
 client.login(Sesame);
