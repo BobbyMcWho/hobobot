@@ -11,7 +11,7 @@ function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.
 
 function hobobaby(){
   var now = new Date();
-  var babyDue = new Date(2016, 11, 10);
+  var babyDue = new Date(2016, 10, 10);
   var currentTime = now.getTime();
   var babyBorn = babyDue.getTime();
   var timeRemain = babyBorn - currentTime;
@@ -28,7 +28,7 @@ function hobobaby(){
   m = (m < 10) ? "0" + m : m;
   s = (s < 10) ? "0" + s : s;
 
-  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
+  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";
 }
 
 
@@ -39,7 +39,7 @@ client.on('message', message => {
     {
     message.channel.sendMessage('I am Hobo! *zzt*');
     }
-    else if (message.content.toLowerCase().startsWith(prefix + 'hobobaby')) {
+    else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
