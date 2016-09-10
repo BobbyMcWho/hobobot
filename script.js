@@ -3,7 +3,7 @@ var Discord = require("discord.js"),
     Sesame = Key.token,
     bot = new Discord.Client(),
     deadline = '2015-11-10';
-bot.on("message", message =>
+bot.on("message", function(message)
        {
     if(message.content === "Who is hobo?")
     {
@@ -32,7 +32,7 @@ function hobobaby(){
 
   var timePhrase = d + " days, " + h + " hours, " + m + " minutes, " + s + " seconds remaining until hobobaby is born.";
 }
-bot.on("message", message =>
+bot.on("message", function(message)
        {
     if(message.content === "!hobobaby")
     {
