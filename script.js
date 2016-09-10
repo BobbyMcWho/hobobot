@@ -31,7 +31,7 @@ function hobobaby(){
 
 client.on('message', message => {
   let prefix = '!';
-    if (message.content.startsWith(prefix + 'foo'))
+    if (message.content.toLowerCase().startsWith(prefix + 'foo'))
     {
     message.channel.sendMessage('bar');
     }
