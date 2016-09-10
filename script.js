@@ -33,7 +33,7 @@ function hobobaby(){
 
 
 client.on('message', message => {
-  let prefix = '!';
+  let prefix = '$';
   if(message.author.bot) return;
     if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
     {
