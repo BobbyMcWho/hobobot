@@ -31,14 +31,23 @@ function hobobaby(){
 
 client.on('message', message => {
   let prefix = '!';
-    if (message.content.toLowerCase().startsWith(prefix + 'foo'))
+  if(!msg.content.startsWith(prefix)) return;
+  if(msg.author.bot) return;
+    if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
     {
-    message.channel.sendMessage('bar');
+    message.channel.sendMessage('I am Hobo! *zzt*');
     }
-    else if (message.content.startsWith(prefix + 'hobobaby')) {
+    else if (message.content.toLowerCase().startsWith(prefix + 'hobobaby')) {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
+    else if (message.content.toLowerCase().startsWith(prefix + 'int')) {
+      message.channel.sendMessage('Ryuuji no kaioken!');
+    }
+    else if (message.content.toLowerCase().contains('i am hobo')) {
+      message.channel.sendMessage('No, I am Hobo! *zzt*');
+    }
+
 });
 
 client.login(Sesame);
