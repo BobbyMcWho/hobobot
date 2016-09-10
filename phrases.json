@@ -1,4 +1,4 @@
-"pickups":[
+{"pickups":[
   {"pline":"Hey girl, are you a beaver? Because dam!"},
   {"pline":"Do you live on a chicken farm? Cause you sure know how to raise a cock!"},
   {"pline":"On a scale from 1 to 10, you're a 9 and I'm the one you need."},
@@ -6,4 +6,5 @@
   {"pline":"Oops I dropped my Monster condom for my Magnum dong."},
   {"pline":"There'll only be 7 planets after I destroy Uranus."},
   {"pline":"Girl, are you sitting on that F5 key? Because that ass is refreshing."}
-];
+]
+}
