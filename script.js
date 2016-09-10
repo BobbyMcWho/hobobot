@@ -29,7 +29,7 @@ function hobobaby(){
 
 
 client.on('message', message => {
-  let prefix = '~';
+  let prefix = '!';
   if(!msg.content.startsWith(prefix)) return;
   if(msg.author.bot) return;
     if (message.content.startsWith(prefix + 'foo'))
