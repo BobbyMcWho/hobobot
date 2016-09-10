@@ -24,7 +24,7 @@ function hobobaby(){
   m = (m < 10) ? "0" + m : m;
   s = (s < 10) ? "0" + s : s;
 
-  var timePhrase = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
+  return d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until hobobaby is born.";
 }
 
 
@@ -35,8 +35,7 @@ client.on('message', message => {
     message.channel.sendMessage('bar');
     }
     else if (message.content.startsWith(prefix + 'hobobaby')) {
-      hobobaby();
-      message.channel.sendMessage(timePhrase);
+      message.channel.sendMessage(hobobaby);
     }
 });
 
