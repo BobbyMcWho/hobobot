@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 const Discord = require('discord.js');
+const fs = require('fs');
 const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
