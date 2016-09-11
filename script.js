@@ -63,4 +63,8 @@ client.on('message', message => {
 
 });
 
+client.on('ready', () =>{
+  client.user.setAvatar(fs.readFileSync('./hobo.jpg'));
+});
+
 client.login(Sesame);
