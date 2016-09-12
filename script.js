@@ -58,15 +58,17 @@ client.on('message', message => {
       message.channel.sendFile('./clefable.gif');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "commands")) {
-      message.channel.sendMessage('```'+prefix+'whoishobo``````'+prefix+'hoblet``````'+prefix+'int``````'+prefix+'zzz``````'+prefix+'clefable``````'+prefix+'ayy```');
+      message.channel.sendMessage('```'+prefix+'whoishobo \n'+prefix+'hoblet \n' +prefix+'int \n'+prefix+'zzz \n'+prefix+'clefable \n'+prefix+'ayy \n'+prefix+'abyss \n```');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "ayy")) {
       message.channel.sendFile('./elemayo.png');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "abyss")) {
-      message.channel.sendMessage("I don't know what I'm doing, I'm confused.");
+      message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
     }
-
+    else if (message.content.toLowerCase().includes('hi <@HoboBot#0838>')) {
+      message.channel.sendMessage('hi'+message.author.username);
+    }
 
 });
 
