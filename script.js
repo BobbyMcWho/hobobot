@@ -44,7 +44,7 @@ client.on('message', message => {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
-    else if (message.content.toLowerCase().startsWith(prefix + 'int')) {
+    else if (message.content.toLowerCase().startsWith(prefix + 'int')) && (message.channel.name === "hi") {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
     else if (message.content.toLowerCase().includes('i am hobo')) {
@@ -68,6 +68,9 @@ client.on('message', message => {
     }
     else if (message.content.toLowerCase().startsWith(prefix + "madi")) {
       message.channel.sendMessage("Hi Madi"); 
+    }
+    else if (message.content.toLowerCase().startsWith(prefix + "chanid")) {
+      message.channel.sendMessage(message.channel.id.toString()); 
     }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
