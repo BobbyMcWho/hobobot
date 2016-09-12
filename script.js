@@ -67,7 +67,7 @@ client.on('message', message => {
       message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
     }
     else if (message.content.toLowerCase().startsWith(prefix + "madi")) {
-      message.channel.sendMessage("Hi <@TalksALot#0359>"); 
+      message.channel.sendMessage("Hi "+ message.user.id.toString()); 
     }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
