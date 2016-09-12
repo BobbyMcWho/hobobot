@@ -44,32 +44,32 @@ client.on('message', message => {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
-    else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.name === "hi")) {
+    else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
     else if (message.content.toLowerCase().includes('i am hobo')) {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "zzz")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "zzz") && (message.channel.id === "174984493138968576")) {
       joke();
       message.channel.sendMessage(line);
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "clefable")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "clefable") && (message.channel.id === "174984493138968576")) {
       message.channel.sendFile('./clefable.gif');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "commands")) {
       message.channel.sendMessage('```'+prefix+'whoishobo \n'+prefix+'hoblet \n' +prefix+'int \n'+prefix+'zzz \n'+prefix+'clefable \n'+prefix+'ayy \n'+prefix+'abyss \n```');
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "ayy")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "ayy") && (message.channel.id === "174984493138968576")) {
       message.channel.sendFile('./elemayo.png');
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "abyss")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "abyss") && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "madi")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "madi") && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage("Hi Madi"); 
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "chanid")) {
+    else if (message.content.toLowerCase().startsWith(prefix + "chanid") ) {
       message.channel.sendMessage(message.channel.id.toString()); 
     }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
