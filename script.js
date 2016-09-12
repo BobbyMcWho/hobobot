@@ -66,7 +66,7 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + "abyss")) {
       message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
     }
-    else if (message.content.toLowerCase().startsWith('hi ' + ClientUser.id)) {
+    else if (message.content.toLowerCase().startsWith('hi ' + ClientUser.username)) {
       message.channel.sendMessage('hi'+ message.author.username);
     }
 
