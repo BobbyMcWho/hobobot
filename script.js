@@ -66,8 +66,8 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + "abyss")) {
       message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
     }
-    else if (message.content.toLowerCase().includes('hi <@HoboBot#0838>')) {
-      message.channel.sendMessage('hi'+message.author.username);
+    else if (message.content.toLowerCase().includes('hi')) && (message.mentions.first().id = ClientUser.id) {
+      message.channel.sendMessage('hi'+ message.author.username);
     }
 
 });
