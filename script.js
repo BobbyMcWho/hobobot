@@ -44,7 +44,7 @@ client.on('message', message => {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
-    else if (message.content.toLowerCase().startsWith(prefix + 'int')) && (message.channel.name === "hi") {
+    else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.name === "hi")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
     else if (message.content.toLowerCase().includes('i am hobo')) {
