@@ -74,6 +74,7 @@ client.on('message', message => {
       message.channel.sendMessage(message.channel.id.toString()); 
     }
     else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
+      if (message.guild.members.array().length >= 3){
       let newArr = [];
       let memArr = message.guild.members.array();
       let i = 0; 
@@ -83,6 +84,8 @@ client.on('message', message => {
       }
       console.log(newArr);
             message.channel.sendMessage("F,M,K: " + newArr[0] + " " + newArr[1] + " " + newArr[2] );
+      }
+      else {message.channel.sendMessage("Too few members :\( ");
       }
     
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
