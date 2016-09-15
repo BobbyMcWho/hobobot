@@ -80,7 +80,7 @@ client.on('message', message => {
       let i = 0; 
       while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-      if ((newArr.indexOf(memArr[currIndex]) == (-1)) && (memArr[currIndex].nickname != 'undefined')){ newArr.push(memArr[currIndex]); i++}
+      if ((newArr.indexOf(memArr[currIndex]) == (-1)) && (memArr[currIndex].nickname != undefined)){ newArr.push(memArr[currIndex]); i++}
       }
       console.log(newArr);
             message.channel.sendMessage("F,M,K: " + newArr[0].nickname + ", " + newArr[1].nickname + ", " + newArr[2].nickname );
