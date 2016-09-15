@@ -75,7 +75,7 @@ client.on('message', message => {
     }
     else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
       let newArr = [];
-      let memArr = ["1","2","3","4","5","6"]//message.guild.members.array();
+      let memArr = message.guild.members.array();
       let i = 0; 
       while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
