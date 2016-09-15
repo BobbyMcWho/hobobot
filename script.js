@@ -81,7 +81,7 @@ client.on('message', message => {
       let i = 0; 
       while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-      if ((newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
+      if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
       }
      let choice1 = function(){if (newArr[0].nickname == undefined) {return newArr[0].user.username;} else {return newArr[0].nickname;}}
      let choice2 = function(){if (newArr[1].nickname == undefined) {return newArr[1].user.username;} else {return newArr[1].nickname;}}
