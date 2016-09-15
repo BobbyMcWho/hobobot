@@ -85,7 +85,7 @@ client.on('message', message => {
       console.log(newArr);
             message.channel.sendMessage("F,M,K: " + newArr[0] + " " + newArr[1] + " " + newArr[2] );
       }
-      else {message.channel.sendMessage("Too few members :\( ");
+      else {message.channel.sendMessage("Too few members :\( ");}
       }
     
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
