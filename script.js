@@ -73,16 +73,16 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + "chanid") ) {
       message.channel.sendMessage(message.channel.id.toString()); 
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
-      let newArr = [];
-      let memArr = message.guild.members.array();
-      let i = 0 while (i < 3) {
-        let currIndex = Math.floor(Math.random()*memArr.length);
-      if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
-      }
-      console.log(newArr);
-            message.channel.sendMessage('F,M,K: ' + newArr[0] + " " + newArr[1] + " " + newArr[2] );
-      }
+    // else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
+    //   let newArr = [];
+    //   let memArr = message.guild.members.array();
+    //   let i = 0 while (i < 3) {
+    //     let currIndex = Math.floor(Math.random()*memArr.length);
+    //   if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
+    //   }
+    //   console.log(newArr);
+    //         message.channel.sendMessage('F,M,K: ' + newArr[0] + " " + newArr[1] + " " + newArr[2] );
+    //   }
     
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
