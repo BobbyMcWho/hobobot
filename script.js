@@ -6,8 +6,10 @@ const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
 const Sesame = Key.token;
+const newArr = [];
 var babybaby;
 var line;
+
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
 function hobobaby(){
@@ -31,7 +33,15 @@ function hobobaby(){
 
   babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";
 }
-
+function fmk(){
+let newArr = [];
+let i = 0; for (i;i < 3;) {
+  let currIndex = Math.floor(Math.random()*memArr.length);
+if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
+  else {i}
+}
+};
+fmk();
 
 client.on('message', message => {
   let prefix = '$';
@@ -71,6 +81,12 @@ client.on('message', message => {
     }
     else if (message.content.toLowerCase().startsWith(prefix + "chanid") ) {
       message.channel.sendMessage(message.channel.id.toString()); 
+    }
+    else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
+      let memArr = message.guild.members.array; 
+      fmk();
+      message.channel.sendMessage('F,M,K: ' + newArr[0] + " " + newArr[1] + " " + newArr[2] );
+      
     }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
