@@ -89,7 +89,7 @@ client.on('message', message => {
     // let choice1 = function(){if (newArr[0].nickname == undefined) {return newArr[0].user.username;} else {return newArr[0].nickname;}}
     // let choice2 = function(){if (newArr[1].nickname == undefined) {return newArr[1].user.username;} else {return newArr[1].nickname;}}
     // let choice3 = function(){if (newArr[2].nickname == undefined) {return newArr[2].user.username;} else {return newArr[2].nickname;}}
-            message.channel.sendMessage("F,M,K: " + newArr[0].nickname + ", " + newArr[1].nickname + ", " + newArr[2].nickname );
+            message.channel.sendMessage("F,M,K: " + newArr[0].user.username + ", " + newArr[1].user.username + ", " + newArr[2].user.username );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
