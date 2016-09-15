@@ -74,7 +74,7 @@ client.on('message', message => {
       message.channel.sendMessage(message.channel.id.toString()); 
     }
        else if (message.content.toLowerCase().startsWith(prefix + "userid") ) {
-      message.channel.sendMessage(message.user.id); 
+      message.channel.sendMessage(message.author.user.id); 
     }
     else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
       if (message.guild.members.array().length >= 3){
