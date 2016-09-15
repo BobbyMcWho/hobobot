@@ -76,7 +76,7 @@ client.on('message', message => {
        else if (message.content.toLowerCase().startsWith(prefix + "userid") ) {
       message.channel.sendMessage(message.author.id); 
     }
-    else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
+    else if ((message.content.toLowerCase().startsWith(prefix + "fmk") ) && (message.channel.id === "174984493138968576")) {
       if (message.guild.members.array().length >= 3){
       let newArr = [];
       let memArr = message.guild.members.array();
@@ -93,17 +93,18 @@ client.on('message', message => {
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
-    else if ((message.content.toLowerCase().startsWith(prefix + "clean")) && (message.author.id == "186693404288090114")) {
-      const params = message.content.split(" ").slice(1);
-    let messagecount = parseInt(params[0]);
-    message.channel.fetchMessages({limit: 100})
-    .then(messages => {
-      let msg_array = messages.array();
-      msg_array = msg_array.filter(m => m.author.id === bot.user.id);
-      msg_array.length = messagecount + 1;
-      msg_array.map(m => m.delete().catch(console.error));
-  });
-  }
+  //   else if ((message.content.toLowerCase().startsWith(prefix + "clean")) && (message.author.id == "186693404288090114")) {
+  //     const params = message.content.split(" ").slice(1);
+  //   let messagecount = parseInt(params[0]);
+  //   message.channel.fetchMessages({limit: 100})
+  //   .then(messages => {
+  //     let msg_array = messages.array();
+  //     msg_array = msg_array.filter(m => m.author.id === bot.user.id);
+  //     msg_array.length = messagecount + 1;
+  //     msg_array.map(m => m.delete()
+  //     .catch(console.error));
+  // });
+  // }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
     // }
