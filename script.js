@@ -73,6 +73,9 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + "chanid") ) {
       message.channel.sendMessage(message.channel.id.toString()); 
     }
+       else if (message.content.toLowerCase().startsWith(prefix + "userid") ) {
+      message.channel.sendMessage(message.user.id); 
+    }
     else if (message.content.toLowerCase().startsWith(prefix + "fmk") ) {
       if (message.guild.members.array().length >= 3){
       let newArr = [];
@@ -83,10 +86,10 @@ client.on('message', message => {
         let currIndex = Math.floor(Math.random()*memArr.length);
       if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
       }
-     let choice1 = function(){if (newArr[0].nickname == undefined) {return newArr[0].user.username;} else {return newArr[0].nickname;}}
-     let choice2 = function(){if (newArr[1].nickname == undefined) {return newArr[1].user.username;} else {return newArr[1].nickname;}}
-     let choice3 = function(){if (newArr[2].nickname == undefined) {return newArr[2].user.username;} else {return newArr[2].nickname;}}
-            message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
+    // let choice1 = function(){if (newArr[0].nickname == undefined) {return newArr[0].user.username;} else {return newArr[0].nickname;}}
+    // let choice2 = function(){if (newArr[1].nickname == undefined) {return newArr[1].user.username;} else {return newArr[1].nickname;}}
+    // let choice3 = function(){if (newArr[2].nickname == undefined) {return newArr[2].user.username;} else {return newArr[2].nickname;}}
+            message.channel.sendMessage("F,M,K: " + newArr[0].nickname + ", " + newArr[1].nickname + ", " + newArr[2].nickname );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
