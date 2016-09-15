@@ -8,7 +8,6 @@ const phrases = require('./phrases.json');
 const Sesame = Key.token;
 var babybaby;
 var line;
-const params = message.content.split(" ").slice(1);
 
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
@@ -95,7 +94,7 @@ client.on('message', message => {
       else {message.channel.sendMessage("Too few members :\( ");}
       }
   //   else if ((message.content.toLowerCase().startsWith(prefix + "clean")) && (message.author.id == "186693404288090114")) {
-      
+      //const params = message.content.split(" ").slice(1);
   //   let messagecount = parseInt(params[0]);
   //   message.channel.fetchMessages({limit: 100})
   //   .then(messages => {
