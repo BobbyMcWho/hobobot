@@ -81,10 +81,12 @@ client.on('message', message => {
       let i = 0; 
       while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-      if ((newArr.indexOf(memArr[currIndex]) == (-1)) && (memArr[currIndex].nickname != undefined)){ newArr.push(memArr[currIndex]); i++}
+      if ((newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
       }
-      console.log(newArr);
-            message.channel.sendMessage("F,M,K: " + newArr[0].nickname + ", " + newArr[1].nickname + ", " + newArr[2].nickname );
+     let choice1 = function(){if (newArr[0].nickname == undefined) {newArr[0].user.username} else {newArr[0].nickname}}
+     let choice2 = function(){if (newArr[1].nickname == undefined) {newArr[1].user.username} else {newArr[1].nickname}}
+     let choice3 = function(){if (newArr[2].nickname == undefined) {newArr[2].user.username} else {newArr[2].nickname}}
+            message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
