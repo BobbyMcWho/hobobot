@@ -91,7 +91,7 @@ client.on('message', message => {
       }
 
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
-      const params = message.content.split(" ").slice(1);
+      let params = message.content.split(" ").slice(1);
     let dieCount = 1;
     let dieSides = 6;
     let resultsArr = [];
@@ -112,7 +112,7 @@ client.on('message', message => {
   }
 
   else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
-    const params = message.content.split(" ").slice(1);
+    let params = message.content.split(" ").slice(1);
   let coinCount = 1;
   let coinSides = 2;
   let resultsArr = [];
@@ -128,8 +128,8 @@ client.on('message', message => {
         resultsArr.push(side);
       }
       let heads = hcount;
-      let tails = (coinCount-heads);
-      message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +"heads** and **" + tails +"tails**.\n Results:" + resultsArr );}
+      let tails = (coinCount - heads);
+      message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +"heads** and **" + tails +"tails**. \n Results:" + resultsArr );}
 
 }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
