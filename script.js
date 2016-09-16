@@ -146,7 +146,7 @@ client.on('message', message => {
 
 }
 else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
- let menArr = message.mentions.array();
+ let menArr = message.mentions.users.array();
  menArr = shuffle(menArr);
  message.channel.sendMessage(menArr);
 }
