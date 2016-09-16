@@ -99,14 +99,16 @@ client.on('message', message => {
     if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);}
     let roller = "";
     if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
-    if (dieCount <= 100){
+    if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
+    else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you");}
+    else{
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
         }
         let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
         let dieAverage = (dieTotal/dieCount);
         message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}
-    else {message.channel.sendMessage(roller + ", you don't need that many dice!");}
+
   }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
