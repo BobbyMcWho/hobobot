@@ -129,7 +129,7 @@ client.on('message', message => {
       }
       let heads = hCount;
       let tails = (coinCount - heads);
-      message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +"heads** and **" + tails +"tails**. \n Results: " + resultsArr );}
+      message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +" heads** and **" + tails +" tails**. \n Results: " + resultsArr );}
 
 }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
