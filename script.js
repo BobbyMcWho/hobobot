@@ -94,12 +94,11 @@ client.on('message', message => {
       const params = message.content.split(" ").slice(1);
     let dieCount = parseInt(params[0]);
     let dieSides = parseInt(params[1])+1;
-    let i = 0;
     let resultsArr = [];
-    let roller;
-    if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.user.username;}
-    for (i;i<dieCount;i++){
-      resultsArr.push(Math.floor(Math.random*dieSides));
+    let roller = "";
+    if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.author.user.username;}
+    for (let i=0;i<dieCount;i++){
+      resultsArr.push(Math.floor(Math.random()*dieSides));
     }
     let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
     let dieAverage = (dieTotal/dieCount);
