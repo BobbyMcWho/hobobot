@@ -90,18 +90,21 @@ client.on('message', message => {
       else {message.channel.sendMessage("Too few members :\( ");}
       }
 
-  //   else if ((message.content.toLowerCase().startsWith(prefix + "clean")) && (message.author.id == "186693404288090114")) {
-  //     const params = message.content.split(" ").slice(1);
-  //   let messagecount = parseInt(params[0]);
-  //   message.channel.fetchMessages({limit: 100})
-  //   .then(messages => {
-  //     let msg_array = messages.array();
-  //     msg_array = msg_array.filter(m => m.author.id === bot.user.id);
-  //     msg_array.length = messagecount + 1;
-  //     msg_array.map(m => m.delete()
-  //     .catch(console.error));
-  // });
-  // }
+    else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
+      const params = message.content.split(" ").slice(1);
+    let dieCount = parseInt(params[0]);
+    let dieSides = parseInt(params[1])+1;
+    let i = 0;
+    let resultsArr = [];
+    let roller;
+    if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.user.username;}
+    for (i;i<dieCount;i++){
+      resultsArr.push(Math.floor(Math.random*dieSides));
+    }
+    let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
+    let dieAverage = (dieTotal/dieCount);
+    message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );
+  }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
     // }
