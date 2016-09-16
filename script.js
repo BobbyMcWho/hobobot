@@ -110,6 +110,28 @@ client.on('message', message => {
         message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}
 
   }
+
+  else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
+    const params = message.content.split(" ").slice(1);
+  let coinCount = 1;
+  let coinSides = 2;
+  let resultsArr = [];
+  if(typeof params[0] !== 'undefined'){ coinCount = parseInt(params[0]);}
+  let roller = "";
+  if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
+  if (coinCount > 100){message.channel.sendMessage(roller + ", you don't need that many coins!");}
+  else{
+    let hCount = 0;
+      for (let i=0;i<coinCount;i++){
+        let side = "";
+        if(Math.floor(Math.random()*(coinSides))===1){side = "Heads";hCount++;}else{side = "Tails";}
+        resultsArr.push(side);
+      }
+      let heads = hcount;
+      let tails = (coinCount-heads);
+      message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +"heads** and **" + tails +"tails**.\n Results:" + resultsArr );}
+
+}
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
     // }
