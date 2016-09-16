@@ -6,9 +6,9 @@ const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
 const Sesame = Key.token;
-var babybaby;
-var line;
-
+let babybaby;
+let line;
+let nickCheck = function(){};
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
 function hobobaby(){
@@ -30,9 +30,7 @@ function hobobaby(){
   m = (m < 10) ? "0" + m : m;
   s = (s < 10) ? "0" + s : s;
 
-  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";
-}
-  function nickCheck(a){if (newArr[a].nickname === undefined || newArr[a].nickname === null) {return newArr[a].user.username;} else {return newArr[a].nickname;}}
+  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";}
 
 client.on('message', message => {
   let prefix = '$';
@@ -80,6 +78,7 @@ client.on('message', message => {
       if (message.guild.members.array().length >= 3){
         let newArr = [];
         let memArr = message.guild.members.array();
+        nickCheck = function(a){if (newArr[a].nickname === undefined || newArr[a].nickname === null) {return newArr[a].user.username;} else {return newArr[a].nickname;}};
         memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
