@@ -124,10 +124,10 @@ client.on('message', message => {
     let hCount = 0;
       for (let i=0;i<coinCount;i++){
         let side = "";
-        if((Math.floor(Math.random()*(coinSides)))===1){side = "Heads";hCount++;}else{side = "Tails";}
+        if((Math.floor(Math.random()*2))===1){side = "Heads";hcount = (hCount + 1);}else{side = "Tails";}
         resultsArr.push(side);
       }
-      let heads = hcount;
+      let heads = hCount;
       let tails = (coinCount - heads);
       message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +"heads** and **" + tails +"tails**. \n Results:" + resultsArr );}
 
