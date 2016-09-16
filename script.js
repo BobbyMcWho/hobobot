@@ -32,7 +32,7 @@ function hobobaby(){
 
   babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";
 }
-
+  function nickCheck(a){if (newArr[a].nickname === undefined || newArr[a].nickname === null) {return newArr[a].user.username;} else {return newArr[a].nickname;}}
 
 client.on('message', message => {
   let prefix = '$';
@@ -78,17 +78,16 @@ client.on('message', message => {
     }
     else if ((message.content.toLowerCase().startsWith(prefix + "fmk") ) && (message.channel.id === "174984493138968576")) {
       if (message.guild.members.array().length >= 3){
-      let newArr = [];
-      let memArr = message.guild.members.array();
-      memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
-      let i = 0;
-      while (i < 3) {
+        let newArr = [];
+        let memArr = message.guild.members.array();
+        memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
+        let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-      if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++;}
-      }
-    let choice1 = function(){if (newArr[0].nickname === undefined || newArr[0].nickname === null) {return newArr[0].user.username;} else {return newArr[0].nickname;}};
-    let choice2 = function(){if (newArr[1].nickname === undefined || newArr[1].nickname === null) {return newArr[1].user.username;} else {return newArr[1].nickname;}};
-    let choice3 = function(){if (newArr[2].nickname === undefined || newArr[0].nickname === null) {return newArr[2].user.username;} else {return newArr[2].nickname;}};
+        if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++;}
+        }
+          let choice1 = nickCheck(0);
+          let choice2 = nickCheck(1);
+          let choice3 = nickCheck(2);
             message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
