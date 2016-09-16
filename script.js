@@ -98,10 +98,10 @@ client.on('message', message => {
     if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);}
     if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);}
     let roller = "";
-    if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.member.nickname;} else {roller = message.author.username;}
+    if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
     if (dieCount <= 100){
         for (let i=0;i<dieCount;i++){
-          resultsArr.push(Math.floor(Math.random()* (dieSides+1)));
+          resultsArr.push(Math.floor(Math.random()*(parseInt(dieSides) + 1)));
         }
         let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
         let dieAverage = (dieTotal/dieCount);
