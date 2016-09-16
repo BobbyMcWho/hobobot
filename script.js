@@ -92,11 +92,13 @@ client.on('message', message => {
 
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
       const params = message.content.split(" ").slice(1);
-    let dieCount = parseInt(params[0]);
-    let dieSides = parseInt(params[1]);
+    let dieCount = 1;
+    let dieSides = 6;
     let resultsArr = [];
-    // let roller = "";
-    // if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.author.user.username;}
+    if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);}
+    if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieSides = parseInt(params[1]);}
+    let roller = "";
+    if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.member.nickname;} else {roller = message.author.username;}
     if (dieCount <= 100){
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()* (dieSides+1)));
