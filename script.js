@@ -96,7 +96,7 @@ client.on('message', message => {
     let dieSides = 6;
     let resultsArr = [];
     if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);}
-    if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieSides = parseInt(params[1]);}
+    if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);}
     let roller = "";
     if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.member.nickname;} else {roller = message.author.username;}
     if (dieCount <= 100){
