@@ -78,7 +78,7 @@ client.on('message', message => {
       if (message.guild.members.array().length >= 3){
         let newArr = [];
         let memArr = message.guild.members.array();
-        memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
+        memArr = memArr.filter(function(membertest){return !membertest.user.bot && (membertest.user.status === "online");});
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
         if (newArr.indexOf(memArr[currIndex]) == (-1)){
