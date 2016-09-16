@@ -101,7 +101,7 @@ client.on('message', message => {
     if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
     if (dieCount <= 100){
         for (let i=0;i<dieCount;i++){
-          resultsArr.push(Math.floor(Math.random()*(dieCount))+1);
+          resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
         }
         let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
         let dieAverage = (dieTotal/dieCount);
