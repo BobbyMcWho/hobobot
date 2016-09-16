@@ -99,7 +99,7 @@ client.on('message', message => {
     if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);}
     let roller = "";
     if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
-    let diePlus = dieSides++;
+    let diePlus = (dieSides + 1);
     if (dieCount <= 100){
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(diePlus)));
