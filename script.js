@@ -65,31 +65,31 @@ client.on('message', message => {
       message.channel.sendFile('./elemayo.png');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "abyss") && (message.channel.id === "174984493138968576")) {
-      message.channel.sendMessage("I don't know what I'm doing, I'm confused."); 
+      message.channel.sendMessage("I don't know what I'm doing, I'm confused.");
     }
     else if (message.content.toLowerCase().startsWith(prefix + "madi") && (message.channel.id === "174984493138968576")) {
-      message.channel.sendMessage("Hi Madi"); 
+      message.channel.sendMessage("Hi Madi");
     }
     else if (message.content.toLowerCase().startsWith(prefix + "chanid") ) {
-      message.channel.sendMessage(message.channel.id.toString()); 
+      message.channel.sendMessage(message.channel.id.toString());
     }
        else if (message.content.toLowerCase().startsWith(prefix + "userid") ) {
-      message.channel.sendMessage(message.author.id); 
+      message.channel.sendMessage(message.author.id);
     }
     else if ((message.content.toLowerCase().startsWith(prefix + "fmk") ) && (message.channel.id === "174984493138968576")) {
       if (message.guild.members.array().length >= 3){
       let newArr = [];
       let memArr = message.guild.members.array();
-      memArr = memArr.filter(function(membertest){return !membertest.user.bot});
-      let i = 0; 
+      memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
+      let i = 0;
       while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-      if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++}
+      if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++;}
       }
-    // let choice1 = function(){if (newArr[0].nickname == undefined) {return newArr[0].user.username;} else {return newArr[0].nickname;}}
-    // let choice2 = function(){if (newArr[1].nickname == undefined) {return newArr[1].user.username;} else {return newArr[1].nickname;}}
-    // let choice3 = function(){if (newArr[2].nickname == undefined) {return newArr[2].user.username;} else {return newArr[2].nickname;}}
-            message.channel.sendMessage("F,M,K: " + newArr[0].user.username + ", " + newArr[1].user.username + ", " + newArr[2].user.username );
+    let choice1 = function(){if (newArr[0].nickname === undefined || newArr[0].nickname === null) {return newArr[0].user.username;} else {return newArr[0].nickname;}};
+    let choice2 = function(){if (newArr[1].nickname === undefined || newArr[1].nickname === null) {return newArr[1].user.username;} else {return newArr[1].nickname;}};
+    let choice3 = function(){if (newArr[2].nickname === undefined || newArr[0].nickname === null) {return newArr[2].user.username;} else {return newArr[2].nickname;}};
+            message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
