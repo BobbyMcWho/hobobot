@@ -162,7 +162,7 @@ client.on('message', message => {
 else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
   let mentionColl = message.mentions.array();
   let params = message.content.split(" ").slice(1);
-  if (params[0].isNaN){message.channel.sendMessage("Please use "+prefix+"teams # Mention1,Mention2,...");}
+  if ((params[0].isNaN) || (typeof params[0] === 'undefined')){message.channel.sendMessage("Please use "+prefix+"teams # Mention1,Mention2,...");}
   else if (params[0]<2) {message.channel.sendMessage(mentionColl);}
   else {shuffle(mentionColl);
   let groupedArr = createGroupedArray(mentionColl,parseInt(params[0]));
