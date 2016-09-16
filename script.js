@@ -105,8 +105,8 @@ client.on('message', message => {
         }
         let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
         let dieAverage = (dieTotal/dieCount);
-        message.channel.sendMessage(message.author.username + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}
-    else {message.channel.sendMessage(message.author.username + ", you don't need that many dice!");}
+        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}
+    else {message.channel.sendMessage(roller + ", you don't need that many dice!");}
   }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
