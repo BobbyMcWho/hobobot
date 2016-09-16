@@ -8,7 +8,7 @@ const phrases = require('./phrases.json');
 const Sesame = Key.token;
 let babybaby;
 let line;
-let nickCheck = function(){};
+let choice = [];
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
 function hobobaby(){
@@ -78,15 +78,14 @@ client.on('message', message => {
       if (message.guild.members.array().length >= 3){
         let newArr = [];
         let memArr = message.guild.members.array();
-        nickCheck = function(a){if (newArr[a].nickname === undefined || newArr[a].nickname === null) {return newArr[a].user.username;} else {return newArr[a].nickname;}};
         memArr = memArr.filter(function(membertest){return !membertest.user.bot;});
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-        if (newArr.indexOf(memArr[currIndex]) == (-1)){ newArr.push(memArr[currIndex]); i++;}
+        if (newArr.indexOf(memArr[currIndex]) == (-1)){
+          if (memArr[currIndex].nickname === undefined || memArr[currIndex].nickname === null){newArr.push(memArr[currIndex].user.username);} else {newArr.push(memArr[currIndex].nickname);}i++;}
         }
           let choice1 = nickCheck(0);
-          let choice2 = nickCheck(1);
-          let choice3 = nickCheck(2);
+
             message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
