@@ -124,7 +124,7 @@ client.on('message', message => {
     let hCount = 0;
       for (let i=0;i<coinCount;i++){
         let side = "";
-        if(Math.floor(Math.random()*(coinSides))===1){side = "Heads";hCount++;}else{side = "Tails";}
+        if((Math.floor(Math.random()*(coinSides)))===1){side = "Heads";hCount++;}else{side = "Tails";}
         resultsArr.push(side);
       }
       let heads = hcount;
