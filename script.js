@@ -93,16 +93,16 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
       const params = message.content.split(" ").slice(1);
     let dieCount = parseInt(params[0]);
-    let dieSides = parseInt(params[1])+1;
+    let dieSides = parseInt(params[1]);
     let resultsArr = [];
-    let roller = "";
-    if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.author.user.username;}
+    // let roller = "";
+    // if(message.member.nickname === undefined  || message.member.nickname === null){roller = message.member.nickname;} else {roller = message.author.user.username;}
     for (let i=0;i<dieCount;i++){
-      resultsArr.push(Math.floor(Math.random()*dieSides));
+      resultsArr.push(Math.floor(Math.random()* (dieSides+1)));
     }
     let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
     let dieAverage = (dieTotal/dieCount);
-    message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );
+    message.channel.sendMessage(message.author.username + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );
   }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
