@@ -84,9 +84,8 @@ client.on('message', message => {
         if (newArr.indexOf(memArr[currIndex]) == (-1)){
           if (memArr[currIndex].nickname === undefined || memArr[currIndex].nickname === null){newArr.push(memArr[currIndex].user.username);} else {newArr.push(memArr[currIndex].nickname);}i++;}
         }
-          let choice1 = nickCheck(0);
 
-            message.channel.sendMessage("F,M,K: " + choice1 + ", " + choice2 + ", " + choice3 );
+            message.channel.sendMessage("F,M,K: " + newArr[0] + ", " + newArr[1]+ ", " + newArr[2] );
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
