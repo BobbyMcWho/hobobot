@@ -78,7 +78,7 @@ client.on('message', message => {
       if (message.guild.members.array().length >= 3){
         let newArr = [];
         let memArr = message.guild.members.array();
-        memArr = memArr.filter(function(membertest){return !membertest.user.bot && (membertest.user.status === "online") && (membertest.roles.array().length === 0 );});
+        memArr = memArr.filter(function(membertest){return !membertest.user.bot && (membertest.user.status === "online") && (membertest.roles.size > 1 );});
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
         if (newArr.indexOf(memArr[currIndex]) == (-1)){
@@ -89,6 +89,7 @@ client.on('message', message => {
       }
       else {message.channel.sendMessage("Too few members :\( ");}
       }
+
   //   else if ((message.content.toLowerCase().startsWith(prefix + "clean")) && (message.author.id == "186693404288090114")) {
   //     const params = message.content.split(" ").slice(1);
   //   let messagecount = parseInt(params[0]);
