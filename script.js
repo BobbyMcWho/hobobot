@@ -12,31 +12,17 @@ let choice = [];
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  var i = 0,
+    j = 0,
+    temp = null;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
-
-  return array;
 }
-
-var createGroupedArray = function(arr, chunkSize) {
-    var groups = [], i;
-    for (i = 0; i < arr.length; i += chunkSize) {
-        groups.push(arr.slice(i, i + chunkSize));
-    }
-    return groups;
-};
 
 function hobobaby(){
   var now = new Date();
@@ -160,13 +146,9 @@ client.on('message', message => {
 
 }
 else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
-  let mentionColl = message.mentions.array();
-  let params = message.content.split(" ").slice(1);
-  if (isNaN(parseInt(params[0])) || (typeof params[0] === 'undefined')){message.channel.sendMessage("Please use "+prefix+"teams # Mention1,Mention2,...");}
-  else if (parseInt(params[0])<2) {message.channel.sendMessage(mentionColl);}
-  else {shuffle(mentionColl);
-  let groupedArr = createGroupedArray(mentionColl,parseInt(params[0]));
-  message.channel.sendMessage(groupedArr);}
+ let menArr = message.mentions.array();
+ shuffle(menArr);
+ message.channel.sendMessage(menArr);
 }
     // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
     //   message.channel.sendMessage('hi'+ message.author.username);
