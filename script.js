@@ -107,21 +107,29 @@ client.on('message', message => {
       let params = message.content.split(" ").slice(1);
     let dieCount = 1;
     let dieSides = 6;
+    let keep = dieCount;
     let resultsArr = [];
-    if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);}
-    if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);}
+    if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined') && (typeof params[2] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]); keep = parseInt(params[2].replace(/[^0-9]+/g, ""));}
+    else if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1]);keep = dieCount;}
+    else if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);keep=dieCount;}
+    let keepPhrase = "";
     let roller = "";
-    if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
-    if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
-    else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you");}
-    else{
+      if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
+    if (keep <= dieCount){
+      if (keep < dieCount){keepPhrase = "keeping the top " + keep +", ";}
+      if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
+      else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you");}
+      else{
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
         }
-        let dieTotal = resultsArr.reduce(function(a,b){return a+b;});
-        let dieAverage = (dieTotal/dieCount);
-        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}
-
+        let keptArr = resultsArr.sort(function(a,b){return b-a;});
+        keptArr = keptArr.slice(0,(keep));
+        let dieTotal = keptArr.reduce(function(a,b){return a+b;});
+        let dieAverage = Math.round((dieTotal/keep)*100)/100;
+        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + "for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}}
+    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!")
+    }
   }
 
   else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
