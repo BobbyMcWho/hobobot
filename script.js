@@ -57,9 +57,10 @@ client.on('message', message => {
       message.channel.sendMessage(babybaby);
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
-      if (message.author.id === "161210376812363776"){
-      message.channel.sendMessage("Yes, Master?");}
-      else {message.channel.sendMessage("Hobo must be working...");}
+      if ("161210376812363776".status === "online"){
+      message.channel.sendMessage("Hobo is here!");}
+      else if ("161210376812363776".status === "idle"){message.channel.sendMessage("Hobo must be working...");}
+      else if ("161210376812363776".status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
