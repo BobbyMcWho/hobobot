@@ -99,7 +99,7 @@ client.on('message', message => {
         memArr = memArr.filter(function(membertest){return !membertest.user.bot && (membertest.user.status === "online") && (membertest.roles.size > 1 );});
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
-        if (newArr.indexOf(memArr[currIndex]) == (-1)){
+        if ((newArr.indexOf(memArr[currIndex].nickname) == (-1) && newArr.indexOf(memArr[currIndex].user.username) == (-1) ){
           if (memArr[currIndex].nickname === undefined || memArr[currIndex].nickname === null){newArr.push(memArr[currIndex].user.username);} else {newArr.push(memArr[currIndex].nickname);}i++;}
         }
 
