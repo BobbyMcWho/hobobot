@@ -56,6 +56,11 @@ client.on('message', message => {
       hobobaby();
       message.channel.sendMessage(babybaby);
     }
+    else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
+      if (message.author.id === "161210376812363776"){
+      message.channel.sendMessage("Yes, Master?");}
+      else {message.channel.sendMessage("Hobo must be working...");}
+    }
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
