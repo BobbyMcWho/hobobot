@@ -201,6 +201,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   console.log(params);
   if((typeof params[0] !== 'undefined')){
     let zipcode = params[0] ;
+    console.log(zipcode);
     let country;
         if(typeof params[1] !== 'undefined'){country = params[1];}else{country = 'us';}
     let units;
