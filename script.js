@@ -198,6 +198,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   let params = message.content.split(" ").slice(1);
+  console.log(params);
   if((typeof params[0] !== 'undefined')){
     let zipcode = params[0] ;
     let country;
