@@ -176,7 +176,6 @@ client.on('message', message => {
 else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let params = message.content.split(" ").slice(1);
   let searchTerm = params.join('%20');
-  let searched = params.join(' ');
   let url ='http://api.urbandictionary.com/v0/define?term=';
   
   request(url+searchTerm, (error,response,body) => {
@@ -186,7 +185,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let thumbsup = urbanResponse.list[0].thumbs_up;
       let thumbsdown = urbanResponse.list[0].thumbs_down;
       let definition = urbanResponse.list[0].definition;
-      message.channel.sendMessage(`${searched}: ${definition} \n \uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`);
+      let example = urbanResponse.list[0].example;
+      let word = urbanResponse.list[0].word;
+      message.channel.sendMessage(`**${word}:** \n ${definition} \n \uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \n Example: ${example}`);
     }
   })
 }
