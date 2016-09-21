@@ -178,12 +178,13 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let searchTerm = params.join('%20');
   let url ='https://api.urbandictionary.com/v0/define?term=';
   
-  request(url+searchTerm, (error,response,body)=> {
+  request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
       let tags = urbanResponse.tags;
       message.channel.sendMessage(tags);
     }
+    else {message.channel.sendMessage("error");}
   })
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
