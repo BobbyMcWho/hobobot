@@ -65,6 +65,11 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
+    else if (message.content.toLowerCase().startsWith("/r/") || message.content.toLowerCase().startsWith("r/")) {
+      let lio = message.content.lastIndexOf('/');
+      let subreddit = message.content.substring(lio);
+      message.channel.sendMessage('http://www.reddit.com/r/'+subreddit);
+    }
     else if (message.content.toLowerCase().includes('i am hobo')) {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
