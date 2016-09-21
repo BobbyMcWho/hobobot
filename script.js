@@ -26,12 +26,12 @@ function shuffle(array) {
   }
 }
 
-function hobobaby(){
+function hobobaby(phrase,year,month,day){
   var now = new Date();
-  var babyDue = new Date(2016, 10, 10);
+  var goalDate = new Date(year,month,day);
   var currentTime = now.getTime();
-  var babyBorn = babyDue.getTime();
-  var timeRemain = babyBorn - currentTime;
+  var goalTime = goalDate.getTime();
+  var timeRemain = goalTime - currentTime;
   var s = Math.floor(timeRemain/1000);
   var m = Math.floor(s/60);
   var h = Math.floor(m/60);
@@ -45,7 +45,7 @@ function hobobaby(){
   m = (m < 10) ? "0" + m : m;
   s = (s < 10) ? "0" + s : s;
 
-  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until a hoblet is born.";}
+  babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until " + phrase + ".";}
 
 client.on('message', message => {
   let prefix = '$';
@@ -55,7 +55,7 @@ client.on('message', message => {
     message.channel.sendMessage('I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
-      hobobaby();
+      hobobaby("a hoblet is born",2016,10,10);
       message.channel.sendMessage(babybaby);
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
@@ -149,7 +149,7 @@ client.on('message', message => {
         let dieTotal = keptArr.reduce(function(a,b){return a+b;});
         let dieAverage = Math.round((dieTotal/keep)*100)/100;
         message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + "for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}}
-    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!")
+    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!");
     }
   }
 
@@ -178,7 +178,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let params = message.content.split(" ").slice(1);
   let searchTerm = params.join('%20');
   let url ='http://api.urbandictionary.com/v0/define?term=';
-  
+
   request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
@@ -190,7 +190,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let word = urbanResponse.list[0].word;
       message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
     }
-  })
+  });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   let params = message.content.split(" ").slice(1);
@@ -198,18 +198,18 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   let country = params[1];
   let units = 'imperial';
   let niceUnits = 'Fahrenheit';
-  if(params[2] = 'c'){units = 'metric';niceUnits='Celcius';}
-  else if (params[2] = 'k'){units = '';niceUnits='Kelvin';}
+  if(params[2] == 'c'){units = 'metric';niceUnits='Celcius';}
+  else if (params[2] == 'k'){units = '';niceUnits='Kelvin';}
   let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
-  
+
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const weatherResponse = JSON.parse(body);
       let temperature = weatherResponse.
-      
+
       message.channel.sendMessage();
     }
-  })
+  });
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
