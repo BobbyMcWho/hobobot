@@ -198,12 +198,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   let params = message.content.split(" ").slice(1);
-  console.log(params);
   if((typeof params[0] !== 'undefined')){
     let zipcode = params[0] ;
-    console.log(zipcode);
     let country;
         if(typeof params[1] !== 'undefined'){country = params[1];}else{country = 'us';}
+        console.log(country);
     let units;
     if(country == 'us'){units = 'imperial';}else{units = 'metric';}
     let niceUnits;
