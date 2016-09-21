@@ -187,7 +187,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let definition = urbanResponse.list[0].definition;
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
-      message.channel.sendMessage(`**${word}:**\n ${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+      message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
     }
   })
 }
