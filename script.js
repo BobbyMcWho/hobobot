@@ -216,7 +216,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       let temp = weatherResponse.main.temp;
       let city = weatherResponse.name;
       let country = weatherResponse.sys.country;
-      let condition = weatherResponse.weather.main;
+      let condition = weatherResponse.weather[0].main;
       let icon;
       switch(condition){
         case 'Clear' : icon = '\u2600'; break;
@@ -230,7 +230,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
         case 'Additional' : icon = '\uD83C\uDF43'; break;
       }
 
-      message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}`);
+      message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}.`);
     }
     else if (error){message.channel.sendMessage("Error finding your location, please try again using $weather zipcode 2-letter-country-abbr. Example: $weather 90210 us");}
   });}
