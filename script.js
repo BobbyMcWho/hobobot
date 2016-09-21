@@ -66,7 +66,7 @@ client.on('message', message => {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
     }
     else if (message.content.toLowerCase().startsWith("/r/") || message.content.toLowerCase().startsWith("r/")) {
-      let lio = message.content.lastIndexOf('/');
+      let lio = message.content.lastIndexOf('/')+1;
       let subreddit = message.content.substring(lio);
       message.channel.sendMessage('http://www.reddit.com/r/'+subreddit);
     }
