@@ -209,13 +209,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       case 'imperial': niceUnits = 'Fahrenheit'; break;
       case 'metric': niceUnits = 'Celsius'; break;
     }
-    console.log(niceUnits);
     let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
-console.log(url);
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const weatherResponse = JSON.parse(body);
-      let temperature = weatherResponse.main.temp;
+      let temp = weatherResponse.main.temp;
       let city = weatherResponse.name;
       let country = weatherResponse.sys.country;
       let condition = weatherResponse.weather.main;
