@@ -58,6 +58,10 @@ client.on('message', message => {
       hobobaby("a hoblet is born",2016,10,10);
       message.channel.sendMessage(babybaby);
     }
+    else if (message.content.toLowerCase().startsWith(prefix + 'yetiwedding')) {
+      hobobaby("the Yeti Wedding",2017,6,29);
+      message.channel.sendMessage(babybaby);
+    }
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
       if (message.guild.members.find('id','161210376812363776').user.status === "online"){
       message.channel.sendMessage("Hobo is here!");}
