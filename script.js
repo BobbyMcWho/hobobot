@@ -198,23 +198,45 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   let params = message.content.split(" ").slice(1);
-  let zipcode = params[0];
-  let country = params[1];
-  let units = 'imperial';
-  let niceUnits = 'Fahrenheit';
-  if(params[2] == 'c'){units = 'metric';niceUnits='Celcius';}
-  else if (params[2] == 'k'){units = '';niceUnits='Kelvin';}
-  let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
+  if((typeof params[0] !== 'undefined')){
+    let zipcode = params[0] ;
+    let country;
+        if(typeof params[1] !== 'undefined'){country = params[1];}else{country = 'us';}
+    let units;
+    if(country == 'us'){units = 'imperial';}else{units = 'metric';}
+    let niceUnits;
+    switch(units){
+      case 'imperial': niceUnits = 'Fahrenheit'; break;
+      case 'metric': niceUnits = 'Celsius'; break;
+    }
+    let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const weatherResponse = JSON.parse(body);
-      let temperature = weatherResponse.
+      let temperature = weatherResponse.main.temp;
+      let city = weatherResponse.name;
+      let country = weatherResponse.sys.country;
+      let condition = weatherResponse.weather.main;
+      let icon;
+      switch(condition){
+        case 'Clear' : icon = '\u2600'; break;
+        case 'Thunderstorm' : icon = '\uD83C\uDF29'; break;
+        case 'Drizzle' :
+        case 'Rain': icon = '\uD83C\uDF27'; break;
+        case 'Snow' : icon = '\uD83C\uDF28'; break;
+        case 'Atmospehere' : icon = '\uD83C\uDF2B'; break;
+        case 'Clouds' : icon = '\u2601'; break;
+        case 'Extreme' : icon = '\uD83C\uDF2A'; break;
+        case 'Additional' : icon = '\uD83C\uDF43'; break;
+      }
 
-      message.channel.sendMessage();
+      message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}`);
     }
-  });
-}
+    else if (error){message.channel.sendMessage("Error finding your location, please try again using $weather zipcode 2-letter-country-abbr. Example: $weather 90210 us");}
+  });}
+  else{message.channel.sendMessage("Please try again using $weather zipcode 2-letter-country-abbr. Example: $weather 90210 us");}
+  }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
