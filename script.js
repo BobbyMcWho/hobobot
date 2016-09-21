@@ -7,6 +7,7 @@ const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
 const Sesame = Key.token;
+const weatherKey = Key.weatherapi;
 let babybaby;
 let line;
 let choice = [];
@@ -188,6 +189,25 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
       message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+    }
+  })
+}
+else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
+  let params = message.content.split(" ").slice(1);
+  let zipcode = params[0];
+  let country = params[1];
+  let units = 'imperial';
+  let niceUnits = 'Fahrenheit';
+  if(params[2] = 'c'){units = 'metric';niceUnits='Celcius';}
+  else if (params[2] = 'k'){units = '';niceUnits='Kelvin';}
+  let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
+  
+  request(url, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const weatherResponse = JSON.parse(body);
+      let temperature = weatherResponse.
+      
+      message.channel.sendMessage();
     }
   })
 }
