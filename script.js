@@ -176,15 +176,18 @@ client.on('message', message => {
 else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let params = message.content.split(" ").slice(1);
   let searchTerm = params.join('%20');
+  let searched = params.join(' ');
   let url ='http://api.urbandictionary.com/v0/define?term=';
   
   request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
       let tags = urbanResponse.tags;
-      message.channel.sendMessage(tags);
+      let thumbsup = urbanResponse.list[0].thumbs_up;
+      let thumbsdown = urbanResponse.list[0].thumbs_down;
+      let definition = urbanResponse.list[0].definition;
+      message.channel.sendMessage(searched + ': '+definition+'\n + :thumbsup: '+thumbsup+' :thumbsdown: ' + thumbsdown);
     }
-    else {message.channel.sendMessage("error");}
   })
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
