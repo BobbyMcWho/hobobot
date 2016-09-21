@@ -2,7 +2,7 @@
 
 const Discord = require('discord.js');
 const fs = require('fs');
-const https = require('https');
+const request = require('request');
 const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
@@ -176,9 +176,14 @@ client.on('message', message => {
 else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let params = message.content.split(" ").slice(1);
   let searchTerm = params.join('%20');
-  https.get('https://api.urbandictionary.com/v0/define?term='+searchTerm, (res) => {
-    let tags = res.tags;
-    message.channel.sendMessage(tags);
+  let url ='https://api.urbandictionary.com/v0/define?term=';
+  
+  request(url+searchTerm, (error,response,body)=> {
+    if (!error && response.statusCode === 200){
+      const urbanResponse = JSON.parse(body);
+      let tags = urbanResponse.tags;
+      message.channel.sendMessage(tags);
+    }
   })
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
