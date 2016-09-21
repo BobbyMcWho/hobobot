@@ -176,7 +176,7 @@ client.on('message', message => {
 else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   let params = message.content.split(" ").slice(1);
   let searchTerm = params.join('%20');
-  let url ='https://api.urbandictionary.com/v0/define?term=';
+  let url ='http://api.urbandictionary.com/v0/define?term=';
   
   request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
