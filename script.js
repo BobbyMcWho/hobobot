@@ -202,7 +202,6 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
     let zipcode = params[0] ;
     let country;
         if(typeof params[1] !== 'undefined'){country = params[1];}else{country = 'us';}
-        console.log(country);
     let units;
     if(country == 'us'){units = 'imperial';}else{units = 'metric';}
     let niceUnits;
@@ -210,8 +209,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       case 'imperial': niceUnits = 'Fahrenheit'; break;
       case 'metric': niceUnits = 'Celsius'; break;
     }
+    console.log(niceUnits);
     let url =`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
-
+console.log(url);
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const weatherResponse = JSON.parse(body);
