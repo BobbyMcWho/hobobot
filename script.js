@@ -183,10 +183,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
       let tags = urbanResponse.tags;
-      let thumbsup = urbanResponse.list[0].thumbs_up;
-      let thumbsdown = urbanResponse.list[0].thumbs_down;
+      let thumbsup1 = urbanResponse.list[0].thumbs_up;
+      let thumbsdown1 = urbanResponse.list[0].thumbs_down;
       let definition = urbanResponse.list[0].definition;
-      message.channel.sendMessage(`${searched}: ${definition} \n :thumbsup: ${thumbsup} :thumbsdown: ${thumbsdown}`);
+      message.channel.sendMessage(`${searched}: ${definition} \n :thumbsup: ${thumbsup1} :thumbsdown: ${thumbsdown1}`);
     }
   })
 }
