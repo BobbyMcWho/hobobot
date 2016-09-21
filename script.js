@@ -115,7 +115,7 @@ client.on('message', message => {
         let i = 0; while (i < 3) {
         let currIndex = Math.floor(Math.random()*memArr.length);
         if ((newArr.indexOf(memArr[currIndex]) == (-1)) ){
-          if (memArr[currIndex].nickname === undefined || memArr[currIndex].nickname === null){newArr.push(memArr[currIndex].user.username);} else {newArr.push(memArr[currIndex].nickname);}i++;}
+          if (memArr[currIndex].nickname === undefined || memArr[currIndex].nickname === null){newArr.push(memArr[currIndex].user.username);memArr.splice(currIndex,1);} else {newArr.push(memArr[currIndex].nickname);memArr.splice(currIndex,1);}i++;}
         }
 
             message.channel.sendMessage("F,M,K: " + newArr[0] + ", " + newArr[1]+ ", " + newArr[2] );
