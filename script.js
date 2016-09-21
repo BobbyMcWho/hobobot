@@ -186,7 +186,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let thumbsup = urbanResponse.list[0].thumbs_up;
       let thumbsdown = urbanResponse.list[0].thumbs_down;
       let definition = urbanResponse.list[0].definition;
-      message.channel.sendMessage(searched + ': '+definition+'\n + :thumbsup: '+thumbsup+' :thumbsdown: ' + thumbsdown);
+      message.channel.sendMessage(searched + ': '+ definition +'\n' + ':thumbsup:'+' '+thumbsup + ' ' + ':thumbsdown:' + thumbsdown);
     }
   })
 }
