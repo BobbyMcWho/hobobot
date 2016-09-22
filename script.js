@@ -250,7 +250,7 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
   let searchTerm = params.join('%20');
-  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json`
+  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json&callback=?`
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
