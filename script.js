@@ -255,6 +255,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const wikiResponse = JSON.parse(body);
+      console.log(wikiResponse);
       let term = wikiResponse[0][0];
       let definition = wikiResponse[0][1];
       let wikiurl = wikiResponse[0][2];
