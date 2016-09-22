@@ -26,7 +26,7 @@ function shuffle(array) {
   }
 }
 
-function hobobaby(phrase,year,month,day){
+function timeUntil(phrase,year,month,day){
   var now = new Date();
   var goalDate = new Date(year,month,day);
   var currentTime = now.getTime();
@@ -49,17 +49,18 @@ function hobobaby(phrase,year,month,day){
 
 client.on('message', message => {
   let prefix = '$';
+  let params = message.content.split(" ").slice(1);
   if(message.author.bot) return;
     if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
     {
     message.channel.sendMessage('I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
-      hobobaby("a hoblet is born",2016,10,10);
+      timeUntil("a hoblet is born",2016,10,10);
       message.channel.sendMessage(babybaby);
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'yetiwedding')) {
-      hobobaby("the Yeti Wedding",2017,6,29);
+      timeUntil("the Yeti Wedding",2017,6,29);
       message.channel.sendMessage(babybaby);
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
@@ -80,7 +81,7 @@ client.on('message', message => {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "midas") && (message.channel.id === "174984493138968576")) {
-      let params = message.content.split(" ").slice(1);
+
       let meal = "lunch";
       let roller = "";
       if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
@@ -129,7 +130,7 @@ client.on('message', message => {
       }
 
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
-      let params = message.content.split(" ").slice(1);
+
     let dieCount = 1;
     let dieSides = 6;
     let keep = dieCount;
@@ -158,7 +159,7 @@ client.on('message', message => {
   }
 
   else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
-    let params = message.content.split(" ").slice(1);
+
   let coinCount = 1;
   let coinSides = 2;
   let resultsArr = [];
@@ -179,7 +180,7 @@ client.on('message', message => {
 
 }
 else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
-  let params = message.content.split(" ").slice(1);
+
   let searchTerm = params.join('%20');
   let url ='http://api.urbandictionary.com/v0/define?term=';
 
@@ -197,7 +198,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
-  let params = message.content.split(" ").slice(1);
+
   if((typeof params[0] !== 'undefined')){
     let zipcode = params[0] ;
     let country;
@@ -237,9 +238,14 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   else{message.channel.sendMessage("Please try again using $weather zipcode 2-letter-country-abbr. Example: $weather 90210 us");}
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
-      let params = message.content.split(" ").slice(1);
+
  let args = eval(params[0]); //jshint ignore:line
  message.channel.sendMessage(`\`\`\`${args}\`\`\``);
+}
+else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
+    let messagecount = parseInt(params[0]);
+    message.channel.fetchMessages({limit: messagecount})
+        .then(messages => message.channel.bulkDelete(messages));
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
