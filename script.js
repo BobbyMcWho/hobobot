@@ -84,11 +84,10 @@ client.on('message', message => {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "midas") && (message.channel.id === "174984493138968576")) {
-
       let meal = "lunch";
       let roller = "";
       if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
-      if (typeof params[0] !== 'undefined'){meal = params[0];}
+      if (typeof params[0] !== 'undefined'){meal = params.join(" ");}
       message.channel.sendMessage("What'd you have for " + meal + " today " + roller +"?");
     }
     else if (message.content.toLowerCase().startsWith(prefix + "zzz") && (message.channel.id === "174984493138968576")) {
