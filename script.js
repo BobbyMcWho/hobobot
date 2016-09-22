@@ -157,8 +157,7 @@ client.on('message', message => {
         let dieTotal = keptArr.reduce(function(a,b){return a+b;});
         let dieAverage = Math.round((dieTotal/keep)*100)/100;
         message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + "for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}}
-    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!");
-    }
+    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!");}
   }
 
   else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
@@ -279,7 +278,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
 });
 client.on('guildMemberRemove', (guild, member) => {
-   guild.defaultChannel.sendMessage(`See ya ${member}, never thought much of you anyways!`);
+   setTimeout(guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`),500);
 });
 
 client.on('ready', () =>{
