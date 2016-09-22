@@ -239,7 +239,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
       let params = message.content.split(" ").slice(1);
  let args = eval(params[0]); //jshint ignore:line
- message.channel.sendMessage(`\`\`\`args\`\`\``);
+ message.channel.sendMessage(`\`\`\`${args}\`\`\``);
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
