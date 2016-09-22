@@ -257,6 +257,9 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     // }
 
 });
+client.on('guildMemberRemove', (guild, member) => {
+   guild.defaultChannel.sendMessage(`See ya ${member}, never thought much of you anyways!`);
+});
 
 client.on('ready', () =>{
   client.user.setAvatar(fs.readFileSync('./hobo.jpg'));
