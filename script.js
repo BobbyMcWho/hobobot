@@ -250,7 +250,7 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
   let searchTerm = params.join('%20');
-  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json&callback=?`
+  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json`
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
@@ -258,6 +258,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
       let term = wikiResponse[0][0];
       let definition = wikiResponse[0][1];
       let wikiurl = wikiResponse[0][2];
+      console.log(` ${term} | ${definition} | ${wikiurl}` );
 
       message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
     }
