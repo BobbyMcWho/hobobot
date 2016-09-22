@@ -256,9 +256,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     if (!error && response.statusCode === 200){
       const wikiResponse = JSON.parse(body);
       console.log(wikiResponse);
-      let term = wikiResponse[0][0];
-      let definition = wikiResponse[0][1];
-      let wikiurl = wikiResponse[0][2];
+      let term = wikiResponse[1];
+      let definition = wikiResponse[2];
+      let wikiurl = wikiResponse[3];
       console.log(` ${term} | ${definition} | ${wikiurl}` );
 
       message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
