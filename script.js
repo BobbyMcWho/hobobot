@@ -144,7 +144,7 @@ client.on('message', message => {
     if (keep <= dieCount){
       if (keep < dieCount){keepPhrase = "keeping the top " + keep +", ";}
       if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
-      else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you");}
+      else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you.");}
       else{
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
