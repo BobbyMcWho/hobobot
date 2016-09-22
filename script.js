@@ -237,7 +237,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   else{message.channel.sendMessage("Please try again using $weather zipcode 2-letter-country-abbr. Example: $weather 90210 us");}
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
- let args = eval(message.content); //jshint ignore:line
+      let params = message.content.split(" ").slice(1);
+ let args = eval(params[0]); //jshint ignore:line
  message.channel.sendMessage(`\`\`\`args\`\`\``);
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
