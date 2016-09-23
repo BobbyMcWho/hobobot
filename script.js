@@ -276,9 +276,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     // }
 
 });
-client.on('guildMemberRemove', (guild, member) => {
-   setTimeout(() => {guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
-});
+//client.on('guildMemberRemove', (guild, member) => {
+  // setTimeout(() => {guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
+//});
 
 client.on('ready', () =>{
   client.user.setAvatar(fs.readFileSync('./hobo.jpg'));
