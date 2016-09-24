@@ -248,17 +248,14 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     message.channel.fetchMessages({limit: messagecount})
         .then(messages => message.channel.bulkDelete(messages));
 }
-<<<<<<< HEAD
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
     client.guilds.find('id','187346688497680385').sendMessage("logged");
 }
 
-
-=======
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
   let searchTerm = params.join('%20');
-  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json`
+  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json`;
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
@@ -273,7 +270,6 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     }
   });
 }
->>>>>>> origin/master
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
