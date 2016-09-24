@@ -247,6 +247,11 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     message.channel.fetchMessages({limit: messagecount})
         .then(messages => message.channel.bulkDelete(messages));
 }
+else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
+    client.guilds.find('id','187346688497680385').sendMessage("logged");
+}
+
+
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
@@ -263,6 +268,12 @@ client.on('guildMemberRemove', (guild, member) => {
 
 client.on('ready', () =>{
   client.user.setAvatar(fs.readFileSync('./hobo.jpg'));
+});
+client.on('reconnecting', () => {
+  console.log("reconnecting...");
+});
+client.on('error', (error) => {
+  console.log("error");
 });
 
 client.login(Sesame);
