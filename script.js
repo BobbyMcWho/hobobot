@@ -64,10 +64,13 @@ client.on('message', message => {
       message.channel.sendMessage(babybaby);
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
+      if (message.author.id === '161210376812363776'){message.channel.sendMessage("Yes, Master?");}
+      else{
       if (message.guild.members.find('id','161210376812363776').user.status === "online"){
       message.channel.sendMessage("Hobo is here!");}
       else if (message.guild.members.find('id','161210376812363776').user.status === "idle"){message.channel.sendMessage("Hobo must be working...");}
       else if (message.guild.members.find('id','161210376812363776').user.status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
+    }
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
       message.channel.sendMessage('Ryujin no ken wo kurae!');
@@ -81,11 +84,10 @@ client.on('message', message => {
       message.channel.sendMessage('No, I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + "midas") && (message.channel.id === "174984493138968576")) {
-
       let meal = "lunch";
       let roller = "";
       if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
-      if (typeof params[0] !== 'undefined'){meal = params[0];}
+      if (typeof params[0] !== 'undefined'){meal = params.join(" ");}
       message.channel.sendMessage("What'd you have for " + meal + " today " + roller +"?");
     }
     else if (message.content.toLowerCase().startsWith(prefix + "zzz") && (message.channel.id === "174984493138968576")) {
@@ -144,7 +146,7 @@ client.on('message', message => {
     if (keep <= dieCount){
       if (keep < dieCount){keepPhrase = "keeping the top " + keep +", ";}
       if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
-      else if (dieSides > 100){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you");}
+      else if (dieSides > 10000){message.channel.sendMessage(roller + ", that's not a real die. I'm watching you.");}
       else{
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
@@ -154,8 +156,7 @@ client.on('message', message => {
         let dieTotal = keptArr.reduce(function(a,b){return a+b;});
         let dieAverage = Math.round((dieTotal/keep)*100)/100;
         message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + "for a total of **" + dieTotal +"** (average: " + dieAverage + "):\n" + resultsArr );}}
-    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!");
-    }
+    else {message.channel.sendMessage("You cannot keep more than you roll " + roller +"!");}
   }
 
   else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
@@ -247,11 +248,32 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     message.channel.fetchMessages({limit: messagecount})
         .then(messages => message.channel.bulkDelete(messages));
 }
+<<<<<<< HEAD
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
     client.guilds.find('id','187346688497680385').sendMessage("logged");
 }
 
 
+=======
+else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
+
+  let searchTerm = params.join('%20');
+  let url =`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=1&namespace=0&format=json`
+
+  request(url, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const wikiResponse = JSON.parse(body);
+      console.log(wikiResponse);
+      let term = wikiResponse[1];
+      let definition = wikiResponse[2];
+      let wikiurl = wikiResponse[3];
+      console.log(` ${term} | ${definition} | ${wikiurl}` );
+
+      message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
+    }
+  });
+}
+>>>>>>> origin/master
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
@@ -262,9 +284,9 @@ else if ((message.content.startsWith(prefix + "log")) && ((message.author.id ===
     // }
 
 });
-client.on('guildMemberRemove', (guild, member) => {
-   guild.defaultChannel.sendMessage(`See ya ${member}, never thought much of you anyways!`);
-});
+//client.on('guildMemberRemove', (guild, member) => {
+  // setTimeout(() => {guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
+//});
 
 client.on('ready', () =>{
   client.user.setAvatar(fs.readFileSync('./hobo.jpg'));
