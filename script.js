@@ -249,7 +249,7 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
         .then(messages => message.channel.bulkDelete(messages));
 }
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
-    client.guilds.find('id','187346688497680385').sendMessage("logged");
+    client.guilds.find('id','187346688497680385').channels.find('id','229058004866039808').sendMessage("logged");
 }
 
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
