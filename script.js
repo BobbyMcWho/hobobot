@@ -202,7 +202,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   params = params.join(""); 
   let country = 'us';
   if (params.indexOf(',') > -1) {params = params.split(","); country = params.pop(); params = params.join("");}
-  if((typeof params[0] !== 'undefined')){
+  if((typeof params !== 'undefined')){
     let zipcode = params;
     let units;
     if(country == 'us'){units = 'imperial';}else{units = 'metric';}
