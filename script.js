@@ -199,11 +199,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
-  params = params.join("%20"); 
+  params = params.join(""); 
   let country = 'us';
-  if (params.indexOf(',') > -1) {params = params.split(","); country = params.pop;}
+  if (params.indexOf(',') > -1) {params = params.split(","); country = params.pop(); params = params.join("");}
   if((typeof params[0] !== 'undefined')){
-    let zipcode = params[0] ;
+    let zipcode = params;
     let units;
     if(country == 'us'){units = 'imperial';}else{units = 'metric';}
     let niceUnits;
