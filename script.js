@@ -269,7 +269,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     }
   });
 }
-  else if ((message.content.toLowerCase().startsWith(prefix + "youtube")) || ((message.content.toLowerCase().startsWith(prefix + "yt"))) {
+  else if ((message.content.toLowerCase().startsWith(prefix + "youtube")) || (message.content.toLowerCase().startsWith(prefix + "yt"))) {
 
   let searchTerm = params.join('%20');
   let url =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1`;
