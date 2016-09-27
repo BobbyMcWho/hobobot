@@ -8,6 +8,7 @@ const Key = require('./token.json');
 const phrases = require('./phrases.json');
 const Sesame = Key.token;
 const weatherKey = Key.weatherapi;
+const ytKey = Key.ytKey;
 let babybaby;
 let line;
 let choice = [];
@@ -271,7 +272,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
   else if (message.content.toLowerCase().startsWith(prefix + "youtube")) {
 
   let searchTerm = params.join('%20');
-  let url =`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDl5PNn9_G4wtMvKb-_K5LvLbWX8M4MgUo&part=snippet&q=${searchTerm}&maxResults=1`;
+  let url =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1`;
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
