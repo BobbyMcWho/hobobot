@@ -278,7 +278,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     if (!error && response.statusCode === 200){
       const ytResponse = JSON.parse(body);
       let videoId = ytResponse.items[0].id.videoId;
-      message.channel.sendMessage(`You may find this video ineresting:\n www.youtube.com/watch?v=${videoId}`);
+      let title = ytResponse.items[0].snippet.title;
+      let description = ytResponse.items[0].snippet.description;
+      let channel = ytResponse.items[0].snippet.channel;
+      message.channel.sendFile(`www.youtube.com/watch?v=${videoId}`,`${title}`,`You may find this video from **${channel}** interesting:`);
     }
   });
 }
