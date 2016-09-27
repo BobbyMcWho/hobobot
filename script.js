@@ -260,16 +260,28 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const wikiResponse = JSON.parse(body);
-      console.log(wikiResponse);
       let term = wikiResponse[1];
       let definition = wikiResponse[2];
       let wikiurl = wikiResponse[3];
-      console.log(` ${term} | ${definition} | ${wikiurl}` );
 
       message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
     }
   });
 }
+  else if (message.content.toLowerCase().startsWith(prefix + "youtube")) {
+
+  let searchTerm = params.join('%20');
+  let url =`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDl5PNn9_G4wtMvKb-_K5LvLbWX8M4MgUo&part=snippet&q=${searchTerm}&maxResults=1`;
+
+  request(url, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const ytResponse = JSON.parse(body);
+      let videoId = ytResponse.items[0].id.videoId;
+      message.channel.sendMessage(`You may find this video ineresting:\n www.youtube.com/watch?v=${videoId}`);
+    }
+  });
+}
+  
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
