@@ -281,7 +281,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
       let title = ytResponse.items[0].snippet.title;
       let description = ytResponse.items[0].snippet.description;
       let channel = ytResponse.items[0].snippet.channel;
-      message.channel.sendFile(`www.youtube.com/watch?v=${videoId}`,'',`You may find this video from **${channel}** interesting:`);
+      message.channel.sendFile(`https://www.youtube.com/watch?v=${videoId}`,'',`You may find this video from **${channel}** interesting:`);
     }
   });
 }
