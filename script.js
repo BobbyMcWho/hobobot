@@ -200,7 +200,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
-  params = params.join(""); 
+  params = params.join("");
   let country = 'us';
   if (params.indexOf(',') > -1) {params = params.split(","); country = params.pop(); params = params.join("");}
   if((typeof params !== 'undefined')){
@@ -241,7 +241,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
 
- let args = eval(params[0]); //jshint ignore:line
+ let args = eval(message.content); //jshint ignore:line
  message.channel.sendMessage(`\`\`\`${args}\`\`\``);
 }
 else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
@@ -285,7 +285,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     }
   });
 }
-  
+
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
