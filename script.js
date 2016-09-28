@@ -240,8 +240,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   else{message.channel.sendMessage("Please try again using $weather city 2-letter-country-abbr. Example: $weather Los Angeles us");}
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
-
- let args = eval(message.content.slice(0,6)); //jshint ignore:line
+params = params.join(" ");
+ let args = eval(params); //jshint ignore:line
  message.channel.sendMessage(`\`\`\`${args}\`\`\``);
 }
 else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
