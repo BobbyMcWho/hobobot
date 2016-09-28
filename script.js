@@ -241,7 +241,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
 
- let args = eval(message.content); //jshint ignore:line
+ let args = eval(message.content.slice(0,6)); //jshint ignore:line
  message.channel.sendMessage(`\`\`\`${args}\`\`\``);
 }
 else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
