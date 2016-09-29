@@ -133,7 +133,8 @@ client.on('message', message => {
       }
 
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
-
+    params = params.join("");
+    params = params.split(/[a-z]|\s+/).filter(e => e.length !== 0);
     let dieCount = 1;
     let dieSides = 6;
     let keep = dieCount;
@@ -152,7 +153,8 @@ client.on('message', message => {
         for (let i=0;i<dieCount;i++){
           resultsArr.push(Math.floor(Math.random()*(dieSides))+1);
         }
-        let keptArr = resultsArr.sort(function(a,b){return b-a;});
+        let keptArr = resultsArr;
+        keptArr = keptArr.sort(function(a,b){return b-a;});
         keptArr = keptArr.slice(0,(keep));
         let dieTotal = keptArr.reduce(function(a,b){return a+b;});
         let dieAverage = Math.round((dieTotal/keep)*100)/100;
