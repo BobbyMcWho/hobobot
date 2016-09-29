@@ -133,7 +133,7 @@ client.on('message', message => {
       }
 
     else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
-    params = params.join("");
+    params = params.join(" ");
     params = params.split(/[a-z]|\s+/).filter(e => e.length !== 0);
     let dieCount = 1;
     let dieSides = 6;
