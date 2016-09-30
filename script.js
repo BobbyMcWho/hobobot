@@ -143,8 +143,7 @@ client.on('message', message => {
     else if((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {dieCount = parseInt(params[0]); dieSides = parseInt(params[1].replace(/[^0-9]+/g, ""));keep = dieCount;}
     else if((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) { dieCount = parseInt(params[0]);keep=dieCount;}
     let keepPhrase = "";
-    let roller = "";
-      if((message.member.nickname === undefined)  || (message.member.nickname === null)){roller = message.author.username;} else {roller = message.member.nickname;}
+    let roller = message.author;
     if (keep <= dieCount){
       if (keep < dieCount){keepPhrase = "keeping the top " + keep +", ";}
       if (dieCount > 100){message.channel.sendMessage(roller + ", you don't need that many dice!");}
