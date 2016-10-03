@@ -287,7 +287,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
   });
 }
   else if (message.content.startsWith(prefix + "face")) {
-    message.channel.sendMessage(`👁   👁\n      👃 \n      👄`);
+    message.channel.sendMessage(`\n👁   👁\n      👃 \n      👄`);
 }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
