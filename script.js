@@ -290,6 +290,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
     message.channel.sendMessage(`\n👁   👁\n      👃 \n      👄`);
 }
 else if (message.content.startsWith(prefix + "cat")) {
+  const url = 'http://random.cat/meow';
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const cat = JSON.parse(body);
