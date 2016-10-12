@@ -249,7 +249,7 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     let messagecount = parseInt(params[0]);
     message.channel.fetchMessages({limit: messagecount})
         .then(messages =>
-              messages.filter(m => m.content.startsWith(prefix) || m.author === client.user.id);
+              messages.filter(m => m.content.startsWith(prefix));
               message.channel.bulkDelete(messages));
 }
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
