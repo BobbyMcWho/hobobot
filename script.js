@@ -296,8 +296,8 @@ else if (message.content.startsWith(prefix + "cat")) {
       const cat = JSON.parse(body);
       message.channel.sendMessage(`${cat.file}`);}});
 }
-  else if (message.content.startsWith(prefix + "queue solo ranked")) {
-  let winLoss = (Math.floor(Math.random()*2) < 1 ? 'Victory! +'  : 'Loss! -' ;
+  else if (message.content.startsWith(prefix + "queue")) {
+  let winLoss = (Math.floor(Math.random()*2) < 1) ? 'Victory! +'  : 'Loss! -' ;
   let elo = ((Math.floor(Math.random()*10)+20);
                  message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
 }
