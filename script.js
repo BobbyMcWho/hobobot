@@ -248,10 +248,10 @@ params = params.join(" ");
 else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
     let messagecount = parseInt(params[0]);
     message.channel.fetchMessages({limit: messagecount})
-        .then(messages =>
-             let filteredMessages = messages.filter(m => {m.content.startsWith(prefix)|| (m.author.id === client.user.id})
-              message.channel.bulkDelete(filteredMessages));
-}
+        .then(messages =>{
+             let filteredMessages = messages.filter(m => {m.content.startsWith(prefix) || (m.author.id === client.user.id)});
+              message.channel.bulkDelete(filteredMessages);
+})}
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
     client.guilds.find('id','187346688497680385').channels.find('id','229058004866039808').sendMessage("logged");
 }
