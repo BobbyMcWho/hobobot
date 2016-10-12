@@ -298,8 +298,8 @@ else if (message.content.startsWith(prefix + "cat")) {
 }
   else if (message.content.startsWith(prefix + "queue")) {
   let winLoss = (Math.floor(Math.random()*2) < 1) ? 'Victory! +'  : 'Loss! -' ;
-  let elo = ((Math.floor(Math.random()*10)+20);
-                 message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
+  let elo = (Math.floor(Math.random()*10)+20);
+    message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
 }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
