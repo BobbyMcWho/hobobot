@@ -247,8 +247,9 @@ params = params.join(" ");
 }
 else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id === '186693404288090114'))) {
     let messagecount = parseInt(params[0]);
-    message.channel.fetchMessages({limit: messagecount})
-        .then(messages => message.channel.bulkDelete(messages));
+    message.channel.fetchMessages({limit: messagecount}).filter(m => m.content.startsWith(prefix) || m.author === client.user.id)
+        .then(messages =>
+              message.channel.bulkDelete(messages));
 }
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
     client.guilds.find('id','187346688497680385').channels.find('id','229058004866039808').sendMessage("logged");
@@ -299,7 +300,8 @@ else if (message.content.startsWith(prefix + "cat")) {
   else if (message.content.startsWith(prefix + "queue")) {
   let winLoss = (Math.floor(Math.random()*2) < 1) ? 'Victory! +'  : 'Loss! -' ;
   let elo = (Math.floor(Math.random()*10)+20);
-    message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
+    //message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
+    message.channel.sendMessage(`Currently disabled until feature is fleshed out.`);
 }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
