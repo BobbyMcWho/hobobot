@@ -249,8 +249,8 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     let messagecount = parseInt(params[0]);
     message.channel.fetchMessages({limit: messagecount})
         .then(messages =>{
-             let filteredMessages = messages.filter(m => {m.content.startsWith(prefix)})
-              let filteredMessages2 = messages.filter(m => {m.author.id === client.user.id});
+             let filteredMessages = messages.filter(m => {return m.content.startsWith(prefix)})
+              let filteredMessages2 = messages.filter(m => {return m.author.id === client.user.id});
               message.channel.bulkDelete(filteredMessages);
       message.channel.bulkDelete(filteredMessages2);
 })}
