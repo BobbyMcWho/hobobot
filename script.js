@@ -249,11 +249,11 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
     let messagecount = parseInt(params[0]);
     message.channel.fetchMessages({limit: messagecount})
         .then(messages =>{
-             let filteredMessages = messages.filter(m => m.content.startsWith(prefix))
-              let filteredMessages2 = messages.filter(m => {return m.author.id === client.user.id});
+             let filteredMessages = messages.filter(m => m.content.startsWith(prefix));
+              let filteredMessages2 = messages.filter(m => {return m.author.id === client.user.id;});
               message.channel.bulkDelete(filteredMessages);
       message.channel.bulkDelete(filteredMessages2);
-})}
+});}
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
     client.guilds.find('id','187346688497680385').channels.find('id','229058004866039808').sendMessage("logged");
 }
@@ -306,6 +306,11 @@ else if (message.content.startsWith(prefix + "cat")) {
     //message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
     message.channel.sendMessage(`Currently disabled until feature is fleshed out.`);
 }
+else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968")) {
+  message.delete()
+   .then(msg => msg.channel.sendMessage(params.join(' ')));
+}
+
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
