@@ -306,7 +306,7 @@ else if (message.content.startsWith(prefix + "cat")) {
     //message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
     message.channel.sendMessage(`Currently disabled until feature is fleshed out.`);
 }
-else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968" || message.channel.id === "228335467429363712" || message.channel.id === " 187346688497680385")) {
+else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968" || message.channel.id === "228335467429363712" || message.channel.id === "187346688497680385")) {
   message.delete();
    message.channel.sendMessage(params.join(' '));
 }
