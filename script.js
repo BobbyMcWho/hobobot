@@ -308,9 +308,16 @@ else if (message.content.startsWith(prefix + "cat")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968" || message.channel.id === "228335467429363712" || message.channel.id === "187346688497680385")) {
   message.delete();
-   message.channel.sendMessage(params.join(' '));
+  let content = params.join(' ');
+   message.channel.sendMessage('...')
+   .then(m => {
+     m.edit(`\`\`\`Anonymous post, mods can delete with $delete ${m.id} \`\`\` ${content}`);
+   });
 }
-
+else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.hasPermission('MANAGE_MESSAGES'))) {
+  let messageId = params[0];
+  message.channel.messages.find('id',messageId).delete();
+   }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
