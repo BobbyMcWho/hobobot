@@ -49,6 +49,7 @@ function timeUntil(phrase,year,month,day){
   babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until " + phrase + ".";}
 
 client.on('message', message => {
+  let isBobby = (message.user.id === '186693404288090114');
   let prefix = '$';
   let params = message.content.split(" ").slice(1);
   if(message.author.bot) return;
@@ -312,11 +313,10 @@ else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.c
   let content = params.join(' ');
    message.channel.sendMessage('...')
    .then(m => {
-     m.edit(`\`\`\`Anonymous post, mods can delete with $delete ${m.id} (Original ${oId})\`\`\` ${content}`);
+     m.edit(`\`\`\`Anonymous post, mods can delete with $delete ${m.id} \`\`\` ${content}`);
    });
 }
-else if (message.content.toLowerCase().startsWith(prefix + 'delete')
-// && (message.member.permissions.hasPermission("MANAGE_MESSAGES"))
+else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
 ) {
   let messageId = params[0].toString();
   message.channel.fetchMessage('237381350397706240')
