@@ -323,6 +323,14 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
   .then(msg => msg.delete())
   .catch(console.error);
    }
+   else if (message.content.toLowerCase().startsWith(prefix + 'whois') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
+   ) {
+     let sender = params[0].toString();
+     let guild = params.slice(1).join(' ');
+     let target = client.guilds.find('name',guild).members.find('id',sender);
+     message.author.sendMessage(target);
+
+      }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
