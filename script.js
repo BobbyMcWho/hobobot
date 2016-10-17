@@ -326,7 +326,7 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
    else if (message.content.toLowerCase().startsWith(prefix + 'whois') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
    ) {
      let sender = params[0].toString();
-     let guild = (typeof params[1] === 'undefined') ? message.guild.name : params.slice(1).join(' ');
+     let guild =  params.slice(1).join(' ');
      let target = client.guilds.find('name',guild).members.find('id',sender);
      message.author.sendMessage(target);
 
