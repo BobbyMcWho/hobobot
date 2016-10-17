@@ -318,7 +318,8 @@ else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.c
 else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.hasPermission('MANAGE_MESSAGES'))) {
   let messageId = params[0].toString();
   message.channel.fetchMessage(messageId)
-  .then(msg => msg.delete());
+  .then(msg => msg.delete())
+  .catch(console.error);
    }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
