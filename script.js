@@ -319,7 +319,7 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete')
 // && (message.member.permissions.hasPermission("MANAGE_MESSAGES"))
 ) {
   let messageId = params[0].toString();
-  message.channel.fetchMessage(messageId)
+  message.channel.fetchMessage('237381350397706240')
   .then(msg => msg.delete())
   .catch(console.error);
    }
