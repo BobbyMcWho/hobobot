@@ -327,6 +327,7 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
    ) {
      let sender = params[0].toString();
      let guild = (typeof params[1] === 'undefined') ? message.guild.name : params.slice(1).join(' ');
+     console.log(guild);
      let target = client.guilds.find('name',guild).members.find('id',sender);
      message.author.sendMessage(target);
 
