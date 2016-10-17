@@ -309,11 +309,11 @@ else if (message.content.startsWith(prefix + "cat")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968" || message.channel.id === "228335467429363712" || message.channel.id === "187346688497680385")) {
   message.delete();
-  let oId = message.id;
+  let oId = message.user.id;
   let content = params.join(' ');
    message.channel.sendMessage('...')
    .then(m => {
-     m.edit(`\`\`\`Anonymous post, mods can delete with $delete ${m.id} \`\`\` ${content}`);
+     m.edit(`\`Pseudo-Anonymous post: ${oId}) \` \n ${content}`);
    });
 }
 else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
