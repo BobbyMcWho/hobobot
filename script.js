@@ -51,7 +51,7 @@ function timeUntil(phrase,year,month,day){
 client.on('message', message => {
   let isBobby = (message.author.id === '186693404288090114') ? true : false;
   let prefix = '$';
-  let params = message.content.split(" ").slice(1);
+  let params = message.content.split(/\ +/).slice(1);
   if(message.author.bot) return;
     if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
     {
@@ -326,8 +326,7 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
    else if (message.content.toLowerCase().startsWith(prefix + 'whois') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
    ) {
      let sender = params[0].toString();
-     let guild = params.slice(1).join(' ');
-     console.log(guild);
+     let guild = (typeof params[1] === 'undefined') ? message.guild.name : params.slice(1).join(' ');
      let target = client.guilds.find('name',guild).members.find('id',sender);
      message.author.sendMessage(target);
 
