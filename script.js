@@ -311,10 +311,7 @@ else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.c
   message.delete();
   let oId = message.author.id;
   let content = params.join(' ');
-   message.channel.sendMessage('...')
-   .then(m => {
-     m.edit(`\`Pseudo-Anonymous post: ${oId} \` \n ${content}`);
-   });
+   message.channel.sendMessage(`\`Pseudo-Anonymous post: ${oId} \` \n ${content}`);
 }
 else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.permissions.hasPermission("MANAGE_MESSAGES") || isBobby)
 ) {
@@ -328,7 +325,9 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
      let sender = params[0].toString();
      let guild =  params.slice(1).join(' ');
      console.log(guild);
-     let target = client.guilds.find('name',guild).members.find('id',sender);
+     let guildFind = client.guilds.find('name',guild);
+    if (typeof  guildFind === 'undefined'){ message.author.sendMessage('Incorrect Guild') ;}
+    else guildFind.members.find('id',sender);
      message.author.sendMessage(target);
 
       }
