@@ -314,12 +314,9 @@ else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.c
      m.edit(`\`\`\`Anonymous post, mods can delete with $delete ${m.id} \`\`\` ${content}`);
    });
 }
-else if (message.content.toLowerCase().startsWith(prefix + 'delete')
-//  && (message.member.hasPermission('MANAGE_MESSAGES'))
-) {
+else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message.member.hasPermission('MANAGE_MESSAGES'))) {
   let messageId = params[0];
-  message.channel.fetchMessage(messageId)
-    .then(msg => msg.delete());
+  message.channel.fetchMessage(messageId).delete();
    }
 
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
