@@ -49,7 +49,7 @@ function timeUntil(phrase,year,month,day){
   babybaby = d.toString() + " days, " + h.toString() + " hours, " + m.toString() + " minutes, " + s.toString() + " seconds remaining until " + phrase + ".";}
 
 client.on('message', message => {
-  let isBobby = (message.user.id === '186693404288090114') ? true : false;
+  let isBobby = (message.author.id === '186693404288090114') ? true : false;
   let prefix = '$';
   let params = message.content.split(" ").slice(1);
   if(message.author.bot) return;
