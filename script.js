@@ -334,7 +334,10 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
      message.author.sendMessage(target);
 
       }
-
+  
+else if (message.content.startsWith(prefix + "chorizo") {
+    message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
+}
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
