@@ -305,8 +305,10 @@ else if (message.content.startsWith(prefix + "cat")) {
   let winLoss = (Math.floor(Math.random()*2) < 1) ? 'Victory! +'  : 'Loss! -' ;
   let elo = (Math.floor(Math.random()*10)+20);
     //message.channel.sendMessage(`${winLoss}${elo} elo. You are now Wood 5`);
-    let message = (message.author.id === '146493256237056000') ? 'Fuck you Kevin' : 'Currently disabled until feature is fleshed out.'
-    message.channel.sendMessage(`${message}`);
+  let msg;
+    if (message.author.id === "146493256237056000") { msg = 'Fuck you Kevin';}
+   else {msg = 'Currently disabled until feature is fleshed out.';}
+    message.channel.sendMessage(`${msg}`);
 }
 else if (message.content.toLowerCase().startsWith(prefix + 'anon') && (message.channel.id === "176689665401683968" || message.channel.id === "228335467429363712" || message.channel.id === "187346688497680385")) {
   message.delete();
