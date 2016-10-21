@@ -278,7 +278,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
   else if ((message.content.toLowerCase().startsWith(prefix + "youtube")) || (message.content.toLowerCase().startsWith(prefix + "yt"))) {
 
   let searchTerm = params.join('%20');
-  let url =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=viewCount`;
+  let url =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
