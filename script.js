@@ -229,7 +229,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
         case 'Drizzle' :
         case 'Rain': icon = '\uD83C\uDF27'; break;
         case 'Snow' : icon = '\uD83C\uDF28'; break;
-        case 'Atmospehere' : icon = '\uD83C\uDF2B'; break;
+        case 'Atmosphere' : icon = '\uD83C\uDF2B'; break;
         case 'Clouds' : icon = '\u2601'; break;
         case 'Extreme' : icon = '\uD83C\uDF2A'; break;
         case 'Additional' : icon = '\uD83C\uDF43'; break;
