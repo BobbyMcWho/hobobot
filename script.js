@@ -221,7 +221,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       let temp = weatherResponse.main.temp;
       let city = weatherResponse.name;
       let country = weatherResponse.sys.country;
-      let lastConditionIndex = weatherResponse.weather[0].length - 1;
+      let lastConditionIndex = weatherResponse.weather.length - 1;
       let condition = weatherResponse.weather[lastConditionIndex].main;
       let icon;
       switch(condition){
