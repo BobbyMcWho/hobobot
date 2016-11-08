@@ -61,6 +61,10 @@ client.on('message', message => {
       timeUntil("a hoblet is born",2016,10,10);
       message.channel.sendMessage(babybaby);
     }
+  else if (message.content.toLowerCase().startsWith(prefix + 'lily')) {
+      timeUntil("a lily blooms",2017,3,9);
+      message.channel.sendMessage(babybaby);
+    }
     else if (message.content.toLowerCase().startsWith(prefix + 'yetiwedding')) {
       timeUntil("the Yeti Wedding",2017,6,29);
       message.channel.sendMessage(babybaby);
