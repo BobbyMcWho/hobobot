@@ -6,6 +6,7 @@ const request = require('request');
 const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
+const eightball = require('./8ball.json');
 const Sesame = Key.token;
 const weatherKey = Key.weatherapi;
 const ytKey = Key.ytKey;
@@ -343,6 +344,10 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
 else if (message.content.startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
 }
+ else if (message.content.startsWith(prefix + "8ball")) {
+    message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length)]}`);
+} 
+  
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
