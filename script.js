@@ -59,8 +59,8 @@ client.on('message', message => {
     message.channel.sendMessage('I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
-      timeUntil("a hoblet is born",2016,10,10);
-      message.channel.sendMessage(babybaby);
+      
+      message.channel.sendMessage(`It's a boy!`);
     }
   else if (message.content.toLowerCase().startsWith(prefix + 'lily')) {
       timeUntil("a lily blooms",2017,3,9);
