@@ -352,7 +352,7 @@ else if (message.content.startsWith(prefix + "kick")) {
    let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
      message.guild.member(kickee).kick()
-     .then(member => {member.user.message(`${kickMessage}`);}
+     .then(mbm => {mbm.user.sendMessage(`${kickMessage}`);}
        
    );
    }
