@@ -349,8 +349,12 @@ else if (message.content.startsWith(prefix + "chorizo")) {
 }
 else if (message.content.startsWith(prefix + "kick")) {
    let kickee = message.mentions.users.first();
+   let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
-     message.guild.member(kickee).kick();
+     message.guild.member(kickee).kick()
+     .then(member => {member.user.message(`${kickMessage}`);}
+       
+   );
    }
 
 }
