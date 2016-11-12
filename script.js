@@ -358,13 +358,13 @@ else if (message.content.startsWith(prefix + "kick")) {
 }
 else if (message.content.startsWith(prefix + "ban")) {
    let kickee = message.mentions.users.first();
-   let days = params[1];
+   let days = isNaN(params[1]) ? 0 : params[1];
    let kickMessage = params.slice(2).join(" ");
    if (message.member.hasPermission("BAN_MEMBERS")){
      let kickeeId = kickee.id;
      kickee.sendMessage(`You have been banned from ${message.guild}. Reason: ${kickMessage}`);
      message.channel.sendMessage(`${kickee.username} was banned from ${message.guild}. Reason: ${kickMessage}.`);
-     message.author.sendMessage(`You may unban ${kickee.username} by typing "$unban ${kickeeId}"`);
+     message.author.sendMessage(`You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
      message.guild.member(kickee).ban(days);
 
    }
