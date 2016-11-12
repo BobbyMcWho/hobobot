@@ -351,10 +351,8 @@ else if (message.content.startsWith(prefix + "kick")) {
    let kickee = message.mentions.users.first();
    let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
-     message.guild.member(kickee).kick()
-     .then(mbm => {mbm.user.sendMessage(`${kickMessage}`);}
-       
-   );
+     kickee.sendMessage(`You have been kicked from ${message.guild}. Reason: ${kickMessage}`);
+     message.guild.member(kickee).kick();
    }
 
 }
