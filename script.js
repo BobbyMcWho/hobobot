@@ -348,12 +348,12 @@ else if (message.content.startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
 }
 else if (message.content.startsWith(prefix + "kick")) {
-   let kickee = message.mentions.users.first;
+   let kickee = message.mentions.users.first();
    if (message.member.hasPermission("KICK_MEMBERS")){
      message.guild.member(kickee).kick();
    }
 
-} 
+}
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
