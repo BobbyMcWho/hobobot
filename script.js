@@ -59,7 +59,7 @@ client.on('message', message => {
     message.channel.sendMessage('I am Hobo! *zzt*');
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
-      
+
       message.channel.sendMessage(`It's a boy! Lucas Michael Taffe was born 11/10 at 10:29pm weighing 5lbs 12.5oz`);
     }
   else if (message.content.toLowerCase().startsWith(prefix + 'lily')) {
@@ -340,14 +340,20 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
      message.author.sendMessage(target);
 
       }
-  
+
 else if (message.content.startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
 }
  else if (message.content.startsWith(prefix + "8ball")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
+}
+else if (message.content.startsWith(prefix + "kick")) {
+   let kickee = message.mentions.users.first;
+   if (message.member.hasPermission("KICK_MEMBERS")){
+     message.guild.member(kickee).kick();
+   }
+
 } 
-  
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
