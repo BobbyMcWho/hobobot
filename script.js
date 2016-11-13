@@ -362,8 +362,8 @@ else if (message.content.startsWith(prefix + "ban")) {
    days = (isNaN(days)) ? 0 : (days > 7) ? 7 : days;
    console.log(days);
    let kickMessage = params.slice(2).join(" ");
+   let kickeeId = kickee.id;
    if (message.member.hasPermission("BAN_MEMBERS")){
-     let kickeeId = kickee.id;
      kickee.sendMessage(`You have been banned from ${message.guild}. Reason: ${kickMessage}`);
      message.channel.sendMessage(`${kickee.username} was banned from ${message.guild}. Reason: ${kickMessage}.`);
      message.author.sendMessage(`You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
