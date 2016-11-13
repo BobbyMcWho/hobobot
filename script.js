@@ -360,6 +360,7 @@ else if (message.content.startsWith(prefix + "ban")) {
    let kickee = message.mentions.users.first();
    let days = parseInt(params[1]);
    days = (isNaN(days)) ? 0 : (days > 7) ? 7 : days;
+   console.log(days);
    let kickMessage = params.slice(2).join(" ");
    if (message.member.hasPermission("BAN_MEMBERS")){
      let kickeeId = kickee.id;
