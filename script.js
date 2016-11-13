@@ -358,7 +358,8 @@ else if (message.content.startsWith(prefix + "kick")) {
 }
 else if (message.content.startsWith(prefix + "ban")) {
    let kickee = message.mentions.users.first();
-   let days = !(Number.isInteger(params[1])) ? 0 : (params[1]<= 7) ? params[1] : 7;
+   let days = parseInt(params.slice(1));
+   days = (isNaN(days)) ? 0 : (days > 7) ? 7 : days;
    let kickMessage = params.slice(2).join(" ");
    if (message.member.hasPermission("BAN_MEMBERS")){
      let kickeeId = kickee.id;
