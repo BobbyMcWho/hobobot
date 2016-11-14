@@ -291,7 +291,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
       const ytResponse = JSON.parse(body);
       let videoId = ytResponse.items[0].id.videoId;
       let title = ytResponse.items[0].snippet.title;
-      let description = ytResponse.items[0].snippet.description;
+       let description = ytResponse.items[0].snippet.description;
       let channel = ytResponse.items[0].snippet.channelTitle;
       message.channel.sendMessage(`You may find this video from **${channel}** interesting: \n https://www.youtube.com/watch?v=${videoId}`);
     }
@@ -351,10 +351,11 @@ else if (message.content.startsWith(prefix + "kick")) {
    let kickee = message.mentions.users.first();
    let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
+      message.guild.channels.find('id','228335467429363712').sendMessage(`${message.author.username} kicked ${kickee.user.username}. Reason: ${kickMessage}.`)
      kickee.sendMessage(`You have been kicked from ${message.guild}. Reason: ${kickMessage}`);
      message.guild.member(kickee).kick();
    }
-
+message.delete();
 }
 else if (message.content.startsWith(prefix + "ban")) {
    let kickee = message.mentions.users.first();
@@ -364,12 +365,13 @@ else if (message.content.startsWith(prefix + "ban")) {
    let kickMessage = params.slice(2).join(" ");
    let kickeeId = kickee.id;
    if (message.member.hasPermission("BAN_MEMBERS")){
+     message.guild.channels.find('id','228335467429363712').sendMessage(`${message.author.username} banned ${kickee.user.username}. Reason: ${kickMessage}. You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
      kickee.sendMessage(`You have been banned from ${message.guild}. Reason: ${kickMessage}`);
-     message.channel.sendMessage(`${kickee.username} was banned from ${message.guild}. Reason: ${kickMessage}.`);
      message.author.sendMessage(`You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
      message.guild.member(kickee).ban(days);
 
    }
+  message.delete();
 }
 else if (message.content.startsWith(prefix + "unban")) {
    let lucky = params[0];
