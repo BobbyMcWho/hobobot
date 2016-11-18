@@ -341,13 +341,13 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
 
       }
 
-else if (message.content.startsWith(prefix + "chorizo")) {
+else if (message.content.toLowerCase().startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
 }
- else if (message.content.startsWith(prefix + "8ball")) {
+ else if (message.content.toLowerCase().startsWith(prefix + "8ball")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
 }
-else if (message.content.startsWith(prefix + "kick")) {
+else if (message.content.toLowerCase().startsWith(prefix + "kick")) {
    let kickee = message.mentions.users.first();
    let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
@@ -357,7 +357,7 @@ else if (message.content.startsWith(prefix + "kick")) {
    }
 message.delete();
 }
-else if (message.content.startsWith(prefix + "ban")) {
+else if (message.content.toLowerCase().startsWith(prefix + "ban")) {
    let kickee = message.mentions.users.first();
    let days = parseInt(params[1]);
    days = (isNaN(days)) ? 0 : (days > 7) ? 7 : days;
@@ -373,13 +373,13 @@ else if (message.content.startsWith(prefix + "ban")) {
    }
   message.delete();
 }
-else if (message.content.startsWith(prefix + "unban")) {
+else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
    let lucky = params[0];
    if (message.member.hasPermission("BAN_MEMBERS")){
      message.guild.unban(lucky);
    }
 }
-  else if (message.content.includes("fetch")) {
+  else if (message.content.toLowerCase().includes("fetch")) {
    message.reply(`stop trying to make fetch happen! It's not going to happen!`);
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
