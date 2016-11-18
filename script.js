@@ -379,6 +379,9 @@ else if (message.content.startsWith(prefix + "unban")) {
      message.guild.unban(lucky);
    }
 }
+  else if (message.content.includes("fetch")) {
+   message.reply(`stop trying to make fetch happen! It's not going to happen!`);
+}
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
