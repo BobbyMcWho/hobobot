@@ -73,10 +73,10 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
       if (message.author.id === '161210376812363776'){message.channel.sendMessage("Yes, Master?");}
       else{
-      if (message.guild.members.find('id','161210376812363776').user.status === "online"){
+      if (message.guild.members.find('id','161210376812363776').user.presence.status === "online"){
       message.channel.sendMessage("Hobo is here!");}
-      else if (message.guild.members.find('id','161210376812363776').user.status === "idle"){message.channel.sendMessage("Hobo must be working...");}
-      else if (message.guild.members.find('id','161210376812363776').user.status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
+      else if (message.guild.members.find('id','161210376812363776').user.presence.status === "idle"){message.channel.sendMessage("Hobo must be working...");}
+      else if (message.guild.members.find('id','161210376812363776').user.presence.status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
     }
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
