@@ -344,6 +344,12 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
 else if (message.content.toLowerCase().startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
 }
+  else if (message.content.toLowerCase().startsWith(prefix + "dankie")) {
+    message.channel.sendMessage(`\uD83C\uDF32\uD83C\uDF32\uD83C\uDF32`)
+    .then(message => {setTimeout(()=>message.edit(`\uD83D\uDD25\uD83C\uDF32\uD83C\uDF32`),1000);
+                      setTimeout(()=>message.edit(`\uD83D\uDD2\uD83D\uDD25\uD83C\uDF32`),1000);
+                      setTimeout(()=>message.edit(`\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25`),1000);});
+}
  else if (message.content.toLowerCase().startsWith(prefix + "8ball")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
 }
