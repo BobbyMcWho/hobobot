@@ -345,13 +345,24 @@ else if (message.content.toLowerCase().startsWith(prefix + "chorizo")) {
     message.channel.sendMessage(`I like a joke as much as next game but is this basically just a meme group seems like thats 80% of hte discussion?`);
 }
   else if (message.content.toLowerCase().startsWith(prefix + "dankie")) {
-    message.channel.sendMessage(`\uD83C\uDF32\uD83C\uDF32\uD83C\uDF32`)
+  message.channel.sendMessage(`\uD83C\uDF32\uD83C\uDF32\uD83C\uDF32`)
     .then(message => {
-      setTimeout(function(msg){msg.edit(`\uD83D\uDD25\uD83C\uDF32\uD83C\uDF32`)},1000,message);
-      setTimeout(function(msg){msg.edit(`\uD83D\uDD25\uD83D\uDD25\uD83C\uDF32`)},1000,message);
-      setTimeout(function(msg){msg.edit(`\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25`)},1000,message);
-    });
-}
+        setTimeout(function(msg) {
+          msg.edit(`\uD83D\uDD25\uD83C\uDF32\uD83C\uDF32`)
+            .then(message2 => {
+              setTimeout(function(msg2) {
+                  msg2.edit(`\uD83D\uDD25\uD83D\uDD25\uD83C\uDF32`)
+                    .then(message3 => {
+                        setTimeout(function(msg3) {
+                          msg3.edit(`\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25`)
+                        }, 1000, message3);
+                      })
+                    }, 1000, message2);
+
+              })
+            }, 1000, message)
+        });
+      }
  else if (message.content.toLowerCase().startsWith(prefix + "8ball")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
 }
