@@ -346,9 +346,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "chorizo")) {
 }
   else if (message.content.toLowerCase().startsWith(prefix + "dankie")) {
     message.channel.sendMessage(`\uD83C\uDF32\uD83C\uDF32\uD83C\uDF32`)
-    .then(message => {setTimeout(()=>message.edit(`\uD83D\uDD25\uD83C\uDF32\uD83C\uDF32`),1000);
-                      setTimeout(()=>message.edit(`\uD83D\uDD2\uD83D\uDD25\uD83C\uDF32`),1000);
-                      setTimeout(()=>message.edit(`\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25`),1000);});
+    .then(message => {message.edit(`\uD83D\uDD25\uD83C\uDF32\uD83C\uDF32`);});
 }
  else if (message.content.toLowerCase().startsWith(prefix + "8ball")) {
     message.channel.sendMessage(`${eightball.phrases[(Math.floor(Math.random()*eightball.phrases.length))]}`);
