@@ -403,9 +403,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
 }
   else if (message.content.toLowerCase().startsWith(prefix + "joindate")) {
     let userMentioned = message.mentions.users.first();
-    message.guild.fetchMember(userMentioned).joinedAt
+    message.guild.fetchMember(userMentioned)
+      .then(fetched => {fetched.joinedAt
     .then(jd =>
-          {message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${jd}`);});
+          {message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${jd}`);})});
     
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
