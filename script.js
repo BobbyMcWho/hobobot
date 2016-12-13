@@ -401,6 +401,12 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   else if (message.content.toLowerCase().includes("fetch")) {
    message.reply(`stop trying to make fetch happen! It's not going to happen!`);
 }
+  else if (message.content.toLowerCase().startsWith(prefix + "joindate")) {
+    let userMentioned = message.mentions.users.first();
+    let joinDate = message.guild.fetchMember(userMentioned).joinedAt;
+    message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${joinDate}`);
+    
+}
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
