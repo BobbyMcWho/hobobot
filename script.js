@@ -14,6 +14,13 @@ let babybaby;
 let line;
 let choice = [];
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
+const monthNames =  [
+  "Jan", "Feb", "Mar",
+  "Ap", "May", "Jun", "Jul",
+  "Aug", "Sep", "Oct",
+  "Nov", "Dec"
+];
+
 
 function shuffle(array) {
   var i = 0,
@@ -404,7 +411,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   else if (message.content.toLowerCase().startsWith(prefix + "joindate")) {
     let userMentioned = message.mentions.users.first();
     let jd = message.guild.member(userMentioned).joinedAt;
-         message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${jd}`);
+         message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${monthNames[jd.getMonth()]} ${jd.getDate()}, ${jd.getFullYear()} `);
     
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
