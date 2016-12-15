@@ -437,5 +437,8 @@ client.on('reconnecting', () => {
 client.on('error', (error) => {
   console.log("error");
 });
+client.on('disconnect', () => 
+  process.exit(100)
+);
 
 client.login(Sesame);
