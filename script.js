@@ -16,7 +16,7 @@ let choice = [];
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 const monthNames =  [
   "Jan", "Feb", "Mar",
-  "Ap", "May", "Jun", "Jul",
+  "Apr", "May", "Jun", "Jul",
   "Aug", "Sep", "Oct",
   "Nov", "Dec"
 ];
