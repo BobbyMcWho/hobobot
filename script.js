@@ -420,7 +420,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
     console.log(url);
 
   request(url, (error,response,body) => {
-    console.log(`Error: ${error} Response: ${response} Body: ${body})`;
+    console.log(`Error: ${error} Response: ${response} Body: ${body}`);
     if (!error && response.statusCode === 200){
       const timeResponse = JSON.parse(body);
       let timeS = timeResponse[0];
