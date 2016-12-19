@@ -419,16 +419,6 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   let url = "http://www.timeapi.org/"+timeZone+"/now.json?format=\\a%20\\b%20\\d%20\\I:\\M\\p";
   request(url, (error,response,body) => {
     if (!error){
-      body = body.replace(/\\n/g, "\\n")  
-               .replace(/\\'/g, "\\'")
-               .replace(/\\"/g, '\\"')
-               .replace(/\\&/g, "\\&")
-               .replace(/\\r/g, "\\r")
-               .replace(/\\t/g, "\\t")
-               .replace(/\\b/g, "\\b")
-               .replace(/\\f/g, "\\f");
-// remove non-printable and other non-valid JSON chars
-body = body.replace(/[\u0000-\u0019]+/g,""); 
       const timeResponse = JSON.parse(body);
       console.log(timeResponse);
       let timeS = timeResponse["dateString"];
