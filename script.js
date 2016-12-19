@@ -414,18 +414,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
          message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${monthNames[jd.getMonth()]} ${jd.getDate()}, ${jd.getFullYear()} `);
     
 }
-  else if (message.content.toLowerCase().startsWith(prefix + "time")) {
-  let timeZone = params[0];
-  let url = "http://www.timeapi.org/"+timeZone+"/now.json?format=\\a%20\\b%20\\d%20\\I:\\M\\p";
-  request(url, (error,response,body) => {
-    if (!error){
-      const timeResponse = JSON.parse(body);
-      console.log(timeResponse);
-      let timeS = timeResponse["dateString"];
-      message.channel.sendMessage(`\`${timeS}\``);
-    }
-  });
-}
+
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
