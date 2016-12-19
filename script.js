@@ -424,6 +424,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
     }
     else if (!error && response.statusCode === 200){
       const timeResponse = JSON.parse(body);
+      console.log(JSON.stringify(timeResponse));
       let timeS = timeResponse[0];
       console.log("Date String" + timeResponse[0]);
       console.log("Time Variable" + timeResponse[0][0]);
