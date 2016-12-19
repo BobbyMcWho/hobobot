@@ -422,9 +422,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const timeResponse = JSON.parse(body);
-      let time = timeResponse.dateString;
+      console.log(timeResponse);
+      let timeS = timeResponse.dateString;
       console.log("Date String" + timeResponse.dateString);
-      console.log("Time Variable"+time);
+      console.log("Time Variable"+timeS);
       message.channel.sendMessage(`\`${time}\``);
     }
   });
