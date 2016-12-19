@@ -420,6 +420,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   request(url, (error,response,body) => {
     if (!error){
       const timeResponse = JSON.parse(body);
+      console.log(timeResponse);
       let timeS = timeResponse["dateString"];
       message.channel.sendMessage(`\`${timeS}\``);
     }
