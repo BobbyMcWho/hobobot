@@ -417,7 +417,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   else if (message.content.toLowerCase().startsWith(prefix + "time")) {
   let timeZone = params[0];
   let url = "http://www.timeapi.org/"+timeZone+"/now.json?format=\a%20\b%20\d%20\I:\M\p%20";
-
+try{
   request(url, (error,response,body) => {
     if (error) {
       return console.error('upload failed:', error);
@@ -427,7 +427,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
       let timeS = timeResponse["dateString"];
       message.channel.sendMessage(`\`${timeS}\``);
     }
-  });
+  });}
+  catch(err){
+    console.log(err.message)
+  }
 }
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
