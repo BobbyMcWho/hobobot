@@ -416,14 +416,14 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
 }
   else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 
-  let url = `http://www.timeapi.org/${params[0]}/now.json?format=\a%20\b%20\d%20\I:\M\p%20`;
+  let url = `http://www.timeapi.org/${params[0]}/now.json?format=\\a%20\\b%20\\d%20\\I:\\M\\p%20`;
     console.log(url);
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const timeResponse = JSON.parse(body);
       let time = timeResponse.dateString;
-      message.channel.sendMessage(`${time}`);
+      message.channel.sendMessage(`\`${time}\``);
     }
   });
 }
