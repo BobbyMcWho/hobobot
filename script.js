@@ -418,7 +418,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   let timeZone = params[0];
   let url = "http://www.timeapi.org/"+timeZone+"/now.json?format=\a%20\b%20\d%20\I:\M\p%20";
   request(url, (error,response,body) => {
-    else if (!error){
+    if (!error){
       const timeResponse = JSON.parse(body);
       let timeS = timeResponse["dateString"];
       message.channel.sendMessage(`\`${timeS}\``);
