@@ -417,10 +417,12 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
   else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 
   let url = `http://www.timeapi.org/${params[0]}/now.json?format=\\a%20\\b%20\\d%20\\I:\\M\\p%20`;
-    console.log(url);
 
   request(url, {timeout: 5000},(error,response,body) => {
-    if (!error && response.statusCode === 200){
+    if (error) {
+      return console.error('upload failed:', error);
+    }
+    else if (!error && response.statusCode === 200){
       const timeResponse = JSON.parse(body);
       let timeS = timeResponse[0];
       console.log("Date String" + timeResponse[0]);
