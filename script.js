@@ -432,7 +432,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
       
       if (name === null){message.channel.sendMessage(`Cannot locate stock symbol **"${stockID.toUpperCase()}"**`);}
       else if (typeof params[1] !== 'undefined' && params[1] === "name"){
-      message.channel.sendMessage(`Stock symbol **${symbol}:** is for the company **${name}**`);
+      message.channel.sendMessage(`Stock symbol **${symbol}** is for the company **${name}**`);
       }
       else{
       message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange}%)`);}
