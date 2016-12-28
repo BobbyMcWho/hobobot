@@ -423,13 +423,13 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const stockResponse = JSON.parse(body);
-      let symbol = stockResponse.query.results.quote.symbol;
+      let symbol = stockResponse.query.results.quote.symbol.toUppercase;
       let change = stockResponse.query.results.quote.Change;
       let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
       let openPrice =(parseFloat(lastTrade) - parseFloat(change));
-      let percentChange = (change/openPrice);
+      let percentChange = ((change/openPrice)*100).toFixed(2);
 
-      message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange})`);
+      message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange}%)`);
     }
   });
 }
