@@ -423,7 +423,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const stockResponse = JSON.parse(body);
-      let symbol = stockResponse.query.results.quote.symbol.toUppercase();
+      let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
       let change = stockResponse.query.results.quote.Change;
       let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
       let openPrice =(parseFloat(lastTrade) - parseFloat(change));
