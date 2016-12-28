@@ -415,6 +415,24 @@ else if (message.content.toLowerCase().startsWith(prefix + "unban")) {
     
 }
 
+else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
+
+  let stockID = params[0];
+  let url =`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20%3D%20%22${stockID}%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
+
+  request(url, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const stockResponse = JSON.parse(body);
+      let symbol = stockResponse.query.results.quote.symbol;
+      let change = stockResponse.query.results.quote.Change;
+      let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
+      let openPrice =(parseFloat(lastTrade) - parseFloat(change));
+      let percentChange = (change/openPrice);
+
+      message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange})`);
+    }
+  });
+}
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
