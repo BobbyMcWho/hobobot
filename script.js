@@ -203,6 +203,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
+      let responseType = urbanResponse.result_type;
+      if (responseType = "no_results"){
+        message.channel.sendMessage(`No results found for ${searchTerm}`);
+        else{
       let tags = urbanResponse.tags;
       let thumbsup = urbanResponse.list[0].thumbs_up;
       let thumbsdown = urbanResponse.list[0].thumbs_down;
@@ -210,7 +214,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
       message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-    }
+        }
+        }
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
