@@ -205,7 +205,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       const urbanResponse = JSON.parse(body);
       let responseType = urbanResponse.result_type;
       if (responseType = "no_results"){
-        message.channel.sendMessage(`No results found for ${searchTerm}`);}
+        message.channel.sendMessage(`No results found for "${params.join(" ")}"`);}
         else{
       let tags = urbanResponse.tags;
       let thumbsup = urbanResponse.list[0].thumbs_up;
