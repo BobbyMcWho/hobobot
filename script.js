@@ -432,12 +432,16 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
       let name = stockResponse.query.results.quote.Name;
       let change = stockResponse.query.results.quote.Change;
       let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
+      let marketCap = stockResponse.query.results.quote.MarketCapitalization;
       let openPrice =(parseFloat(lastTrade) - parseFloat(change));
       let percentChange = ((change/openPrice)*100).toFixed(2);
       
       if (name === null){message.channel.sendMessage(`Cannot locate stock symbol **"${stockID.toUpperCase()}"**`);}
       else if (typeof params[1] !== 'undefined' && params[1] === "name"){
       message.channel.sendMessage(`Stock symbol **${symbol}** is for the company **${name}**`);
+      }
+      else if (typeof params[1] !== 'undefined' && params[1] === "cap"){
+      message.channel.sendMessage(`The market cap for all outstanding shares of **${symbol}** at last trade price ${lastTrade}USD is **${marketCap}**`);
       }
       else{
       message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange}%)`);}
