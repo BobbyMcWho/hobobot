@@ -467,8 +467,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
       } else {
         let toLocation = timeResponse.toZoneName;
         let convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
-        let convertedMinutes = (convertedDate.getMinutes().length === 1) ? "0" + convertedDate.getMinutes().toString() : convertedDate.getMinutes();
-        let convertedSeconds = (convertedDate.getSeconds().length === 1) ? "0" + convertedDate.getSeconds().toString() : convertedDate.getSeconds();
+        let convertedMinutes = (convertedDate.getMinutes().length === 1) ? `0${convertedDate.getMinutes().toString()}` : convertedDate.getMinutes();
+        let convertedSeconds = (convertedDate.getSeconds().length === 1) ? `0${convertedDate.getSeconds().toString()}` : convertedDate.getSeconds();
         message.channel.sendMessage(`It is currently ${dayNames[convertedDate.getDay()]} ${monthNames[convertedDate.getMonth()]} ${convertedDate.getDate()} ${convertedDate.getUTCHours()}:${convertedMinutes}:${convertedSeconds} in ${toLocation}.`);
       }
     }
