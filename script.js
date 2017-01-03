@@ -457,11 +457,12 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 
   request(url, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      if (body.status === "FAILED") {
+      const timeResponse = JSON.parse(body);
+      if (timeResponse.status === "FAILED") {
         message.channel.sendMessage(`There was an error with one of your timezones, please try again.`);
       } else {
-        var toLocation = body.toZoneName;
-        var convertedDate = new Date(parseInt(body.toTimestamp) * 1000);
+        var toLocation = timeResponse.toZoneName;
+        var convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
         message.channel.sendMessage(`It is currently ${convertedDate} in ${toLocation}.`);
       }
     }
