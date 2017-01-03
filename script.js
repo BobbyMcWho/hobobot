@@ -464,7 +464,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
       } else {
         var toLocation = timeResponse.toZoneName;
         var convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
-        message.channel.sendMessage(`It is currently ${convertedDate} in ${toLocation}.`);
+        message.channel.sendMessage(`It is currently ${convertedDate.slice(0,-15)} in ${toLocation}.`);
       }
     }
   });
