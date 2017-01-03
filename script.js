@@ -21,6 +21,9 @@ const monthNames =  [
   "Aug", "Sep", "Oct",
   "Nov", "Dec"
 ];
+const dayNames =  [
+  "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+];
 
 
 function shuffle(array) {
@@ -462,9 +465,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
         console.log(timeResponse.message);
         message.channel.sendMessage(`There was an error with one of your timezones, please try again.`);
       } else {
-        var toLocation = timeResponse.toZoneName;
-        var convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
-        message.channel.sendMessage(`It is currently ${convertedDate.slice(0,-15)} in ${toLocation}.`);
+        let toLocation = timeResponse.toZoneName;
+        let convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
+        let convertedMinutes = (convertedDate.getMinutes().length === 1) ? "0" + convertedDate.getMinutes().toString() : convertedDate.getMinutes();
+        let convertedSeconds = (convertedDate.getSeconds().length === 1) ? "0" + convertedDate.getSeconds().toString() : convertedDate.getMinutes();
+        message.channel.sendMessage(`It is currently ${dayNames[convertedDate.getDay()]} ${monthNames[convertedDate.getMonth()]} ${convertedDate.getDate()]} ${convertedDate.getHours()}:${convertedMinutes}:${convertedSeconds} in ${toLocation}.`);
       }
     }
   });
