@@ -22,7 +22,7 @@ const monthNames =  [
   "Nov", "Dec"
 ];
 const dayNames =  [
-  "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+  "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
 ];
 
 
