@@ -7,9 +7,10 @@ const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
 const eightball = require('./8ball.json');
-const Sesame = Key.token;
+const sesame = Key.token;
 const weatherKey = Key.weatherapi;
 const ytKey = Key.ytKey;
+const timeKey = Key.timeKey;
 let babybaby;
 let line;
 let choice = [];
@@ -448,6 +449,25 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
     }
   });
 }
+else if (message.content.toLowerCase().startsWith(prefix + "time")) {
+
+  let fromTime = params[0];
+  let toTime = params[1];
+  let url = `http://api.timezonedb.com/v2/convert-time-zone?key=${timeKey}&format=json&from=${fromTime}&to=${toTime}`;
+
+  request(url, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      if (body.status === "FAILED") {
+        message.channel.sendMessage(`There was an error with one of your timezones, please try again.`);
+      } else {
+        var toLocation = body.toZoneName;
+        var convertedDate = new Date(parseInt(body.toTimestamp) * 1000);
+        message.channel.sendMessage(`It is currently ${convertedDate} in ${toLocation}.`);
+      }
+    }
+  });
+}
+
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
@@ -475,4 +495,4 @@ client.on('disconnect', () =>
   process.exit(100)
 );
 
-client.login(Sesame);
+client.login(sesame);
