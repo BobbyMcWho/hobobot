@@ -459,6 +459,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
     if (!error && response.statusCode === 200) {
       const timeResponse = JSON.parse(body);
       if (timeResponse.status === "FAILED") {
+        console.log(timeResponse.message);
         message.channel.sendMessage(`There was an error with one of your timezones, please try again.`);
       } else {
         var toLocation = timeResponse.toZoneName;
