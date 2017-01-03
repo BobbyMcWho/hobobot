@@ -453,9 +453,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "time")) {
-
-  let fromTime = params[0].toUpperCase();
-  let toTime = params[1].toUpperCase();
+  
+  let fromTime = "GMT";
+  let toTime = params[0].toUpperCase();
   let url = `http://api.timezonedb.com/v2/convert-time-zone?key=${timeKey}&format=json&from=${fromTime}&to=${toTime}`;
 
   request(url, (error, response, body) => {
