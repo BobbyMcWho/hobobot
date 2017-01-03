@@ -469,7 +469,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
         let convertedDate = new Date(parseInt(timeResponse.toTimestamp) * 1000);
         let convertedMinutes = (convertedDate.getMinutes().length === 1) ? "0" + convertedDate.getMinutes().toString() : convertedDate.getMinutes();
         let convertedSeconds = (convertedDate.getSeconds().length === 1) ? "0" + convertedDate.getSeconds().toString() : convertedDate.getMinutes();
-        message.channel.sendMessage(`It is currently ${dayNames[convertedDate.getDay()]} ${monthNames[convertedDate.getMonth()]} ${convertedDate.getDate()]} ${convertedDate.getHours()}:${convertedMinutes}:${convertedSeconds} in ${toLocation}.`);
+        message.channel.sendMessage(`It is currently ${dayNames[convertedDate.getDay()]} ${monthNames[convertedDate.getMonth()]} ${convertedDate.getDate()} ${convertedDate.getHours()}:${convertedMinutes}:${convertedSeconds} in ${toLocation}.`);
       }
     }
   });
