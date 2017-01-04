@@ -207,8 +207,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   request(url+searchTerm, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const urbanResponse = JSON.parse(body);
-      let responseType = urbanResponse[result_type];
-      if (responseType = "no_results"){
+      let responseType = urbanResponse.result_type;
+      if (responseType === "no_results"){
         message.channel.sendMessage(`No results found for "${params.join(" ")}"`);}
         else{
       let tags = urbanResponse.tags;
