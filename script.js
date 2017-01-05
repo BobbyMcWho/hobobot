@@ -220,7 +220,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urbantest")) {
       let permalink = urbanResponse.list[0].permalink;
       //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
       message.channel.sendMessage("", {embed: {
-  color: '#FECF0D',
+  color: 905214,
   title: word,
   url: permalink,
   description: definition,
