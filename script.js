@@ -84,10 +84,10 @@ client.on('message', message => {
     else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
       if (message.author.id === '161210376812363776'){message.channel.sendMessage("Yes, Master?");}
       else{
-      if (message.guild.members.find('id','161210376812363776').user.presence.status === "online"){
+      if (message.guild.members.get('161210376812363776').user.presence.status === "online"){
       message.channel.sendMessage("Hobo is here!");}
-      else if (message.guild.members.find('id','161210376812363776').user.presence.status === "idle"){message.channel.sendMessage("Hobo must be working...");}
-      else if (message.guild.members.find('id','161210376812363776').user.presence.status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
+      else if (message.guild.members.get('161210376812363776').presence.status === "idle"){message.channel.sendMessage("Hobo must be working...");}
+      else if (message.guild.members.get('161210376812363776').presence.status === "offline"){message.channel.sendMessage("Check your nearest Staples, Hobo is missing!");}
     }
     }
     else if (message.content.toLowerCase().startsWith(prefix + 'int') && (message.channel.id === "174984493138968576")) {
@@ -278,7 +278,7 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
       message.channel.bulkDelete(filteredMessages2);
 });}
 else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
-    client.guilds.find('id','187346688497680385').channels.find('id','229058004866039808').sendMessage("logged");
+    client.channels.get('229058004866039808').sendMessage("logged");
 }
 
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
@@ -350,9 +350,9 @@ else if (message.content.toLowerCase().startsWith(prefix + 'delete') && (message
      let sender = params[0].toString();
      let guild =  params.slice(1).join(' ');
      console.log(guild);
-     let guildFind = client.guilds.find('name',guild);
+     let guildFind = client.guilds.get(guild);
     if (typeof  guildFind === 'undefined'){ message.author.sendMessage('Incorrect Guild') ;}
-    else guildFind.members.find('id',sender);
+    else guildFind.members.get(sender);
      message.author.sendMessage(target);
 
       }
@@ -386,7 +386,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "kick")) {
    let kickee = message.mentions.users.first();
    let kickMessage = params.slice(1).join(" ");
    if (message.member.hasPermission("KICK_MEMBERS")){
-      message.guild.channels.find('id','228335467429363712').sendMessage(`${message.author.username} kicked ${kickee.user.username}. Reason: ${kickMessage}.`)
+      message.guild.channels.get('228335467429363712').sendMessage(`${message.author.username} kicked ${kickee.user.username}. Reason: ${kickMessage}.`)
      kickee.sendMessage(`You have been kicked from ${message.guild}. Reason: ${kickMessage}`);
      message.guild.member(kickee).kick();
    }
@@ -400,7 +400,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "ban")) {
    let kickMessage = params.slice(2).join(" ");
    let kickeeId = kickee.id;
    if (message.member.hasPermission("BAN_MEMBERS")){
-     message.guild.channels.find('id','228335467429363712').sendMessage(`${message.author.username} banned ${kickee.user.username}. Reason: ${kickMessage}. You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
+     message.guild.channels.get('228335467429363712').sendMessage(`${message.author.username} banned ${kickee.user.username}. Reason: ${kickMessage}. You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
      kickee.sendMessage(`You have been banned from ${message.guild}. Reason: ${kickMessage}`);
      message.author.sendMessage(`You may unban ${kickee.username} by typing "$unban ${kickeeId}" in ${message.guild} chat.`);
      message.guild.member(kickee).ban(days);
@@ -485,8 +485,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
     // }
 
 });
-//client.on('guildMemberRemove', (guild, member) => {
-  // setTimeout(() => {guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
+//client.on('guildMemberRemove', (member) => {
+  // setTimeout(() => {member.guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
 //});
 
 client.on('ready', () =>{
