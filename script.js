@@ -221,7 +221,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urbantest")) {
       const embed = new Discord.RichEmbed()
         .setTitle(word)
         .setAuthor('Urban Dictionary', './ud.jpg')
-        .setColor(#FDCE0C)
+        .setColor('#FDCE0C')
         .setDescription('definition')
         .setFooter('Urban Dictionary', './ud.jpg')
         .setImage('https://goo.gl/D3uKk2')
