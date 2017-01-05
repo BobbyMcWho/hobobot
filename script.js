@@ -231,7 +231,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "ud")) {
     {
       name: 'Example:',
       value: example
-    },
+    }
   ],
   timestamp: new Date(),
   footer: {
