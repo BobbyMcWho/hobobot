@@ -515,7 +515,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 //});
 
 client.on('ready', () =>{
-  client.user.setAvatar(fs.readFile('./hobo.jpg'));
+  client.user.setAvatar('./hobo.jpg');
 });
 client.on('reconnecting', () => {
   console.log("reconnecting...");
