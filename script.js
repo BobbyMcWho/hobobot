@@ -199,7 +199,7 @@ client.on('message', message => {
       message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +" heads** and **" + tails +" tails**. \n Results: " + resultsArr );}
 
 }
-else if (message.content.toLowerCase().startsWith(prefix + "urbanTest")) {
+else if (message.content.toLowerCase().startsWith(prefix + "urbantest")) {
 
   let searchTerm = params.join('%20');
   let url ='http://api.urbandictionary.com/v0/define?term=';
