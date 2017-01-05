@@ -221,6 +221,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "ud")) {
       //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
       message.channel.sendMessage("", {embed: {
   color: 905214,
+  author: {
+    name: client.user.username,
+    icon_url: client.user.avatarURL
+  },
   title: word,
   url: permalink,
   description: definition,
