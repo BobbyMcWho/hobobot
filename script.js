@@ -199,7 +199,7 @@ client.on('message', message => {
       message.channel.sendMessage(roller + " flipped a coin " + coinCount + " times for a total of **" + heads +" heads** and **" + tails +" tails**. \n Results: " + resultsArr );}
 
 }
-else if (message.content.toLowerCase().startsWith(prefix + "ud")) {
+else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
 
   let searchTerm = params.join('%20');
   let url ='http://api.urbandictionary.com/v0/define?term=';
@@ -218,32 +218,32 @@ else if (message.content.toLowerCase().startsWith(prefix + "ud")) {
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
       let permalink = urbanResponse.list[0].permalink;
-      //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-      message.channel.sendMessage("", {embed: {
-  color: 905214,
-  author: {
-    name: client.user.username,
-    icon_url: client.user.avatarURL
-  },
-  title: word,
-  url: permalink,
-  description: definition,
-  fields: [
-    {
-      name: `\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`,
-      value: '\u200b'
-    },
-    {
-      name: 'Example:',
-      value: example
-    }
-  ],
-  timestamp: new Date(),
-  footer: {
-    icon_url: './ud.jpg',
-    text: 'Urban Dictionary'
-  }
-}});
+      message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+//       message.channel.sendMessage("", {embed: {
+//   color: 905214,
+//   author: {
+//     name: client.user.username,
+//     icon_url: client.user.avatarURL
+//   },
+//   title: word,
+//   url: permalink,
+//   description: definition,
+//   fields: [
+//     {
+//       name: `\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`,
+//       value: '\u200b'
+//     },
+//     {
+//       name: 'Example:',
+//       value: example
+//     }
+//   ],
+//   timestamp: new Date(),
+//   footer: {
+//     icon_url: './ud.jpg',
+//     text: 'Urban Dictionary'
+//   }
+// }});
         }
         }
   });
