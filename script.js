@@ -226,7 +226,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "ud")) {
   description: definition,
   fields: [
     {
-      name: `\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`
+      name: `\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`,
+      value: '\u200b'
     },
     {
       name: 'Example:',
