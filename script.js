@@ -231,7 +231,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
             .addField('Example:',example)
             .setColor(16632586)
             .setFooter(`\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`)
-            .setThumbnail('./ud.jpg')
+            .setThumbnail('http://is1.mzstatic.com/image/thumb/Purple49/v4/51/d1/2d/51d12d50-2991-00f6-6702-354ccb849a80/source/175x175bb.jpg')
             message.channel.sendEmbed(
             embed,
             { disableEveryone: true }
