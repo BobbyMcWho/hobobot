@@ -281,7 +281,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
         case 'Clouds' : icon = '\u2601'; break;
         case 'Extreme' : icon = '\uD83C\uDF2A'; break;
         case 'Additional' : icon = '\uD83C\uDF43'; break;
-        case 'Mist' : icon = '\uD83C\uDF01' ; break;
+        case 'Mist' : 
+        case 'Fog' : icon = '\uD83C\uDF01' ; break;
       }
 
       message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}.`);
