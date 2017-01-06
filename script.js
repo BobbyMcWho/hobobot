@@ -514,7 +514,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 }
   else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
    let query = params.join[" "];
-   cBot.create(function (err, message.author.id) {
+   cBot.create(function (err, `{$message.author.id}`) {
    cBot.ask(query, function (err, response) {
       const embed = new Discord.RichEmbed()
   .setAuthor("Clever Hobo")
