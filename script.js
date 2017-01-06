@@ -513,7 +513,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
-  const input = params.join[" "];
+  const input = message.content.split(/\ +/).slice(1).join(" ");
   let user = message.author.id;
   let text;
   cBot.create(function(err, user) {
