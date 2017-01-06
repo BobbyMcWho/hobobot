@@ -521,7 +521,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
   .setAuthor("Clever Hobo")
   .setColor(0x444444)
   .setDescription(response)
-  .setImage(message.user.avatarURL)
+  .setImage(message.author.avatarURL)
 message.channel.sendEmbed(
   embed,
   { disableEveryone: true }
