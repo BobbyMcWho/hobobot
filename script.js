@@ -14,7 +14,7 @@ const timeKey = Key.timeKey;
 const cleverKey = Key.cleverKey;
 const cleverUser = Key.cleverUser;
 const cleverbot = require("cleverbot.io");
-const cBot = new cleverbot(cleverUser, cleverKey);
+const cBot = new cleverbot(cleverUser,cleverKey);
 let babybaby;
 let line;
 let choice = [];
