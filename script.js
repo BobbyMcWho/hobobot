@@ -509,7 +509,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
   });
 }
 //*********************Testing!
-else if (message.content.toLowerCase().startsWith(prefix + "weather2")) {
+else if (message.content.toLowerCase().startsWith(prefix + "w2")) {
   params = params.join("");
   let country = "";
   if (params.indexOf(',') > -1) {params = params.split(","); country = `,${params.pop()}`; params = params.join("");}
