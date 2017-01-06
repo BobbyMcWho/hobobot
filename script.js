@@ -267,10 +267,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       let icon;
       if(country.toLowerCase() == 'us'){
         units = 'imperial';
-        temp = (1.8 * (parseFloat(temp)-273))+32;
+        temp = (1.8 * ((parseFloat(temp)*10-273*10)/10))+32;
       }
       else{units = 'metric';
-           temp = parseFloat(temp)-273.15;
+           temp = (parseFloat(temp)*10-273.15*10)/10;
           }
     let niceUnits;
     switch(units){
