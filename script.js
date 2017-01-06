@@ -512,7 +512,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
     }
   });
 }
-else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
+else if ((message.content.toLowerCase().startsWith(prefix + "clever")) && (message.channel.id === "174984493138968576")) {
   const input = message.content.split(/\ +/).slice(1).join(" ");
   let user = message.author.id;
   let text;
