@@ -231,6 +231,10 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
   .setColor(16632586)
   .setFooter(`\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`)
   .setThumbnail('./ud.jpg')
+  message.channel.sendEmbed(
+  embed,
+  { disableEveryone: true }
+);
         }
         }
   });
