@@ -521,8 +521,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
       if (response.startsWith("Error")) {
         cBot.create(function(err, session) {
           cBot.setNick(message.author.id);
-          cBot.ask(`${input}`, function(err, response2) {
-            text = response2;
+          cBot.ask(`${input}`, function(err, response) {
+            text = response;
           });
         })
         }
