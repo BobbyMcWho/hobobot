@@ -221,33 +221,16 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let definition = urbanResponse.list[0].definition;
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
+      word[0] = word[0].toUpperCase();
       let permalink = urbanResponse.list[0].permalink;
-      message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-//       message.channel.sendMessage("", {embed: {
-//   color: 905214,
-//   author: {
-//     name: client.user.username,
-//     icon_url: client.user.avatarURL
-//   },
-//   title: word,
-//   url: permalink,
-//   description: definition,
-//   fields: [
-//     {
-//       name: `\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`,
-//       value: '\u200b'
-//     },
-//     {
-//       name: 'Example:',
-//       value: example
-//     }
-//   ],
-//   timestamp: new Date(),
-//   footer: {
-//     icon_url: './ud.jpg',
-//     text: 'Urban Dictionary'
-//   }
-// }});
+      //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+           const embed = new Discord.RichEmbed()
+  .setTitle(`${word}`)
+  .setDescription(`${definition}`)
+  .addField('Example:',example)
+  .setColor(16632586)
+  .setFooter(`\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`)
+  .setThumbnail('./ud.jpg')
         }
         }
   });
