@@ -512,22 +512,35 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
     }
   });
 }
-  else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
-   let query = params.join[" "];
-   let user = message.author.id;
-   cBot.create(function (err, user) {
-   cBot.ask(query, function (err, response) {
+else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
+  let query = params.join[" "];
+  let user = message.author.id;
+  let text;
+  cBot.create(function(err, user) {
+    cBot.ask(query, function(err, response) {
+      if (response.startsWith("Error")) {
+        cBot.create(function(err, session) {
+          cBot.setNick(message.author.id);
+          cBot.ask(query, function(err, response) {
+            text = response;
+          });
+        });
+      } else {
+        text = response;
+      }
+
       const embed = new Discord.RichEmbed()
-  .setAuthor("Clever Hobo")
-  .setColor(0x444444)
-  .setDescription(response)
-  .setImage(message.author.avatarURL)
-message.channel.sendEmbed(
-  embed,
-  { disableEveryone: true }
-);
-});
-});
+        .setAuthor("Clever Hobo")
+        .setColor(0x444444)
+        .setDescription(response)
+        .setThumbnail(message.author.avatarURL)
+      message.channel.sendEmbed(
+        embed, {
+          disableEveryone: true
+        }
+      );
+    });
+  });
 }
 //*********************Testing!
 
