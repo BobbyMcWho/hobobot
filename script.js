@@ -270,7 +270,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
         temp = parseFloat(((1.8 * ((parseFloat(temp)*100-273*100)/100))+32).toFixed(2));
       }
       else{units = 'metric';
-           temp = parseFloat((((parseFloat(temp)*100-273.15*100)/100).toFixed(2));
+           temp = parseFloat(((parseFloat(temp)*100-273.15*100)/100).toFixed(2));
           }
     let niceUnits;
     switch(units){
