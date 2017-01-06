@@ -517,11 +517,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
   let user = message.author.id;
   let text;
   cBot.create(function(err, user) {
-    cBot.ask(input, function(err, response) {
+    cBot.ask(`${input}`, function(err, response) {
       if (response.startsWith("Error")) {
         cBot.create(function(err, session) {
           cBot.setNick(message.author.id);
-          cBot.ask(input, function(err, response2) {
+          cBot.ask(`${input}`, function(err, response2) {
             text = response2;
           });
         })
