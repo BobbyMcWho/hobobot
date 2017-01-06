@@ -514,9 +514,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 }
   else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
    let query = params.join[" "];
-   bot.create(function (err, session) {
-   bot.setNick(message.user.id);
-   bot.ask(query, function (err, response) {
+   cBot.create(function (err, session) {
+   cBot.setNick(message.user.id);
+   cBot.ask(query, function (err, response) {
       const embed = new Discord.RichEmbed()
   .setAuthor("Clever Hobo")
   .setColor(0x444444)
