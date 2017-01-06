@@ -524,11 +524,11 @@ else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
           cBot.ask(query, function(err, response) {
             text = response;
           });
-        });
-      } else {
+        })
+        }
+      else {
         text = response;
       }
-
       const embed = new Discord.RichEmbed()
         .setAuthor("Clever Hobo")
         .setColor(0x444444)
