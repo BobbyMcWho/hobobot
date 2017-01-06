@@ -549,7 +549,6 @@ else if (message.content.toLowerCase().startsWith(prefix + "w2")) {
   .setDescription(`It is currently ${temp}\u00B0 ${niceUnits}.`)
   .setFooter(`${mainType}: ${description}.`)
   .setThumbnail(`https://openweathermap.org/img/w/${icon}.png`)
-  .setTimestamp()
 message.channel.sendEmbed(
   embed,
   { disableEveryone: true }
