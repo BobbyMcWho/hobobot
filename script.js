@@ -225,16 +225,17 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let permalink = urbanResponse.list[0].permalink;
       //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
            const embed = new Discord.RichEmbed()
-  .setTitle(`${word}`)
-  .setDescription(`${definition}`)
-  .addField('Example:',example)
-  .setColor(16632586)
-  .setFooter(`\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`)
-  .setThumbnail('./ud.jpg')
-  message.channel.sendEmbed(
-  embed,
-  { disableEveryone: true }
-);
+            .setAuthor('Urban Dictionary')
+            .setTitle(`${word}`)
+            .setDescription(`${definition}`)
+            .addField('Example:',example)
+            .setColor(16632586)
+            .setFooter(`\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown}`)
+            .setThumbnail('./ud.jpg')
+            message.channel.sendEmbed(
+            embed,
+            { disableEveryone: true }
+          );
         }
         }
   });
