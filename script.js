@@ -11,6 +11,10 @@ const sesame = Key.token;
 const weatherKey = Key.weatherapi;
 const ytKey = Key.ytKey;
 const timeKey = Key.timeKey;
+const cleverKey = Key.cleverKey;
+const cleverUser = Key.cleverUser;
+const cleverbot = require("cleverbot.io");
+const cBot = new cleverbot(cleverUser, cleverKey);
 let babybaby;
 let line;
 let choice = [];
@@ -507,6 +511,23 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
       }
     }
   });
+}
+  else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
+   let query = params.join[" "];
+   bot.create(function (err, session) {
+   bot.setNick(message.user.id);
+   bot.ask(query, function (err, response) {
+      const embed = new Discord.RichEmbed()
+  .setAuthor("Clever Hobo")
+  .setColor(0x444444)
+  .setDescription(response)
+  .setFooter(`I remember and reply to each user individually.`)
+message.channel.sendEmbed(
+  embed,
+  { disableEveryone: true }
+);
+});
+});
 }
 //*********************Testing!
 
