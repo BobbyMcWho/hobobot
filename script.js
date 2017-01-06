@@ -513,16 +513,16 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
   });
 }
 else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
-  let query = params.join[" "];
+  const input = params.join[" "];
   let user = message.author.id;
   let text;
   cBot.create(function(err, user) {
-    cBot.ask(query, function(err, response) {
+    cBot.ask(input, function(err, response) {
       if (response.startsWith("Error")) {
         cBot.create(function(err, session) {
           cBot.setNick(message.author.id);
-          cBot.ask(query, function(err, response) {
-            text = response;
+          cBot.ask(input, function(err, response2) {
+            text = response2;
           });
         })
         }
@@ -532,7 +532,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "clever")) {
       const embed = new Discord.RichEmbed()
         .setAuthor("Clever Hobo")
         .setColor(0x444444)
-        .setDescription(response)
+        .setDescription(text)
         .setThumbnail(message.author.avatarURL)
       message.channel.sendEmbed(
         embed, {
