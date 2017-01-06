@@ -293,9 +293,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
 
       message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}.`);
     }
-    else if (error){message.channel.sendMessage("Error finding your location, please try again using $weather city 2-letter-country-abbr. Example: $weather Los Angeles us");}
+    else if (error){message.channel.sendMessage("Error finding your location, please try again using $weather city,2-letter-country-abbr. Example: $weather Los Angeles us");}
   });}
-  else{message.channel.sendMessage("Please try again using $weather city 2-letter-country-abbr. Example: $weather Los Angeles us");}
+  else{message.channel.sendMessage("Please try again using $weather city 2-letter-country-abbr. Example: $weather Los Angeles,us");}
   }
   else if ((message.content.toLowerCase().startsWith("?eval")) && (message.author.id === '186693404288090114')) {
 params = params.join(" ");
@@ -508,7 +508,81 @@ else if (message.content.toLowerCase().startsWith(prefix + "time")) {
     }
   });
 }
+//*********************Testing!
+else if (message.content.toLowerCase().startsWith(prefix + "weather2")) {
+  params = params.join("");
+  let country = "";
+  if (params.indexOf(',') > -1) {params = params.split(","); country = `,${params.pop()}`; params = params.join("");}
+  if((typeof params !== 'undefined')){
+    let zipcode = params;
+    let units;
+    let url =`http://api.openweathermap.org/data/2.5/weather?q=${zipcode},${country}&appid=${weatherKey}`;
+  request(url, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const weatherResponse = JSON.parse(body);
+      let temp = weatherResponse.main.temp;
+      let city = weatherResponse.name;
+      let country = weatherResponse.sys.country;
+      let lastConditionIndex = weatherResponse.weather.length - 1;
+      let condition = weatherResponse.weather[lastConditionIndex].main;
+      let icon;
+      if(country.toLowerCase() == 'us'){
+        units = 'imperial';
+        temp = parseFloat(((1.8 * ((parseFloat(temp)*100-273*100)/100))+32).toFixed(2));
+      }
+      else{units = 'metric';
+           temp = parseFloat(((parseFloat(temp)*100-273.15*100)/100).toFixed(2));
+          }
+    let niceUnits;
+    switch(units){
+      case 'imperial': niceUnits = 'Fahrenheit'; break;
+      case 'metric': niceUnits = 'Celsius'; break;
+    }
+      switch(condition){
+        case 'Clear' : icon = '\u2600'; break;
+        case 'Thunderstorm' : icon = '\uD83C\uDF29'; break;
+        case 'Drizzle' :
+        case 'Rain': icon = '\uD83C\uDF27'; break;
+        case 'Snow' : icon = '\uD83C\uDF28'; break;
+        case 'Atmosphere' : icon = '\uD83C\uDF2B'; break;
+        case 'Clouds' : icon = '\u2601'; break;
+        case 'Extreme' : icon = '\uD83C\uDF2A'; break;
+        case 'Additional' : icon = '\uD83C\uDF43'; break;
+        case 'Mist' : 
+        case 'Fog' : icon = '\uD83C\uDF01' ; break;
+      }
+     // message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}.`);
+      const embed = new Discord.RichEmbed()
+  .setTitle('Very Nice Title')
+  .setAuthor('Author Name', 'https://goo.gl/rHndF5')
 
+  .setColor(0x00AE86)
+  .setDescription('The text of the body, essentially')
+  .setFooter('Nice text at the bottom', 'https://goo.gl/hkFYh0')
+  .setImage('https://goo.gl/D3uKk2')
+  .setThumbnail('https://goo.gl/lhc6ke')
+
+  .setTimestamp()
+  .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
+  .addField('Field Title', 'Field Value')
+
+  .addField('Inline Field', 'Hmm 🤔', true)
+
+  .addField('\u200b', '\u200b', true)
+  .addField('Second (3rd place) Inline Field', 'I\'m in the ZOONE', true);
+
+message.channel.sendEmbed(
+  embed,
+  'this is some content but nobody cares',
+  { disableEveryone: true }
+);
+    }
+    else if (error){message.channel.sendMessage("Error finding your location, please try again using $weather city,2-letter-country-abbr. Example: $weather Los Angeles us");}
+  });}
+  else{message.channel.sendMessage("Please try again using $weather city 2-letter-country-abbr. Example: $weather Los Angeles,us");}
+  }
+  
+  //****************END TEST
 //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
  //let menArr = message.mentions.users.array();
  //menArr = shuffle(menArr);
