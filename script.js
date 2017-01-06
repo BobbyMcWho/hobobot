@@ -525,7 +525,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "w2")) {
       let country = weatherResponse.sys.country;
       let lastConditionIndex = weatherResponse.weather.length - 1;
       let condition = weatherResponse.weather[lastConditionIndex].main;
-      let icon;
+      let description = weatherResponse.weather[lastConditionIndex].description;
+      let mainType = weatherResponse.weather[lastConditionIndex].main;
+      let icon = weatherResponse.weather[lastConditionIndex].icon;
       if(country.toLowerCase() == 'us'){
         units = 'imperial';
         temp = parseFloat(((1.8 * ((parseFloat(temp)*100-273*100)/100))+32).toFixed(2));
@@ -538,42 +540,18 @@ else if (message.content.toLowerCase().startsWith(prefix + "w2")) {
       case 'imperial': niceUnits = 'Fahrenheit'; break;
       case 'metric': niceUnits = 'Celsius'; break;
     }
-      switch(condition){
-        case 'Clear' : icon = '\u2600'; break;
-        case 'Thunderstorm' : icon = '\uD83C\uDF29'; break;
-        case 'Drizzle' :
-        case 'Rain': icon = '\uD83C\uDF27'; break;
-        case 'Snow' : icon = '\uD83C\uDF28'; break;
-        case 'Atmosphere' : icon = '\uD83C\uDF2B'; break;
-        case 'Clouds' : icon = '\u2601'; break;
-        case 'Extreme' : icon = '\uD83C\uDF2A'; break;
-        case 'Additional' : icon = '\uD83C\uDF43'; break;
-        case 'Mist' : 
-        case 'Fog' : icon = '\uD83C\uDF01' ; break;
-      }
      // message.channel.sendMessage(`${icon} It is currently ${temp}\u00B0 ${niceUnits} in ${city}, ${country}.`);
       const embed = new Discord.RichEmbed()
-  .setTitle('Very Nice Title')
-  .setAuthor('Author Name', 'https://goo.gl/rHndF5')
+  .setTitle('Weather in:')
+  .setAuthor(`${city}, ${country}`)
 
-  .setColor(0x00AE86)
-  .setDescription('The text of the body, essentially')
-  .setFooter('Nice text at the bottom', 'https://goo.gl/hkFYh0')
-  .setImage('https://goo.gl/D3uKk2')
-  .setThumbnail('https://goo.gl/lhc6ke')
-
+  .setColor(0x444444)
+  .setDescription(`It is currently ${temp}\u00B0 ${niceUnits}.`)
+  .setFooter(`${mainType}: ${description}.`)
+  .setThumbnail(`https://openweathermap.org/img/w/${icon}.png`)
   .setTimestamp()
-  .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
-  .addField('Field Title', 'Field Value')
-
-  .addField('Inline Field', 'Hmm 🤔', true)
-
-  .addField('\u200b', '\u200b', true)
-  .addField('Second (3rd place) Inline Field', 'I\'m in the ZOONE', true);
-
 message.channel.sendEmbed(
   embed,
-  'this is some content but nobody cares',
   { disableEveryone: true }
 );
     }
