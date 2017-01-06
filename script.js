@@ -250,18 +250,12 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
 }
 else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
   params = params.join("");
-  let country = 'us';
-  if (params.indexOf(',') > -1) {params = params.split(","); country = params.pop(); params = params.join("");}
+  let country = "";
+  if (params.indexOf(',') > -1) {params = params.split(","); country = `,${params.pop()}`; params = params.join("");}
   if((typeof params !== 'undefined')){
     let zipcode = params;
     let units;
-    if(country == 'us'){units = 'imperial';}else{units = 'metric';}
-    let niceUnits;
-    switch(units){
-      case 'imperial': niceUnits = 'Fahrenheit'; break;
-      case 'metric': niceUnits = 'Celsius'; break;
-    }
-    let url =`http://api.openweathermap.org/data/2.5/weather?q=${zipcode},${country}&appid=${weatherKey}&units=${units}`;
+    let url =`http://api.openweathermap.org/data/2.5/weather?q=${zipcode},${country}&appid=${weatherKey}`;
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const weatherResponse = JSON.parse(body);
@@ -271,6 +265,18 @@ else if (message.content.toLowerCase().startsWith(prefix + "weather")) {
       let lastConditionIndex = weatherResponse.weather.length - 1;
       let condition = weatherResponse.weather[lastConditionIndex].main;
       let icon;
+      if(country.toLowerCase() == 'us'){
+        units = 'imperial';
+        temp = (1.8 * (parseInt(temp)-273))+32;
+      }
+      else{units = 'metric';
+           temp = parseInt(temp)-273.15;
+          }
+    let niceUnits;
+    switch(units){
+      case 'imperial': niceUnits = 'Fahrenheit'; break;
+      case 'metric': niceUnits = 'Celsius'; break;
+    }
       switch(condition){
         case 'Clear' : icon = '\u2600'; break;
         case 'Thunderstorm' : icon = '\uD83C\uDF29'; break;
