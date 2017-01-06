@@ -221,7 +221,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "urban")) {
       let definition = urbanResponse.list[0].definition;
       let example = urbanResponse.list[0].example;
       let word = urbanResponse.list[0].word;
-      word[0] = word[0].toUpperCase();
+      word[0] = word.charAt(0).toUpperCase() + word.slice(1);
       let permalink = urbanResponse.list[0].permalink;
       //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
            const embed = new Discord.RichEmbed()
