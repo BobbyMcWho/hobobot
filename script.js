@@ -303,9 +303,9 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
               message.channel.bulkDelete(filteredMessages);
       message.channel.bulkDelete(filteredMessages2);
 });}
-else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
-    client.channels.get('229058004866039808').sendMessage("logged");
-}
+// else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
+//     client.channels.get('229058004866039808').sendMessage("logged");
+// }
 
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
@@ -541,6 +541,16 @@ else if ((message.content.toLowerCase().startsWith(prefix + "clever")) && (messa
       );
     });
   });
+}
+else if (message.content.toLowerCase().startsWith(prefix + "logan")){
+  const embed = new Discord.RichEmbed()
+  .setAuthor('FRIENDLY FORCES')
+  .setColor(0x444444)
+  .addField(`\|           	\| CLASS 	\| K   	\| D 	\| SCORE 	\| PING 	\|`,`\|Atlas3031   	\|   ⚙   	\| 100 	\| 0 	\| 10000 	\| 📶 0 	\|`)
+message.channel.sendEmbed(
+  embed,
+  { disableEveryone: true }
+);
 }
 //*********************Testing!
 
