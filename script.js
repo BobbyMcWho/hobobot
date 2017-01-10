@@ -534,9 +534,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "logan")){
   const embed = new Discord.RichEmbed()
   .setAuthor('FRIENDLY FORCES','http://www.crwflags.com/FOTW/images/g/gb!sq.gif')
   .setColor(0x444444)
-  .setDescription(```|   	| CLASS 	| K   	| D 	| SCORE 	| PING 	|
-|---	|-------	|-----	|---	|-------	|------	|
-|   	|   ⚙   	| 100 	| 0 	| 10000 	| 📶 0 	|```)
+  .setDescription(`\|Atlas3031   	\|   ⚙   	\| 100 	\| 0 	\| 10000 	\| 📶 0 	\|`)
 message.channel.sendEmbed(
   embed,
   { disableEveryone: true }
