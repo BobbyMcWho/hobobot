@@ -319,7 +319,19 @@ else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
       let definition = wikiResponse[2];
       let wikiurl = wikiResponse[3];
 
-      message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
+     // message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
+     const embed = new Discord.RichEmbed()
+  .setTitle('Weather in:')
+  .setAuthor(`${city}, ${country}`)
+
+  .setColor(0x444444)
+  .setDescription(`It is currently ${temp}\u00B0 ${niceUnits}.`)
+  .setFooter(`${mainType}: ${description}.`)
+  .setThumbnail(`https://openweathermap.org/img/w/${icon}.png`)
+message.channel.sendEmbed(
+  embed,
+  { disableEveryone: true }
+);
     }
   });
 }
