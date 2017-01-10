@@ -532,7 +532,7 @@ else if ((message.content.toLowerCase().startsWith(prefix + "clever")) && (messa
 }
 else if (message.content.toLowerCase().startsWith(prefix + "logan")){
   const embed = new Discord.RichEmbed()
-  .setAuthor('FRIENDLY FORCES','http://www.crwflags.com/FOTW/images/g/gb!sq.gif')
+  .setAuthor('FRIENDLY FORCES')
   .setColor(0x444444)
   .setDescription(`\|Atlas3031   	\|   ⚙   	\| 100 	\| 0 	\| 10000 	\| 📶 0 	\|`)
 message.channel.sendEmbed(
