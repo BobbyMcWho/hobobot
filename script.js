@@ -303,9 +303,9 @@ else if ((message.content.startsWith(prefix + "purge")) && ((message.author.id =
               message.channel.bulkDelete(filteredMessages);
       message.channel.bulkDelete(filteredMessages2);
 });}
-else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
-    client.channels.get('229058004866039808').sendMessage("logged");
-}
+// else if ((message.content.startsWith(prefix + "log")) && ((message.author.id === '186693404288090114'))) {
+//     client.channels.get('229058004866039808').sendMessage("logged");
+// }
 
 else if (message.content.toLowerCase().startsWith(prefix + "wiki")) {
 
