@@ -546,7 +546,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "logan")){
   const embed = new Discord.RichEmbed()
   .setAuthor('FRIENDLY FORCES')
   .setColor(0x444444)
-  .addField(`\|Atlas3031   	\|   ⚙   	\| 100 	\| 0 	\| 10000 	\| 📶 0 	\|`)
+  .addField(`\|Atlas3031   	\|   ⚙   	\| 100 	\| 0 	\| 10000 	\| 📶 0 	\|`,"")
 message.channel.sendEmbed(
   embed,
   { disableEveryone: true }
