@@ -93,7 +93,7 @@ const commands = {
 		ytdl.getInfo(videoId, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
+			queue[message.guild.id].songs.push({url: videoId, title: info.title, requester: message.author.username});
 			message.channel.sendMessage(`added **${info.title}** to the queue`);
   })});
 	},
