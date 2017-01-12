@@ -97,7 +97,7 @@ const commands = {
   'add': (message) => {
     let testurl = message.content.split(/\ +/)[1];
     let params = message.content.split(/\ +/).slice(1);
-    if (params[0] == '' || param[0] == undefined){message.channel.sendMessage('Please enter a search term!');}
+    if (params[0] == '' || params[0] == undefined){message.channel.sendMessage('Please enter a search term!');}
     else{
     let searchTerm = params.join('%20');
     let searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
