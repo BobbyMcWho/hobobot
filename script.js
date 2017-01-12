@@ -40,7 +40,7 @@ const commands = {
       console.log(song);
       if (song === undefined) return message.channel.sendMessage('Playlist is empty').then(() => {
         playlist[message.guild.id].playing = false;
-        message.member.voiceChannel.leave();
+        message.guild.voiceConnection.channel.leave();
       });
       message.channel.sendMessage(`Playing: **${song.title}** as requested by: **${song.requester}**`);
       dispatcher = message.guild.voiceConnection.playStream(ytdl(song.url, {
@@ -119,7 +119,7 @@ const commands = {
   },
   'leave':(message) => {
         playlist[message.guild.id].playing = false;
-        message.member.voiceChannel.leave();
+        message.guild.voiceConnection.channel.leave();
   },
   'playlist': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
