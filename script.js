@@ -82,9 +82,10 @@ const commands = {
 		});
 	},
 	'add': (message) => {
-		let testurl = message.content.split(' ')[1];
+		let testurl = message.content.split(/\ +/)[1];
     if (testurl == '' || testurl === undefined) {return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);}
     else if (!testurl.startsWith('http')){
+    let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
   let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
 
