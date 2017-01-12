@@ -30,7 +30,9 @@ const dayNames =  [
   "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
 ];
 
-
+  const isBobby = (message.author.id === '186693404288090114') ? true : false;
+  const prefix = '$';
+  const passes = 1;
 function shuffle(array) {
   var i = 0,
     j = 0,
@@ -68,7 +70,7 @@ function timeUntil(phrase,year,month,day){
 //-------------------MUSIC JS
 const musicCommands = {
 	'play': (message) => {
-		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${tokens.prefix}add`);
+		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${prefix}add`);
 		if (!message.guild.voiceConnection) return commands.join(message).then(() => commands.play(message));
 		if (queue[message.guild.id].playing) return message.channel.sendMessage('Already Playing');
 		let dispatcher;
@@ -82,14 +84,14 @@ const musicCommands = {
 				message.member.voiceChannel.leave();
 			});
 			message.channel.sendMessage(`Playing: **${song.title}** as requested by: **${song.requester}**`);
-			dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : tokens.passes });
+			dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : passes });
 			let collector = message.channel.createCollector(m => m);
 			collector.on('message', m => {
-				if (m.content.startsWith(tokens.prefix + 'pause')) {
+				if (m.content.startsWith(prefix + 'pause')) {
 					message.channel.sendMessage('paused').then(() => {dispatcher.pause();});
-				} else if (m.content.startsWith(tokens.prefix + 'resume')){
+				} else if (m.content.startsWith(prefix + 'resume')){
 					message.channel.sendMessage('resumed').then(() => {dispatcher.resume();});
-				} else if (m.content.startsWith(tokens.prefix + 'skip')){
+				} else if (m.content.startsWith(prefix + 'skip')){
 					message.channel.sendMessage('skipped').then(() => {dispatcher.end();});
 				} else if (m.content.startsWith('volume+')){
 					if (Math.round(dispatcher.volume*50) >= 100) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
@@ -99,7 +101,7 @@ const musicCommands = {
 					if (Math.round(dispatcher.volume*50) <= 0) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
 					dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
 					message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
-				} else if (m.content.startsWith(tokens.prefix + 'time')){
+				} else if (m.content.startsWith(prefix + 'time')){
 					message.channel.sendMessage(`time: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
 				}
 			});
@@ -126,7 +128,7 @@ const musicCommands = {
 	},
 	'add': (message) => {
 		let url = message.content.split(' ')[1];
-		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${tokens.prefix}add`);
+		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${prefix}add`);
 		yt.getInfo(url, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
@@ -135,17 +137,17 @@ const musicCommands = {
 		});
 	},
 	'queue': (message) => {
-		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${tokens.prefix}add`);
+		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${prefix}add`);
 		let tosend = [];
 		queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i+1}. ${song.title} - Requested by: ${song.requester}`);});
 		message.channel.sendMessage(`__**${message.guild.name}'s Music Queue:**__ Currently **${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
 	},
 	'help': (message) => {
-		let tosend = ['```xl', tokens.prefix + 'join : "Join Voice channel of message sender"',	tokens.prefix + 'add : "Add a valid youtube link to the queue"', tokens.prefix + 'queue : "Shows the current queue, up to 15 songs shown."', tokens.prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), tokens.prefix + 'pause : "pauses the music"',	tokens.prefix + 'resume : "resumes the music"', tokens.prefix + 'skip : "skips the playing song"', tokens.prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
+		let tosend = ['```xl', prefix + 'join : "Join Voice channel of message sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
 		message.channel.sendMessage(tosend.join('\n'));
 	},
 	'reboot': (message) => {
-		if (message.author.id == tokens.adminID) process.exit(); //Requires a node module like Forever to work.
+		if (isBobby) process.exit(); //Requires a node module like Forever to work.
 	}
 };
 
@@ -153,8 +155,6 @@ const musicCommands = {
 //-----------------------------
 
 client.on('message', message => {
-  let isBobby = (message.author.id === '186693404288090114') ? true : false;
-  let prefix = '$';
   let params = message.content.split(/\ +/).slice(1);
   if(message.author.bot) return;
     if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
