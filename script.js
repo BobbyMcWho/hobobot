@@ -119,10 +119,12 @@ const commands = {
   },
   'leave':(message) => {
         playlist[message.guild.id].playing = false;
-        message.guild.voiceConnection.channel.leave();
         message.channel.sendMessage(`Leaving ${message.guild.voiceConnection.channel.name}`)
         .then(m=>{m.react('uD83D\uDC4B');
+        m.guild.voiceConnection.channel.leave();
         });
+        
+
   },
   'playlist': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
