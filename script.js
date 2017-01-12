@@ -131,8 +131,9 @@ const commands = {
   },
   'shuffle': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
+    //Durstenfeld Shuffle, modified to always leave the first song at index 0. 
     for (let i = playlist[message.guild.id].songs.length - 1;i>0;i--){
-      let j = Math.floor(Math.random()*(i + 1));
+      let j = Math.floor(Math.random()*(playlist[message.guild.id].songs.length - 1)) + 1;
       let temp = playlist[message.guild.id].songs[i];
       playlist[message.guild.id].songs[i] = playlist[message.guild.id].songs[j];
       playlist[message.guild.id].songs[j] = temp;
