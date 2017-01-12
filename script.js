@@ -26,6 +26,7 @@ function joke() {
 }
 let playlist = {};
 const apasses = 3;
+//music commands modified from OhGod Music Bot github.com/bdistin/OhGodMusicBot
 const commands = {
   'play': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
@@ -124,8 +125,17 @@ const commands = {
     });
     message.channel.sendMessage(`__**${message.guild.name}'s Music Playlist:**__ Currently **${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
   },
+  'shuffle': (message) => {
+    if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
+    for (let i = playlist[message.guild.id].songs.length - 1;i>0;i--){
+      let j = Math.floor(Math.random()*(i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  },
   'help': (message) => {
-    let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"', musicPrefix + 'add : "Add a song to the playlist"', musicPrefix + 'playlist : "Shows the current playlist, up to 15 songs shown."', musicPrefix + 'play : "Play the music playlist if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "Pauses the music"', musicPrefix + 'resume : "Resumes the music"', musicPrefix + 'skip : "Skips the current song"', musicPrefix + 'time : "Shows the playtime of the song."', 'volume+(+++) : "Increases volume by 5% per +"', 'volume-(---) : "Decreases volume by 5% per -"', '```'];
+    let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"', musicPrefix + 'add : "Add a song to the playlist"', musicPrefix + 'playlist : "Shows the current playlist, up to 15 songs shown."', musicPrefix + 'play : "Play the music playlist if already joined to a voice channel"',musicPrefix + 'shuffle : "Shuffles the playlist."', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "Pauses the music"', musicPrefix + 'resume : "Resumes the music"', musicPrefix + 'skip : "Skips the current song"', musicPrefix + 'time : "Shows the playtime of the song."', 'volume+(+++) : "Increases volume by 5% per +"', 'volume-(---) : "Decreases volume by 5% per -"', '```'];
     message.channel.sendMessage(tosend.join('\n'));
   },
   'reboot': (message) => {
