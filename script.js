@@ -700,7 +700,10 @@ client.on('message', message => {
     );
   }
   //*********************Testing!
-  else if (commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0])) commands[message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]](message);
+  else if (commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0])){
+    commands[message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]](message);
+    message.delete(4000);
+}
   //****************END TEST
   //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
   //let menArr = message.mentions.users.array();
