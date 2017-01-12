@@ -87,7 +87,7 @@ const commands = {
     else if (!url.startsWith('http')){
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
-  let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${messageKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
+  let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
 
   request(searchUrl, (error,response,body) => {
     if (!error && response.statusCode === 200){
