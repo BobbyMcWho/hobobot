@@ -19,7 +19,7 @@ const cBot = new cleverbot(cleverUser, cleverKey);
 let babybaby;
 let line;
 let choice = [];
-const musicPrefix = '**';
+const musicPrefix = '++';
 
 function joke() {
   line = phrases.pickups[Math.floor(Math.random() * phrases.pickups.length)].pline;
