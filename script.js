@@ -129,9 +129,9 @@ const commands = {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
     for (let i = playlist[message.guild.id].songs.length - 1;i>0;i--){
       let j = Math.floor(Math.random()*(i + 1));
-      let temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      let temp = playlist[message.guild.id].songs.length[i];
+      playlist[message.guild.id].songs.length[i] = playlist[message.guild.id].songs.length[j];
+      playlist[message.guild.id].songs.length[j] = temp;
     }
   },
   'help': (message) => {
