@@ -719,7 +719,7 @@ client.on('message', message => {
     );
   }
   //*********************Testing!
-  else if ((message.content.toLowerCase().startsWith(musicPrefix)&&(commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]))){
+  else if ((message.content.toLowerCase().startsWith(musicPrefix))&&(commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]))){
     commands[message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]](message);
     message.delete(4000);
 }
