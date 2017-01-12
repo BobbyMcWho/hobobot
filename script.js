@@ -133,6 +133,7 @@ const commands = {
       playlist[message.guild.id].songs[i] = playlist[message.guild.id].songs[j];
       playlist[message.guild.id].songs[j] = temp;
     }
+    message.channel.sendMessage('Playlist shuffled. 🔀');
   },
   'help': (message) => {
     let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"', musicPrefix + 'add : "Add a song to the playlist"', musicPrefix + 'playlist : "Shows the current playlist, up to 15 songs shown."', musicPrefix + 'play : "Play the music playlist if already joined to a voice channel"',musicPrefix + 'shuffle : "Shuffles the playlist."', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "Pauses the music"', musicPrefix + 'resume : "Resumes the music"', musicPrefix + 'skip : "Skips the current song"', musicPrefix + 'time : "Shows the playtime of the song."', 'volume+(+++) : "Increases volume by 5% per +"', 'volume-(---) : "Decreases volume by 5% per -"', '```'];
