@@ -83,7 +83,7 @@ const commands = {
 	},
 	'add': (message) => {
 		let url = message.content.split(' ')[1];
-		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);
+    if (url == '' || url === undefined) {return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);}
     else if (!url.startsWith('http')){
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
