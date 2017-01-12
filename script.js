@@ -50,11 +50,11 @@ const commands = {
 					message.channel.sendMessage('skipped').then(() => {dispatcher.end();});
 				} else if (m.content.startsWith('volume+')){
 					if (Math.round(dispatcher.volume*50) >= 100) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
-					dispatcher.setVolume(Math.min((dispatcher.volume*50 + (2*(m.content.split('+').length-1)))/50,2));
+					dispatcher.setVolume(Math.min((dispatcher.volume*50 + (5*(m.content.split('+').length-1)))/50,2));
 					message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
 				} else if (m.content.startsWith('volume-')){
 					if (Math.round(dispatcher.volume*50) <= 0) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
-					dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
+					dispatcher.setVolume(Math.max((dispatcher.volume*50 - (5*(m.content.split('-').length-1)))/50,0));
 					message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
 				} else if (m.content.startsWith(musicPrefix + 'time')){
 					message.channel.sendMessage(`time: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
@@ -94,7 +94,7 @@ const commands = {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: videoId, title: info.title, requester: message.author.username});
-			message.channel.sendMessage(`added **${info.title}** to the queue`);
+			message.channel.sendMessage(`Added **${info.title}** to the queue.`);
   })});
 	},
 	'queue': (message) => {
@@ -104,7 +104,7 @@ const commands = {
 		message.channel.sendMessage(`__**${message.guild.name}'s Music Queue:**__ Currently **${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
 	},
 	'help': (message) => {
-		let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"',	musicPrefix + 'add : "Add a valid youtube link to the queue"', musicPrefix + 'queue : "Shows the current queue, up to 15 songs shown."', musicPrefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "pauses the music"',	musicPrefix + 'resume : "resumes the music"', musicPrefix + 'skip : "skips the playing song"', musicPrefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
+		let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"',	musicPrefix + 'add : "Add a valid youtube link to the queue"', musicPrefix + 'queue : "Shows the current queue, up to 15 songs shown."', musicPrefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "pauses the music"',	musicPrefix + 'resume : "resumes the music"', musicPrefix + 'skip : "skips the playing song"', musicPrefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 5% per +"',	'volume-(---) : "decreases volume by 5% per -"',	'```'];
 		message.channel.sendMessage(tosend.join('\n'));
 	},
 	'reboot': (message) => {
