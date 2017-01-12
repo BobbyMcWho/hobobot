@@ -121,7 +121,7 @@ const commands = {
         playlist[message.guild.id].playing = false;
         message.guild.voiceConnection.channel.leave();
         message.channel.sendMessage(`Leaving ${message.guild.voiceConnection.channel.name}`)
-        .then(m=>{m.react(👋);
+        .then(m=>{m.react('uD83D\uDC4B');
         });
   },
   'playlist': (message) => {
