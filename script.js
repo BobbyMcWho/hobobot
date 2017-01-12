@@ -3,7 +3,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-const request = require('request');
+const request = require('request-promise');
 const client = new Discord.Client();
 const Key = require('./token.json');
 const phrases = require('./phrases.json');
@@ -82,12 +82,10 @@ const commands = {
 		});
 	},
 	'add': (message) => {
-		let testurl = message.content.split(/\ +/)[1];
-    if (testurl == '' || testurl === undefined) {return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);}
-    else if (!testurl.startsWith('http')){
+		let testurl = message.content.split(/\ +/)[1]; 
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
-  let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
+    let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
 
   request(searchUrl, (error,response,body) => {
     if (!error && response.statusCode === 200){
@@ -95,14 +93,13 @@ const commands = {
       let videoId = messageResponse.items[0].id.videoId;
       testurl = `https://www.youtube.com/watch?v=${videoId}`;
     }
-  });
-    }
+  }).then(
 		ytdl.getInfo(testurl, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
 			message.channel.sendMessage(`added **${info.title}** to the queue`);
-		});
+  }));
 	},
 	'queue': (message) => {
 		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${musicPrefix}add`);
