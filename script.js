@@ -22,7 +22,7 @@ let choice = [];
 const musicPrefix = '**';
 function joke(){line = phrases.pickups[Math.floor(Math.random()*phrases.pickups.length)].pline;}
 let queue = {};
-const apasses = 1;
+const apasses = 3;
 const commands = {
 	'play': (message) => {
 		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${musicPrefix}add`);
@@ -84,6 +84,19 @@ const commands = {
 	'add': (message) => {
 		let url = message.content.split(' ')[1];
 		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);
+    else if (!url.startsWith('http')){
+    let params = message.content.split(/\ +/).slice(1);
+    let searchTerm = params.join('%20');
+  let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${messageKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
+
+  request(searchUrl, (error,response,body) => {
+    if (!error && response.statusCode === 200){
+      const messageResponse = JSON.parse(body);
+      let videoId = messageResponse.items[0].id.videoId;
+      url = `https://www.youtube.com/watch?v=${videoId}`;
+    }
+  });
+    }
 		ytdl.getInfo(url, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
