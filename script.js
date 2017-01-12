@@ -130,7 +130,7 @@ const commands = {
     for (let i = playlist[message.guild.id].songs.length - 1;i>0;i--){
       let j = Math.floor(Math.random()*(i + 1));
       let temp = playlist[message.guild.id].songs[i];
-      playlist[message.guild.id].songs.length[i] = playlist[message.guild.id].songs[j];
+      playlist[message.guild.id].songs[i] = playlist[message.guild.id].songs[j];
       playlist[message.guild.id].songs[j] = temp;
     }
   },
