@@ -86,15 +86,15 @@ const commands = {
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
     let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
-
+    let realurl;
   request(searchUrl, (error,response,body) => {
     if (!error && response.statusCode === 200){
       const messageResponse = JSON.parse(body);
       let videoId = messageResponse.items[0].id.videoId;
-      testurl = `https://www.youtube.com/watch?v=${videoId}`;
+      realurl = `https://www.youtube.com/watch?v=${videoId}`;
     }
   }).then(
-		ytdl.getInfo(testurl, (err, info) => {
+		ytdl.getInfo(realurl, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
