@@ -30,7 +30,6 @@ const dayNames =  [
   "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
 ];
 
-  const isBobby = (message.author.id === '186693404288090114') ? true : false;
   const prefix = '$';
   const passes = 1;
 function shuffle(array) {
@@ -155,6 +154,7 @@ const musicCommands = {
 //-----------------------------
 
 client.on('message', message => {
+  const isBobby = (message.author.id === '186693404288090114') ? true : false;
   let params = message.content.split(/\ +/).slice(1);
   if(message.author.bot) return;
     if (message.content.toLowerCase().startsWith(prefix + 'whoishobo'))
