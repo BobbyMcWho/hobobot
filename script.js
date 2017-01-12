@@ -87,19 +87,15 @@ const commands = {
     let searchTerm = params.join('%20');
     let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
     console.log(searchUrl);
-  request(searchUrl, (error,response,body) => {
-    if (!error && response.statusCode === 200){
+  request(searchUrl).then((body)=>{
       const messageResponse = JSON.parse(body);
       let videoId = messageResponse.items[0].id.videoId;
-      realurl = videoId;
-    }
-  }).then(
-		ytdl.getInfo(realurl, (err, info) => {
+		ytdl.getInfo(videoId, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
 			message.channel.sendMessage(`added **${info.title}** to the queue`);
-  }));
+  })});
 	},
 	'queue': (message) => {
 		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${musicPrefix}add`);
