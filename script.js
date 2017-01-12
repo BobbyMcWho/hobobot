@@ -97,9 +97,10 @@ const commands = {
   'add': (message) => {
     let testurl = message.content.split(/\ +/)[1];
     let params = message.content.split(/\ +/).slice(1);
+    if (params[0] == '' || param[0] == undefined){message.channel.sendMessage('Please enter a search term!');}
+    else{
     let searchTerm = params.join('%20');
     let searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
-    console.log(searchUrl);
     request(searchUrl).then((body) => {
       const messageResponse = JSON.parse(body);
       let videoId = messageResponse.items[0].id.videoId;
@@ -113,7 +114,7 @@ const commands = {
         });
         message.channel.sendMessage(`Added **${info.title}** to the playlist.`);
       })
-    });
+    });}
   },
   'playlist': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
