@@ -39,7 +39,7 @@ const commands = {
 				message.member.voiceChannel.leave();
 			});
 			message.channel.sendMessage(`Playing: **${song.title}** as requested by: **${song.requester}**`);
-			dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : apasses });
+			dispatcher = message.guild.voiceConnection.playStream(ytdl(song.url, { audioonly: true }), { passes : apasses });
 			let collector = message.channel.createCollector(m => m);
 			collector.on('message', m => {
 				if (m.content.startsWith(musicPrefix + 'pause')) {
@@ -84,7 +84,7 @@ const commands = {
 	'add': (message) => {
 		let url = message.content.split(' ')[1];
 		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);
-		yt.getInfo(url, (err, info) => {
+		ytdl.getInfo(url, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
@@ -423,15 +423,15 @@ message.channel.sendEmbed(
     }
   });
 }
-  else if ((message.content.toLowerCase().startsWith(prefix + "youtube")) || (message.content.toLowerCase().startsWith(prefix + "yt"))) {
+  else if ((message.content.toLowerCase().startsWith(prefix + "youtube")) || (message.content.toLowerCase().startsWith(prefix + "message"))) {
 
   let searchTerm = params.join('%20');
-  let url =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
+  let url =`https://www.googleapis.com/youtube/v3/search?key=${messageKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
 
   request(url, (error,response,body) => {
     if (!error && response.statusCode === 200){
-      const ytResponse = JSON.parse(body);
-      let videoId = ytResponse.items[0].id.videoId;
+      const messageResponse = JSON.parse(body);
+      let videoId = messageResponse.items[0].id.videoId;
       let title = ytResponse.items[0].snippet.title;
        let description = ytResponse.items[0].snippet.description;
       let channel = ytResponse.items[0].snippet.channelTitle;
