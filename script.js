@@ -525,7 +525,7 @@ client.on('message', message => {
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const ytResponse = JSON.parse(body);
-        let videoId = messageResponse.items[0].id.videoId;
+        let videoId = ytResponse.items[0].id.videoId;
         let title = ytResponse.items[0].snippet.title;
         let description = ytResponse.items[0].snippet.description;
         let channel = ytResponse.items[0].snippet.channelTitle;
