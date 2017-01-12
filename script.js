@@ -83,8 +83,9 @@ const commands = {
 	},
 	'add': (message) => {
 		let url = message.content.split(' ')[1];
+    let p1 = new Promise(()=>{
 		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);
-    else if (!url.startsWith('http')){
+    else if (url.startsWith('http')){
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
   let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
@@ -96,13 +97,14 @@ const commands = {
       url = `https://www.youtube.com/watch?v=${videoId}`;
     }
   });
-    }
+    }});
+    p1.then(
 		ytdl.getInfo(url, (err, info) => {
 			if(err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
 			if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
 			queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
 			message.channel.sendMessage(`added **${info.title}** to the queue`);
-		});
+    }));
 	},
 	'queue': (message) => {
 		if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the queue first with ${musicPrefix}add`);
