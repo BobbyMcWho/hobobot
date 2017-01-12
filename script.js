@@ -85,7 +85,7 @@ const commands = {
 		let url = message.content.split(' ')[1];
     let p1 = new Promise(()=>{
 		if (url == '' || url === undefined) return message.channel.sendMessage(`You must add a url, or youtube video id after ${musicPrefix}add`);
-    else if (url.startsWith('http')){
+    else if (!url.startsWith('http')){
     let params = message.content.split(/\ +/).slice(1);
     let searchTerm = params.join('%20');
   let searchUrl =`https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
