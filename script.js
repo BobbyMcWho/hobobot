@@ -299,11 +299,17 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
     params = params.join(" ");
-    params = params.split(/[a-z]|\s+/).filter(e => e.length !== 0);
+    let sign = "positive";
+    if (params.search(/\+|\-/)!= -1){
+    sign = params.charAt(params.search(/\+|\-/)) == "+" ? "positive" : "negative";
+    }
+    params = params.split(/[a-z]|\s+|\+|\-/).filter(e => e.length !== 0);
     let dieCount = 1;
     let dieSides = 6;
     let keep = dieCount;
     let resultsArr = [];
+    let add = 0;
+    if (typeof params[3] !== 'undefined')) {sign === "positive" ? add = params[3] : add = -params[3]}
     if ((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined') && (typeof params[2] !== 'undefined')) {
       dieCount = parseInt(params[0]);
       dieSides = parseInt(params[1].replace(/[^0-9]+/g, ""));
@@ -317,7 +323,9 @@ client.on('message', message => {
       keep = dieCount;
     }
     let keepPhrase = "";
+    let addPhrase = "";
     let roller = message.author;
+    addPhrase = (sign == "positive") ? `adding ${add}, ` : `subtracting ${add}, `
     if (keep <= dieCount) {
       if (keep < dieCount) {
         keepPhrase = "keeping the top " + keep + ", ";
@@ -339,7 +347,7 @@ client.on('message', message => {
           return a + b;
         });
         let dieAverage = Math.round((dieTotal / keep) * 100) / 100;
-        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + "for a total of **" + dieTotal + "** (average: " + dieAverage + "):\n" + resultsArr);
+        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + addPhrase + "for a total of **" + (dieTotal + add) + "** (average: " + dieAverage + "):\n" + resultsArr);
       }
     } else {
       message.channel.sendMessage("You cannot keep more than you roll " + roller + "!");
