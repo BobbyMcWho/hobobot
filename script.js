@@ -737,7 +737,7 @@ client.on('message', message => {
     };
 
     request(options, (error, response, body) => {
-      if(error){console.log(error);
+      if(error){console.log(error);}
       else if (!error && response.statusCode === 200) {
         const dictResponse = JSON.parse(body);
         console.log(dictResponse);
