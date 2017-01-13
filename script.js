@@ -507,7 +507,7 @@ client.on('message', message => {
 
         // message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
         const embed = new Discord.RichEmbed()
-          .setTitle('${term}`)
+          .setTitle(`${term}`)
           .setURL(`${wikiurl}`)
           .setColor(0x444444)
           .setDescription(`${definition}`)
