@@ -748,6 +748,7 @@ client.on('message', message => {
           let definition = "";
         for(i=0;i<dictResponse.results[0].lexicalEntries[0].entries[0].senses.length;i++){
         definition += `${i+1}. ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].definitions} ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].markers || " "} \n`
+        console.log(dictResponse.results[0].lexicalEntries[0].entries[0].senses[i])
         }
         const embed = new Discord.RichEmbed()
             .setAuthor(`${word}`)
