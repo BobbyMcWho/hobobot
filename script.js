@@ -347,7 +347,7 @@ client.on('message', message => {
           return a + b;
         });
         let dieAverage = Math.round((dieTotal / keep) * 100) / 100;
-        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + addPhrase + "for a total of **" + (dieTotal + add) + "** (average: " + dieAverage + "):\n" + resultsArr);
+        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + addPhrase + "for a total of **" + (parseInt(dieTotal) + parseInt(add)) + "** (average: " + dieAverage + "):\n" + resultsArr);
       }
     } else {
       message.channel.sendMessage("You cannot keep more than you roll " + roller + "!");
