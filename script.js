@@ -309,7 +309,7 @@ client.on('message', message => {
     let keep = dieCount;
     let resultsArr = [];
     let add = 0;
-    if (typeof params[3] !== 'undefined')) {sign === "positive" ? add = params[3] : add = -params[3]}
+    if (typeof params[3] !== 'undefined') {sign === "positive" ? add = params[3] : add = -params[3]}
     if ((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined') && (typeof params[2] !== 'undefined')) {
       dieCount = parseInt(params[0]);
       dieSides = parseInt(params[1].replace(/[^0-9]+/g, ""));
