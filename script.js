@@ -325,7 +325,7 @@ client.on('message', message => {
     let keepPhrase = "";
     let addPhrase = "";
     let roller = message.author;
-    addPhrase = (sign == "positive") ? `adding ${add}, ` : `subtracting ${add}, `
+    addPhrase = (sign == "positive") ? `adding ${add}, ` : `subtracting ${-add}, `
     if (keep <= dieCount) {
       if (keep < dieCount) {
         keepPhrase = "keeping the top " + keep + ", ";
