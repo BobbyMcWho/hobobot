@@ -299,58 +299,34 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
     params = params.join(" ");
-    let sign = "positive";
-    if (params.search(/\+|\-/)!= -1){
-    sign = params.charAt(params.search(/\+|\-/)) == "+" ? "positive" : "negative";
-    }
-    params = params.split(/[a-z]|\s+|\+|\-/).filter(e => e.length !== 0);
-    let dieCount = 1;
-    let dieSides = 6;
-    let keep = dieCount;
+        let dieCount = (params.substring(0, params.search(/[^0-9]+/)) != "") ? parseInt(params.substring(0, params.search(/[^0-9]+/)), 10) : 1;
+    let dieSides = (params.search(/d/) != -1) ? parseInt(params.substring(params.search(/d/)).match(/[0-9]+/)[0], 10) : 6;
+    let keep = (params.search(/k/) != -1) ? parseInt(params.substring(params.search(/k/)).match(/[0-9]+/)[0], 10) : dieCount;
+    let add = (params.search(/\+|\-/) != -1) ? parseInt(params.charAt(params.search(/\+|\-/)) + params.substring(params.search(/\+|\-/)).match(/[0-9]+/)[0], 10) : 0;
     let resultsArr = [];
-    let add = 0;
-    if (typeof params[3] !== 'undefined') {sign === "positive" ? add = params[3] : add = -params[3]}
-    if ((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined') && (typeof params[2] !== 'undefined')) {
-      dieCount = parseInt(params[0]);
-      dieSides = parseInt(params[1].replace(/[^0-9]+/g, ""));
-      keep = parseInt(params[2].replace(/[^0-9]+/g, ""));
-    } else if ((typeof params[0] !== 'undefined') && (typeof params[1] !== 'undefined')) {
-      dieCount = parseInt(params[0]);
-      dieSides = parseInt(params[1].replace(/[^0-9]+/g, ""));
-      keep = dieCount;
-    } else if ((typeof params[0] !== 'undefined') && (typeof params[1] === 'undefined')) {
-      dieCount = parseInt(params[0]);
-      keep = dieCount;
-    }
-    let keepPhrase = "";
-    let addPhrase = "";
+    let keepPhrase = (keep < dieCount) ? "keeping the top " + keep + ", " : "";
+    let addPhrase = add === 0 ? "" : (add > 0) ? `adding ${add}, ` : `subtracting ${-add}, `;
     let roller = message.author;
-    addPhrase = (sign == "positive") ? `adding ${add}, ` : `subtracting ${-add}, `
-    if (keep <= dieCount) {
-      if (keep < dieCount) {
-        keepPhrase = "keeping the top " + keep + ", ";
-      }
-      if (dieCount > 100) {
-        message.channel.sendMessage(roller + ", you don't need that many dice!");
-      } else if (dieSides > 10000) {
-        message.channel.sendMessage(roller + ", that's not a real die. I'm watching you.");
-      } else {
-        for (let i = 0; i < dieCount; i++) {
-          resultsArr.push(Math.floor(Math.random() * (dieSides)) + 1);
-        }
-        let keptArr = resultsArr;
-        keptArr = keptArr.sort(function (a, b) {
-          return b - a;
-        });
-        keptArr = keptArr.slice(0, (keep));
-        let dieTotal = keptArr.reduce(function (a, b) {
-          return a + b;
-        });
-        let dieAverage = Math.round((dieTotal / keep) * 100) / 100;
-        message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times " + keepPhrase + addPhrase + "for a total of **" + (parseInt(dieTotal) + parseInt(add)) + "** (average: " + dieAverage + "):\n" + resultsArr);
-      }
-    } else {
+    if (keep > dieCount) {
       message.channel.sendMessage("You cannot keep more than you roll " + roller + "!");
+    } else if (dieCount > 100) {
+      message.channel.sendMessage(roller + ", you don't need that many dice!");
+    } else if (dieSides > 10000) {
+      message.channel.sendMessage(roller + ", that's not a real die. I'm watching you.");
+    } else {
+      for (let i = 0; i < dieCount; i++) {
+        resultsArr.push(Math.floor(Math.random() * (dieSides)) + 1);
+      }
+      let keptArr = resultsArr;
+      keptArr = keptArr.sort(function(a, b) {
+        return b - a;
+      });
+      keptArr = keptArr.slice(0, (keep));
+      let dieTotal = keptArr.reduce(function(a, b) {
+        return a + b;
+      });
+      let dieAverage = Math.round((dieTotal / keep) * 100) / 100;
+      message.channel.sendMessage(roller + " rolled a " + dieSides + " sided dice " + dieCount + " times, " + keepPhrase + addPhrase + "for a total of **" + (parseInt(dieTotal) + parseInt(add)) + "** (average: " + dieAverage + "):\n" + resultsArr);
     }
   } else if (message.content.toLowerCase().startsWith(prefix + "flip")) {
 
