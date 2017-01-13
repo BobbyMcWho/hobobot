@@ -742,13 +742,19 @@ client.on('message', message => {
         const dictResponse = JSON.parse(body);
         console.log(dictResponse);
         let definitions = dictResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
+        let word = dictResponse.results[0].word;
+        let  phonetic = dictResponse.results[0].lexicalEntries[0].entries[0].pronunciations[0].phoneticsNotation;
         console.log(definitions);
           //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-          const embed = new Discord.RichEmbed()
+          let definition;
+        for(i=0;i<definitions.length;i++){
+        definition += `${(i+1)} ${definitions[i]} \n`
+        }
+        const embed = new Discord.RichEmbed()
             .setAuthor(`${word}`)
-            .setTitle('Urban Dictionary')
+            .setTitle('Oxford Dictionary')
             .setDescription(`${definition}`)
-            .addField('Example:', example)
+            .addField('Phonetics', phonetic)
           message.channel.sendEmbed(
             embed, {
               disableEveryone: true
