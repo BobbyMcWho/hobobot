@@ -745,9 +745,9 @@ client.on('message', message => {
         let word = dictResponse.results[0].word;
         console.log(definitions);
           //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-          let definition;
+          let definition = "";
         for(i=0;i<definitions.length;i++){
-        definition += `${(i+1)} ${definitions[i]} \n`
+        definition += `${i+1}. ${definitions[i]} \n`
         }
         const embed = new Discord.RichEmbed()
             .setAuthor(`${word}`)
