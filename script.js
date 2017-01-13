@@ -24,6 +24,7 @@ const musicPrefix = '++';
 function joke() {
   line = phrases.pickups[Math.floor(Math.random() * phrases.pickups.length)].pline;
 }
+let volume = .5;
 let playlist = {};
 const apasses = 3;
 //Music commands modified from OhGod Music Bot github.com/bdistin/OhGodMusicBot
@@ -46,7 +47,8 @@ const commands = {
       dispatcher = message.guild.voiceConnection.playStream(ytdl(song.url, {
         audioonly: true
       }), {
-        passes: apasses
+        passes: apasses,
+        volume: volume
       });
       let collector = message.channel.createCollector(m => m);
       collector.on('message', m => {
@@ -65,10 +67,12 @@ const commands = {
         } else if (m.content.startsWith('volume+')) {
           if (Math.round(dispatcher.volume * 50) >= 100) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
           dispatcher.setVolume(Math.min((dispatcher.volume * 50 + (5 * (m.content.split('+').length - 1))) / 50, 2));
+          volume = dispatcher.volume;
           message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
         } else if (m.content.startsWith('volume-')) {
           if (Math.round(dispatcher.volume * 50) <= 0) return message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
           dispatcher.setVolume(Math.max((dispatcher.volume * 50 - (5 * (m.content.split('-').length - 1))) / 50, 0));
+          volume = dispatcher.volume;
           message.channel.sendMessage(`Volume: ${Math.round(dispatcher.volume*50)}%`);
         } else if (m.content.startsWith(musicPrefix + 'time')) {
           message.channel.sendMessage(`time: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
