@@ -507,13 +507,11 @@ client.on('message', message => {
 
         // message.channel.sendMessage(`**${term}:**\n${definition}\n${wikiurl}`);
         const embed = new Discord.RichEmbed()
-          .setTitle('Weather in:')
-          .setAuthor(`${city}, ${country}`)
-
+          .setTitle('${term}`)
+          .setURL(`${wikiurl}`)
           .setColor(0x444444)
-          .setDescription(`It is currently ${temp}\u00B0 ${niceUnits}.`)
-          .setFooter(`${mainType}: ${description}.`)
-          .setThumbnail(`https://openweathermap.org/img/w/${icon}.png`)
+          .setDescription(`${definition}`)
+          .setFooter(`Wikipedia`)
         message.channel.sendEmbed(
           embed, {
             disableEveryone: true
