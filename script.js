@@ -727,16 +727,18 @@ client.on('message', message => {
     let searchTerm = params.join('%20');
     let language = 'en';
     let url = `https://od-api.oxforddictionaries.com:443/api/v1/entries/${language}/${searchTerm.toLowerCase()}`;
+    console.log(url);
     let options = {
      url: url,
      headers: {
-     'app_id':dictionaryId,
-     'app_key':dictionaryKey
+     'app_id' : dictionaryId,
+     'app_key' : dictionaryKey
      }
-    }
+    };
 
     request(options, (error, response, body) => {
-      if (!error && response.statusCode === 200) {
+      if(error){console.log(error);
+      else if (!error && response.statusCode === 200) {
         const dictResponse = JSON.parse(body);
         console.log(dictResponse);
         let definitions = dictResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
