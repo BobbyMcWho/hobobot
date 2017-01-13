@@ -746,8 +746,8 @@ client.on('message', message => {
         console.log(definitions);
           //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
           let definition = "";
-        for(i=0;i<dictResponse.results[0].lexicalEntries.length;i++){
-        definition += `${i+1}. ${dictResponse.results[0].lexicalEntries[i].entries[0].senses[0].definitions} \n`
+        for(i=0;i<dictResponse.results[0].lexicalEntries[0].entries[0].senses.length;i++){
+        definition += `${i+1}. ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].definitions} \n`
         }
         const embed = new Discord.RichEmbed()
             .setAuthor(`${word}`)
