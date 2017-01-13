@@ -11,6 +11,8 @@ const eightball = require('./8ball.json');
 const sesame = Key.token;
 const weatherKey = Key.weatherKey;
 const ytKey = Key.ytKey;
+const dictionaryId = Key.dictionaryId;
+const dictionaryKey = Key.dictionaryKey;
 const timeKey = Key.timeKey;
 const cleverKey = Key.cleverKey;
 const cleverUser = Key.cleverUser;
@@ -719,6 +721,40 @@ client.on('message', message => {
         disableEveryone: true
       }
     );
+  }
+  else if (message.content.toLowerCase().startsWith(prefix + "define")) {
+
+    let searchTerm = params.join('%20');
+    let language = 'en';
+    let url = `https://od-api.oxforddictionaries.com:443/api/v1/entries/${language}/${searchTerm.toLowerCase()}`;
+    let options = {
+     url: url,
+     headers: {
+     'app_id':dictionaryId,
+     'app_key':dictionaryKey
+     }
+    }
+
+    request(options, (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        const dictResponse = JSON.parse(body);
+        console.log(dictResponse);
+        let definitions = dictResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
+        console.log(definitions);
+          //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+          const embed = new Discord.RichEmbed()
+            .setAuthor(`${word}`)
+            .setTitle('Urban Dictionary')
+            .setDescription(`${definition}`)
+            .addField('Example:', example)
+          message.channel.sendEmbed(
+            embed, {
+              disableEveryone: true
+            }
+          );
+        
+      }
+    });
   }
   //*********************Testing!
   else if ((message.content.toLowerCase().startsWith(musicPrefix))&&(commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]))){
