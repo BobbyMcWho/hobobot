@@ -752,6 +752,28 @@ client.on('message', message => {
     commands[message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]](message);
     message.delete(4000);
 }
+  
+  else if (message.content.toLowerCase().startsWith(prefix + "tstock")) {
+
+    let stockID = params[0];
+    let url = `https://www.google.com/#q=%24AAPL${stockID}`;
+
+    request(url, (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        
+       // let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
+       // let name = stockResponse.query.results.quote.Name;
+        //let change = stockResponse.query.results.quote.Change;
+        let lastTrade = parseFloat(body.querySelector('span[data-symbol="AAPL"][class="\_Rnb fmob\_pr fac-l"]').innerText)
+       // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
+       // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
+       // let percentChange = ((change / openPrice) * 100).toFixed(2);
+
+          message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD`);
+        
+      }
+    });
+  }
   //****************END TEST
   //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
   //let menArr = message.mentions.users.array();
