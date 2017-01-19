@@ -757,7 +757,7 @@ client.on('message', message => {
   else if (message.content.toLowerCase().startsWith(prefix + "tstock")) {
   
     let stockID = params[0];
-    let url = `https://www.google.com/#q=%24${stockID}`;
+    let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
 
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
@@ -765,11 +765,11 @@ client.on('message', message => {
        // let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
        // let name = stockResponse.query.results.quote.Name;
         //let change = stockResponse.query.results.quote.Change;
-        let lastTrade = $('span[data-symbol="AAPL"][class="\_Rnb fmob\_pr fac-l"]').html();
+        let lastTrade = $('#price-panel').html();
        // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
        // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
        // let percentChange = ((change / openPrice) * 100).toFixed(2);
-        console.log($.html());
+        console.log(lastTrade);
           message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD`);
         
       }
