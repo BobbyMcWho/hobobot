@@ -769,7 +769,7 @@ client.on('message', message => {
        // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
        // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
        // let percentChange = ((change / openPrice) * 100).toFixed(2);
-
+        console.log(lastTrade);
           message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD`);
         
       }
