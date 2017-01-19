@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 const Discord = require('discord.js');
+const cheerio = require('cheerio');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const request = require('request-promise');
@@ -754,17 +755,17 @@ client.on('message', message => {
 }
   
   else if (message.content.toLowerCase().startsWith(prefix + "tstock")) {
-
+  
     let stockID = params[0];
     let url = `https://www.google.com/#q=%24AAPL${stockID}`;
 
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
-        
+       let $ = cheerio.load(body);
        // let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
        // let name = stockResponse.query.results.quote.Name;
         //let change = stockResponse.query.results.quote.Change;
-        let lastTrade = parseFloat(body.querySelector('span[data-symbol="AAPL"][class="\_Rnb fmob\_pr fac-l"]').innerText);
+        let lastTrade = parseFloat($('span[data-symbol="AAPL"][class="\_Rnb fmob\_pr fac-l"]').innerText);
        // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
        // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
        // let percentChange = ((change / openPrice) * 100).toFixed(2);
