@@ -769,7 +769,7 @@ client.on('message', message => {
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
         let companyName = $('#appbar').find('.appbar-snippet-primary').text().trim();
-        console.log($('#appbar').find('.appbar-snippet-primary').text());
+        console.log('hello');
         let companySymbol = $('#appbar').find('.appbar-snippet-secondary').text().trim();
       // message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
         let color = (parseFloat(change) < 0) ? 13715510 : 39219;
