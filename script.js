@@ -765,12 +765,12 @@ client.on('message', message => {
        // let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
        // let name = stockResponse.query.results.quote.Name;
         //let change = stockResponse.query.results.quote.Change;
-        let lastTrade = $('#price-panel').find('.pr').text().trim();
+        let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-        let companyName = $('#appbar').find('.appbar-snippet-primary').children().html();
+        let companyName = $('#appbar .appbar-snippet-primary span').text().trim();
         console.log(companyName);
-        let companySymbol = $('#appbar').find('.appbar-snippet-secondary').text().trim();
+        let companySymbol = $('#appbar .appbar-snippet-secondary span').text().trim();
       // message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
         let color = (parseFloat(change) < 0) ? 13715510 : 39219;
       const embed = new Discord.RichEmbed()
