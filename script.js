@@ -762,12 +762,14 @@ client.on('message', message => {
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
        let $ = cheerio.load(body);
-    if ($('#price-panel').find('.pr').text().trim().split("\n").join("") == undefined){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
-       else{
+    
+       
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
+  if (typeOf(lastTrade) !== "string" || typeOf(change) !== "string" || typeOf(percentChange) !== "string"){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
         //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
+        else{
         let companySymbol = stockID.toUpperCase();
         let color = (parseFloat(change) < 0) ? 13715510 : 39219;
       const embed = new Discord.RichEmbed()
