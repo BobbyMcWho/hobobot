@@ -768,11 +768,21 @@ client.on('message', message => {
         let lastTrade = $('#price-panel').find('.pr').text().trim();
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-       // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
-       // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
-       // let percentChange = ((change / openPrice) * 100).toFixed(2);
-        console.log(lastTrade);
-          message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
+        let companyName = $('#appbar').find('.appbar-snippet-primary').text().trim();
+        let companySymbol = $('#appbar').find('.appbar-snippet-secondary').text().trim();
+      // message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
+        let color = (parseFloat(change) < 0) ? 13715510 : 39219;
+      const embed = new Discord.RichEmbed()
+            .setTitle(`${lastTrade}`)
+            .setAuthor(`${companyName}`)
+            .setColor(color)
+            .setDescription(`${change} ${percentChange}`)
+            .setFooter(`${companySymbol}`)
+          message.channel.sendEmbed(
+            embed, {
+              disableEveryone: true
+            }
+          );
         
       }
     });
