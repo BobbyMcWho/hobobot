@@ -7,7 +7,6 @@ const ytdl = require('ytdl-core');
 const request = require('request-promise');
 const client = new Discord.Client();
 const Key = require('./token.json');
-const phrases = require('./phrases.json');
 const eightball = require('./8ball.json');
 const sesame = Key.token;
 const weatherKey = Key.weatherKey;
@@ -255,9 +254,6 @@ client.on('message', message => {
       meal = params.join(" ");
     }
     message.channel.sendMessage("What'd you have for " + meal + " today " + roller + "?");
-  } else if (message.content.toLowerCase().startsWith(prefix + "zzz") && (message.channel.id === "174984493138968576")) {
-    joke();
-    message.channel.sendMessage(line);
   } else if (message.content.toLowerCase().startsWith(prefix + "clefable") && (message.channel.id === "174984493138968576")) {
     message.channel.sendFile('./clefable.gif');
   } else if (message.content.toLowerCase().startsWith(prefix + "commands")) {
