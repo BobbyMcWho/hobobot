@@ -620,34 +620,37 @@ client.on('message', message => {
     let jd = message.guild.member(userMentioned).joinedAt;
     message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${monthNames[jd.getMonth()]} ${jd.getDate()}, ${jd.getFullYear()} `);
 
-  } else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
+  } 
+  //leaving this for future reference, it has been rewritten.
+  // else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
 
-    let stockID = params[0];
-    let url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20%3D%20%22${stockID}%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
+  //   let stockID = params[0];
+  //   let url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20%3D%20%22${stockID}%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
 
-    request(url, (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        const stockResponse = JSON.parse(body);
-        let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
-        let name = stockResponse.query.results.quote.Name;
-        let change = stockResponse.query.results.quote.Change;
-        let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
-        let marketCap = stockResponse.query.results.quote.MarketCapitalization;
-        let openPrice = (parseFloat(lastTrade) - parseFloat(change));
-        let percentChange = ((change / openPrice) * 100).toFixed(2);
+  //   request(url, (error, response, body) => {
+  //     if (!error && response.statusCode === 200) {
+  //       const stockResponse = JSON.parse(body);
+  //       let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
+  //       let name = stockResponse.query.results.quote.Name;
+  //       let change = stockResponse.query.results.quote.Change;
+  //       let lastTrade = stockResponse.query.results.quote.LastTradePriceOnly;
+  //       let marketCap = stockResponse.query.results.quote.MarketCapitalization;
+  //       let openPrice = (parseFloat(lastTrade) - parseFloat(change));
+  //       let percentChange = ((change / openPrice) * 100).toFixed(2);
 
-        if (name === null) {
-          message.channel.sendMessage(`Cannot locate stock symbol **"${stockID.toUpperCase()}"**`);
-        } else if (typeof params[1] !== 'undefined' && params[1] === "name") {
-          message.channel.sendMessage(`Stock symbol **${symbol}** is for the company **${name}**`);
-        } else if (typeof params[1] !== 'undefined' && params[1] === "cap") {
-          message.channel.sendMessage(`The market cap for all outstanding shares of **${symbol}** at last trade price ${lastTrade}USD is **${marketCap}**`);
-        } else {
-          message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange}%)`);
-        }
-      }
-    });
-  } else if (message.content.toLowerCase().startsWith(prefix + "time")) {
+  //       if (name === null) {
+  //         message.channel.sendMessage(`Cannot locate stock symbol **"${stockID.toUpperCase()}"**`);
+  //       } else if (typeof params[1] !== 'undefined' && params[1] === "name") {
+  //         message.channel.sendMessage(`Stock symbol **${symbol}** is for the company **${name}**`);
+  //       } else if (typeof params[1] !== 'undefined' && params[1] === "cap") {
+  //         message.channel.sendMessage(`The market cap for all outstanding shares of **${symbol}** at last trade price ${lastTrade}USD is **${marketCap}**`);
+  //       } else {
+  //         message.channel.sendMessage(`**${symbol}:** ${lastTrade}USD ${change} (${percentChange}%)`);
+  //       }
+  //     }
+  //   });
+  // }
+   else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 
     let fromTime = "GMT";
     let toTime = params[0].toUpperCase();
@@ -754,7 +757,7 @@ client.on('message', message => {
     message.delete(4000);
 }
   
-  else if (message.content.toLowerCase().startsWith(prefix + "tstock")) {
+  else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
   
     let stockID = params[0];
     let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
@@ -788,14 +791,7 @@ client.on('message', message => {
     });
   }
   //****************END TEST
-  //else if (message.content.toLowerCase().startsWith(prefix + "teams")) {
-  //let menArr = message.mentions.users.array();
-  //menArr = shuffle(menArr);
-  //message.channel.sendMessage(menArr);
-  //}
-  // else if (message.content.toLowerCase().startsWith('hi')) && (message.mentions.users[0] == ClientUser.id) {
-  //   message.channel.sendMessage('hi'+ message.author.username);
-  // }
+
 
 });
 //client.on('guildMemberRemove', (member) => {
