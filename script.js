@@ -798,7 +798,7 @@ client.on('message', message => {
   if (time > 10) {
     message.channel.sendMessage('Please enter a time less than 5 minutes.');
   } else {
-    while (time>0) {
+    for (let i = 0;i<time;) {
       request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
           let $ = cheerio.load(body);
@@ -826,7 +826,7 @@ client.on('message', message => {
               )
               .then((msg) => {
                 msg.delete(29000)
-              .then(()=>time--)
+                .then(()=>i++)
               })
           }//end of stock message
         }
