@@ -762,7 +762,7 @@ client.on('message', message => {
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
        let $ = cheerio.load(body);
-       if ($('#price-panel') == null){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
+    if ($('#price-panel').find('.pr').text().trim().split("\n").join("") == undefined){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
        else{
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
