@@ -772,7 +772,7 @@ client.on('message', message => {
         let color = (parseFloat(change) < 0) ? 13715510 : 39219;
       const embed = new Discord.RichEmbed()
             .setTitle(`${lastTrade}`)
-            .setAuthor(`${companyName}`)
+            //.setAuthor(`${companyName}`)
             .setColor(color)
             .setDescription(`${change} ${percentChange}`)
             .setFooter(`${companySymbol}`)
