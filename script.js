@@ -767,7 +767,7 @@ client.on('message', message => {
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-  if (typeOf(lastTrade) !== "string" || typeOf(change) !== "string" || typeOf(percentChange) !== "string"){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
+  if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string"){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
         //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
         else{
         let companySymbol = stockID.toUpperCase();
