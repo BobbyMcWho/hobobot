@@ -822,7 +822,9 @@ client.on('message', message => {
                 }
               )
               .then((msg) => {
+              if(time>1){
                 msg.delete(29000)
+              }
               })
           }//end of stock message
         }
