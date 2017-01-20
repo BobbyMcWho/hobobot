@@ -793,18 +793,18 @@ client.on('message', message => {
    else if (message.content.toLowerCase().startsWith(prefix + "monitor")) {
 
   let stockID = params[0];
-  let time = parseInt(params[1], 10) * 2;
+  let time = (parseInt(params[1], 10) * 2) || 10;
   let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
   if (time > 10) {
     message.channel.sendMessage('Please enter a time less than 5 minutes.');
   } else {
-    while (time > 0) {
+    for (let i = 0;i<time;i++) {
       request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
           let $ = cheerio.load(body);
 
           let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
-          let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
+          let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0];
           let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
           if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
             message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)
@@ -813,7 +813,7 @@ client.on('message', message => {
           else {
             let companySymbol = stockID.toUpperCase();
             let color = (parseFloat(change) < 0) ? 13715510 : 39219;
-            const embed = new Discord.RichEmbed()
+            let embed = new Discord.RichEmbed()
               .setTitle(`${lastTrade}`)
               //.setAuthor(`${companyName}`)
               .setColor(color)
@@ -825,16 +825,13 @@ client.on('message', message => {
                 }
               )
               .then((msg) => {
-                setTimeout(() => {
-                  msg.delete();
-                  time -= 1
-                }, 30000);
+                msg.delete(29000);
               })
-          }
+          }//end of stock message
         }
-      });
-    }
-  }
+      });//end of request function
+    } //end of while loop
+  } 
 }
   //****************END TEST
 
