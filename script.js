@@ -833,7 +833,8 @@ client.on('message', message => {
       });//end of request function
       time--;
       if (time>0) {setTimeout(function(){loop();},30000);}
-    } //end of while loop
+    }
+    loop();//end of while loop
   } 
 }
   //****************END TEST
