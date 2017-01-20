@@ -766,12 +766,13 @@ client.on('message', message => {
        // let name = stockResponse.query.results.quote.Name;
         //let change = stockResponse.query.results.quote.Change;
         let lastTrade = $('#price-panel').find('.pr').text().trim();
-        let change = $('#price-panel').find('.id-price-change').text().trim();
+        let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
+        let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
        // let marketCap = stockResponse.query.results.quote.MarketCapitalization;
        // let openPrice = (parseFloat(lastTrade) - parseFloat(change));
        // let percentChange = ((change / openPrice) * 100).toFixed(2);
         console.log(lastTrade);
-          message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change}`);
+          message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
         
       }
     });
