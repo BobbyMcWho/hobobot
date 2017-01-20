@@ -768,7 +768,7 @@ client.on('message', message => {
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-        let companyName = $('#appbar .appbar-snippet-primary span').text().trim();
+        let companyName = $('#cc-table .hilite ctname').text().trim();
         console.log(companyName);
         let companySymbol = $('#appbar .appbar-snippet-secondary span').text().trim();
       // message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
