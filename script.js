@@ -789,7 +789,7 @@ client.on('message', message => {
    else if (message.content.toLowerCase().startsWith(prefix + "monitor")) {
 
   let stockID = params[0];
-  let time = (parseInt(params[1], 10) * 2);
+  let time = (parseInt(params[1], 10) * 2) || 10;
   let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
   if (time > 10) {
     message.channel.sendMessage('Please enter a time less than 5 minutes.');
