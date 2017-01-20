@@ -762,16 +762,13 @@ client.on('message', message => {
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
        let $ = cheerio.load(body);
-       // let symbol = stockResponse.query.results.quote.symbol.toUpperCase();
-       // let name = stockResponse.query.results.quote.Name;
-        //let change = stockResponse.query.results.quote.Change;
+       if ($('#price-panel') == null){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
+       else{
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-        let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
-        console.log(companyName);
-        let companySymbol = $('#appbar .appbar-snippet-secondary span').text().trim();
-      // message.channel.sendMessage(`**${stockID}:** ${lastTrade}USD ${change} ${percentChange}`);
+        //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
+        let companySymbol = stockID.toUpperCase();
         let color = (parseFloat(change) < 0) ? 13715510 : 39219;
       const embed = new Discord.RichEmbed()
             .setTitle(`${lastTrade}`)
@@ -784,7 +781,7 @@ client.on('message', message => {
               disableEveryone: true
             }
           );
-        
+       }
       }
     });
   }
