@@ -798,7 +798,7 @@ client.on('message', message => {
   if (time > 10) {
     message.channel.sendMessage('Please enter a time less than 5 minutes.');
   } else {
-    for (let i = 0;i<time;) {
+    while (time>0) {
       request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
           let $ = cheerio.load(body);
@@ -807,7 +807,8 @@ client.on('message', message => {
           let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0];
           let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
           if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
-            message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)
+            message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`);
+            time = 0;
           }
           //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
           else {
@@ -826,7 +827,7 @@ client.on('message', message => {
               )
               .then((msg) => {
                 msg.delete(29000)
-                .then(()=>i++)
+                .then(()=>time--);
               })
           }//end of stock message
         }
