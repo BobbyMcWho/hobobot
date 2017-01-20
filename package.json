@@ -1,0 +1,26 @@
+{
+  "name": "hobobot",
+  "version": "1.0.0",
+  "description": "This is a readme.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BobbyMcWho/hobobot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BobbyMcWho/hobobot/issues"
+  },
+  "homepage": "https://github.com/BobbyMcWho/hobobot#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "cleverbot.io": "^1.0.4",
+    "discord.js": "11.0.0",
+    "erlpack": "git://github.com/hammerandchisel/erlpack.git#master",
+    "node-opus": "^0.2.4"
+  }
+}
