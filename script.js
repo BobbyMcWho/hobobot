@@ -790,6 +790,52 @@ client.on('message', message => {
       }
     });
   }
+   else if (message.content.toLowerCase().startsWith(prefix + "monitor")) {
+
+  let stockID = params[0];
+  let time = parseInt(params[1], 0) * 2;
+  let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
+  if (time > 10) {
+    message.channel.sendMessage('Please enter a time less than 5 minutes.');
+  } else {
+    while (time > 0) {
+      request(url, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          let $ = cheerio.load(body);
+
+          let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
+          let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
+          let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
+          if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
+            message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)
+          }
+          //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
+          else {
+            let companySymbol = stockID.toUpperCase();
+            let color = (parseFloat(change) < 0) ? 13715510 : 39219;
+            const embed = new Discord.RichEmbed()
+              .setTitle(`${lastTrade}`)
+              //.setAuthor(`${companyName}`)
+              .setColor(color)
+              .setDescription(`${change} ${percentChange}`)
+              .setFooter(`${companySymbol}`)
+            message.channel.sendEmbed(
+                embed, {
+                  disableEveryone: true
+                }
+              )
+              .then((msg) => {
+                setTimeout(() => {
+                  msg.delete();
+                  time -= 1
+                }, 30000);
+              })
+          }
+        }
+      });
+    }
+  }
+}
   //****************END TEST
 
 
