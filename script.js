@@ -855,5 +855,21 @@ client.on('error', (error) => {
 client.on('disconnect', () =>
   process.exit(100)
 );
+client.on('presenceUpdate', (oldMember,newMember) =>
+  {if(!oldMember.presence.game.streaming&&newMember.presence.game.streaming){
+    const embed = new Discord.RichEmbed()
+          .setTitle(`Now Streaming`)
+          .setURL(`${newMember.presence.game.url}`)
+          .setColor(6570404)
+          .setDescription(`${newMember} is now streaming "${newMember.presence.game}" at ${newMember.presence.game.url}`)
+          
+        newMember.guild.channels.get(279381704274214923).sendEmbed(
+          embed, {
+            disableEveryone: true 
+          }
+        );
+  }
+  }
+);
 
 client.login(sesame);
