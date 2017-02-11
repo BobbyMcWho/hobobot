@@ -862,7 +862,7 @@ client.on('disconnect', () =>
   process.exit(100)
 );
 client.on('presenceUpdate', (oldMember, newMember) => {
-  if (!oldMember.presence.game.streaming && newMember.presence.game.streaming) {
+  if ((oldMember.presence.game == null || !oldMember.presence.game.streaming) && (newMember.presence.game != null && newMember.presence.game.streaming)) {
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
       .setURL(newMember.presence.game.url)
