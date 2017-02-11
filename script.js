@@ -104,31 +104,34 @@ const commands = {
   'add': (message) => {
     let testurl = message.content.split(/\ +/)[1];
     let params = message.content.split(/\ +/).slice(1);
-    if (params[0] == '' || params[0] == undefined){message.channel.sendMessage('Please enter a search term!');}
-    else{
-    let searchTerm = params.join('%20');
-    let searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
-    request(searchUrl).then((body) => {
-      const messageResponse = JSON.parse(body);
-      let videoId = messageResponse.items[0].id.videoId;
-      ytdl.getInfo(videoId, (err, info) => {
-        if (err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
-        if (!playlist.hasOwnProperty(message.guild.id)) playlist[message.guild.id] = {}, playlist[message.guild.id].playing = false, playlist[message.guild.id].songs = [];
-        playlist[message.guild.id].songs.push({
-          url: videoId,
-          title: info.title,
-          requester: message.author.username
-        });
-        message.channel.sendMessage(`Added **${info.title}** to the playlist.`);
-      })
-    });}
+    if (params[0] == '' || params[0] == undefined) {
+      message.channel.sendMessage('Please enter a search term!');
+    } else {
+      let searchTerm = params.join('%20');
+      let searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytKey}&part=snippet&q=${searchTerm}&maxResults=1&type=video&order=relevance`;
+      request(searchUrl).then((body) => {
+        const messageResponse = JSON.parse(body);
+        let videoId = messageResponse.items[0].id.videoId;
+        ytdl.getInfo(videoId, (err, info) => {
+          if (err) return message.channel.sendMessage('Invalid YouTube Link: ' + err);
+          if (!playlist.hasOwnProperty(message.guild.id)) playlist[message.guild.id] = {}, playlist[message.guild.id].playing = false, playlist[message.guild.id].songs = [];
+          playlist[message.guild.id].songs.push({
+            url: videoId,
+            title: info.title,
+            requester: message.author.username
+          });
+          message.channel.sendMessage(`Added **${info.title}** to the playlist.`);
+        })
+      });
+    }
   },
-  'leave':(message) => {
-        playlist[message.guild.id].playing = false;
-        message.channel.sendMessage(`Leaving ${message.guild.voiceConnection.channel.name}`)
-        .then(m=>{message.guild.voiceConnection.channel.leave();
-          m.react('\uD83D\uDC4B');
-        });
+  'leave': (message) => {
+    playlist[message.guild.id].playing = false;
+    message.channel.sendMessage(`Leaving ${message.guild.voiceConnection.channel.name}`)
+      .then(m => {
+        message.guild.voiceConnection.channel.leave();
+        m.react('\uD83D\uDC4B');
+      });
   },
   'playlist': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
@@ -141,8 +144,8 @@ const commands = {
   'shuffle': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
     //Durstenfeld Shuffle, modified to always leave the first song at index 0. 
-    for (let i = playlist[message.guild.id].songs.length - 1;i>0;i--){
-      let j = Math.floor(Math.random()*(playlist[message.guild.id].songs.length - 1)) + 1;
+    for (let i = playlist[message.guild.id].songs.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (playlist[message.guild.id].songs.length - 1)) + 1;
       let temp = playlist[message.guild.id].songs[i];
       playlist[message.guild.id].songs[i] = playlist[message.guild.id].songs[j];
       playlist[message.guild.id].songs[j] = temp;
@@ -150,7 +153,7 @@ const commands = {
     message.channel.sendMessage('Playlist shuffled. 🔀');
   },
   'help': (message) => {
-    let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"', musicPrefix + 'add : "Add a song to the playlist"', musicPrefix + 'playlist : "Shows the current playlist, up to 15 songs shown."', musicPrefix + 'play : "Play the music playlist if already joined to a voice channel"',musicPrefix + 'shuffle : "Shuffles the playlist."',musicPrefix + 'leave : "Clears the playlist and leaves the channel."', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "Pauses the music"', musicPrefix + 'resume : "Resumes the music"', musicPrefix + 'skip : "Skips the current song"', musicPrefix + 'time : "Shows the playtime of the song."', 'volume+(+++) : "Increases volume by 5% per +"', 'volume-(---) : "Decreases volume by 5% per -"', '```'];
+    let tosend = ['```xl', musicPrefix + 'join : "Join Voice channel of message sender"', musicPrefix + 'add : "Add a song to the playlist"', musicPrefix + 'playlist : "Shows the current playlist, up to 15 songs shown."', musicPrefix + 'play : "Play the music playlist if already joined to a voice channel"', musicPrefix + 'shuffle : "Shuffles the playlist."', musicPrefix + 'leave : "Clears the playlist and leaves the channel."', '', 'the following commands only function while the play command is running:'.toUpperCase(), musicPrefix + 'pause : "Pauses the music"', musicPrefix + 'resume : "Resumes the music"', musicPrefix + 'skip : "Skips the current song"', musicPrefix + 'time : "Shows the playtime of the song."', 'volume+(+++) : "Increases volume by 5% per +"', 'volume-(---) : "Decreases volume by 5% per -"', '```'];
     message.channel.sendMessage(tosend.join('\n'));
   },
   'reboot': (message) => {
@@ -296,7 +299,7 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().startsWith(prefix + "roll")) {
     params = params.join(" ");
-        let dieCount = (params.substring(0, params.search(/[^0-9]+/)) != "") ? parseInt(params.substring(0, params.search(/[^0-9]+/)), 10) : 1;
+    let dieCount = (params.substring(0, params.search(/[^0-9]+/)) != "") ? parseInt(params.substring(0, params.search(/[^0-9]+/)), 10) : 1;
     let dieSides = (params.search(/d/) != -1) ? parseInt(params.substring(params.search(/d/)).match(/[0-9]+/)[0], 10) : 6;
     let keep = (params.search(/k/) != -1) ? parseInt(params.substring(params.search(/k/)).match(/[0-9]+/)[0], 10) : dieCount;
     let add = (params.search(/\+|\-/) != -1) ? parseInt(params.charAt(params.search(/\+|\-/)) + params.substring(params.search(/\+|\-/)).match(/[0-9]+/)[0], 10) : 0;
@@ -315,11 +318,11 @@ client.on('message', message => {
         resultsArr.push(Math.floor(Math.random() * (dieSides)) + 1);
       }
       let keptArr = resultsArr;
-      keptArr = keptArr.sort(function(a, b) {
+      keptArr = keptArr.sort(function (a, b) {
         return b - a;
       });
       keptArr = keptArr.slice(0, (keep));
-      let dieTotal = keptArr.reduce(function(a, b) {
+      let dieTotal = keptArr.reduce(function (a, b) {
         return a + b;
       });
       let dieAverage = Math.round((dieTotal / keep) * 100) / 100;
@@ -616,7 +619,7 @@ client.on('message', message => {
     let jd = message.guild.member(userMentioned).joinedAt;
     message.channel.sendMessage(`${userMentioned} joined ${message.guild} on ${monthNames[jd.getMonth()]} ${jd.getDate()}, ${jd.getFullYear()} `);
 
-  } 
+  }
   //leaving this for future reference, it has been rewritten.
   // else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
 
@@ -646,7 +649,7 @@ client.on('message', message => {
   //     }
   //   });
   // }
-   else if (message.content.toLowerCase().startsWith(prefix + "time")) {
+  else if (message.content.toLowerCase().startsWith(prefix + "time")) {
 
     let fromTime = "GMT";
     let toTime = params[0].toUpperCase();
@@ -705,73 +708,73 @@ client.on('message', message => {
         disableEveryone: true
       }
     );
-  }
-  else if (message.content.toLowerCase().startsWith(prefix + "define")) {
+  } else if (message.content.toLowerCase().startsWith(prefix + "define")) {
 
     let searchTerm = params.join('%20');
     let language = 'en';
     let url = `https://od-api.oxforddictionaries.com:443/api/v1/entries/${language}/${searchTerm.toLowerCase()}`;
     console.log(url);
     let options = {
-     url: url,
-     headers: {
-     'app_id' : dictionaryId,
-     'app_key' : dictionaryKey
-     }
+      url: url,
+      headers: {
+        'app_id': dictionaryId,
+        'app_key': dictionaryKey
+      }
     };
 
     request(options, (error, response, body) => {
-      if(error){console.log(error);}
-      else if (!error && response.statusCode === 200) {
+      if (error) {
+        console.log(error);
+      } else if (!error && response.statusCode === 200) {
         const dictResponse = JSON.parse(body);
         console.log(dictResponse);
         let definitions = dictResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
         let word = dictResponse.results[0].word;
         console.log(definitions);
-          //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
-          let definition = "";
-        for(i=0;i<dictResponse.results[0].lexicalEntries[0].entries[0].senses.length;i++){
-        let example = (typeof(dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].examples)==='undefined') ? " " : `\n ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].examples[0].text}`;  
-        definition += `${i+1}. ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].definitions} *${example}* \n`
+        //message.channel.sendMessage(`**${word}:**\n${definition} \n\uD83D\uDC4D ${thumbsup} \uD83D\uDC4E ${thumbsdown} \n \nExample: ${example}`);
+        let definition = "";
+        for (i = 0; i < dictResponse.results[0].lexicalEntries[0].entries[0].senses.length; i++) {
+          let example = (typeof (dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].examples) === 'undefined') ? " " : `\n ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].examples[0].text}`;
+          definition += `${i+1}. ${dictResponse.results[0].lexicalEntries[0].entries[0].senses[i].definitions} *${example}* \n`
         }
         const embed = new Discord.RichEmbed()
-            .setAuthor(`${word}`)
-            .setTitle('Oxford Dictionary')
-            .setDescription(`${definition}`)
-          message.channel.sendEmbed(
-            embed, {
-              disableEveryone: true
-            }
-          );
-        
+          .setAuthor(`${word}`)
+          .setTitle('Oxford Dictionary')
+          .setDescription(`${definition}`)
+        message.channel.sendEmbed(
+          embed, {
+            disableEveryone: true
+          }
+        );
+
       }
     });
   }
   //*********************Testing!
-  else if ((message.content.toLowerCase().startsWith(musicPrefix))&&(commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]))){
+  else if ((message.content.toLowerCase().startsWith(musicPrefix)) && (commands.hasOwnProperty(message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]))) {
     commands[message.content.toLowerCase().slice(musicPrefix.length).split(' ')[0]](message);
     message.delete(4000);
-}
-  
-  else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
-  
+  } else if (message.content.toLowerCase().startsWith(prefix + "stock")) {
+
     let stockID = params[0];
     let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
 
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
-       let $ = cheerio.load(body);
-    
-       
+        let $ = cheerio.load(body);
+
+
         let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
         let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0]
         let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-  if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string"){message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)}
+        if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
+          message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`)
+        }
         //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
-        else{
-        let companySymbol = stockID.toUpperCase();
-        let color = (parseFloat(change) < 0) ? 13715510 : 39219;
-      const embed = new Discord.RichEmbed()
+        else {
+          let companySymbol = stockID.toUpperCase();
+          let color = (parseFloat(change) < 0) ? 13715510 : 39219;
+          const embed = new Discord.RichEmbed()
             .setTitle(`${lastTrade}`)
             //.setAuthor(`${companyName}`)
             .setColor(color)
@@ -782,59 +785,62 @@ client.on('message', message => {
               disableEveryone: true
             }
           );
-       }
+        }
       }
     });
-  }
-   else if (message.content.toLowerCase().startsWith(prefix + "monitor")) {
+  } else if (message.content.toLowerCase().startsWith(prefix + "monitor")) {
 
-  let stockID = params[0];
-  let time = (parseInt(params[1], 10) * 2) || 10;
-  let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
-  if (time > 10) {
-    message.channel.sendMessage('Please enter a time less than 5 minutes.');
-  } else {
-    function loop() {
-      request(url, (error, response, body) => {
-        if (!error && response.statusCode === 200) {
-          let $ = cheerio.load(body);
+    let stockID = params[0];
+    let time = (parseInt(params[1], 10) * 2) || 10;
+    let url = `https://www.google.com/finance?q=NASDAQ%3A${stockID}`;
+    if (time > 10) {
+      message.channel.sendMessage('Please enter a time less than 5 minutes.');
+    } else {
+      function loop() {
+        request(url, (error, response, body) => {
+          if (!error && response.statusCode === 200) {
+            let $ = cheerio.load(body);
 
-          let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
-          let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0];
-          let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
-          if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
-            message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`);
-            time = 0;
+            let lastTrade = $('#price-panel').find('.pr').text().trim().split("\n").join("");
+            let change = $('#price-panel').find('.id-price-change').text().trim().split("\n")[0];
+            let percentChange = $('#price-panel').find('.id-price-change').text().trim().split("\n")[1];
+            if (typeof lastTrade !== "string" || typeof change !== "string" || typeof percentChange !== "string") {
+              message.channel.sendMessage(`No stocks found using symbol "${stockID.toUpperCase()}".`);
+              time = 0;
+            }
+            //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
+            else {
+              let companySymbol = stockID.toUpperCase();
+              let color = (parseFloat(change) < 0) ? 13715510 : 39219;
+              let embed = new Discord.RichEmbed()
+                .setTitle(`${lastTrade}`)
+                //.setAuthor(`${companyName}`)
+                .setColor(color)
+                .setDescription(`${change} ${percentChange}`)
+                .setFooter(`${companySymbol}`)
+              message.channel.sendEmbed(
+                  embed, {
+                    disableEveryone: true
+                  }
+                )
+                .then((msg) => {
+                  if (time > 1) {
+                    msg.delete(29000)
+                  }
+                })
+            } //end of stock message
           }
-          //let companyName = $('.appbar-center, #appbar').find('.appbar-snippet-primary').text().trim();
-          else {
-            let companySymbol = stockID.toUpperCase();
-            let color = (parseFloat(change) < 0) ? 13715510 : 39219;
-            let embed = new Discord.RichEmbed()
-              .setTitle(`${lastTrade}`)
-              //.setAuthor(`${companyName}`)
-              .setColor(color)
-              .setDescription(`${change} ${percentChange}`)
-              .setFooter(`${companySymbol}`)
-            message.channel.sendEmbed(
-                embed, {
-                  disableEveryone: true
-                }
-              )
-              .then((msg) => {
-              if(time>1){
-                msg.delete(29000)
-              }
-              })
-          }//end of stock message
+        }); //end of request function
+        time--;
+        if (time > 0) {
+          setTimeout(function () {
+            loop();
+          }, 30000);
         }
-      });//end of request function
-      time--;
-      if (time>0) {setTimeout(function(){loop();},30000);}
+      }
+      loop(); //end of while loop
     }
-    loop();//end of while loop
-  } 
-}
+  }
   //****************END TEST
 
 
@@ -855,21 +861,20 @@ client.on('error', (error) => {
 client.on('disconnect', () =>
   process.exit(100)
 );
-client.on('presenceUpdate', (oldMember,newMember) =>
-  {if(!oldMember.presence.game.streaming&&newMember.presence.game.streaming){
+client.on('presenceUpdate', (oldMember, newMember) => {
+  if (!oldMember.presence.game.streaming && newMember.presence.game.streaming) {
     const embed = new Discord.RichEmbed()
-          .setTitle(`Now Streaming`)
-          .setURL(`${newMember.presence.game.url}`)
-          .setColor(6570404)
-          .setDescription(`${newMember} is now streaming "${newMember.presence.game}" at ${newMember.presence.game.url}`)
-          
-        newMember.guild.channels.get(279381704274214923).sendEmbed(
-          embed, {
-            disableEveryone: true 
-          }
-        );
+      .setTitle(`Now Streaming`)
+      .setURL(newMember.presence.game.url)
+      .setColor(6570404)
+      .setDescription(`${newMember} is now streaming "${newMember.presence.game}" at ${newMember.presence.game.url}`)
+      .setThumbnail('https://pbs.twimg.com/profile_images/2349866958/m9pjwl1x1n3nvzf8x8rc.png')
+    newMember.guild.channels.get('279381704274214923').sendEmbed(
+      embed, {
+        disableEveryone: true
+      }
+    );
   }
-  }
-);
+});
 
 client.login(sesame);
