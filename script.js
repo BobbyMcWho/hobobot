@@ -869,7 +869,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
       .setColor(6570404)
       .setDescription(`${newMember} is now streaming "${newMember.presence.game.name}" at ${newMember.presence.game.url}`)
       .setThumbnail('https://pbs.twimg.com/profile_images/2349866958/m9pjwl1x1n3nvzf8x8rc.png')
-    newMember.guild.channels.get('279381704274214923').sendEmbed(
+    bot.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
       }
