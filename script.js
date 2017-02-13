@@ -883,7 +883,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
       .setFooter(`${response.stream.game}`)
       .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
       .setThumbnail(`${response.channel.logo}`)
-    bot.channels.get('279381704274214923').sendEmbed(
+    client.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
       }
