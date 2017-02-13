@@ -16,6 +16,7 @@ const dictionaryKey = Key.dictionaryKey;
 const timeKey = Key.timeKey;
 const cleverKey = Key.cleverKey;
 const cleverUser = Key.cleverUser;
+const twitchClient = Key.twitchClient;
 const cleverbot = require("cleverbot.io");
 const cBot = new cleverbot(cleverUser, cleverKey);
 let babybaby;
@@ -862,19 +863,33 @@ client.on('disconnect', () =>
   process.exit(100)
 );
 client.on('presenceUpdate', (oldMember, newMember) => {
+  let response;
   if ((oldMember.presence.game == null || !oldMember.presence.game.streaming) && (newMember.presence.game != null && newMember.presence.game.streaming)) {
+      let temp = newMember.presence.game.url.split('/');
+      let userName = temp[temp.length-1];
+      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
+      function loop() {
+        request(url, (error, response, body) => {
+          if (!error && response.statusCode === 200) {           
+            response = JSON.parse(body);
+          }
+        }); //end of request function
+
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
-      .setURL(newMember.presence.game.url)
+      .setURL(response.channel.url)
+      .setAuthor(newMember,newUser.user.avatarURL)
       .setColor(6570404)
-      .setDescription(`${newMember} is now streaming "${newMember.presence.game.name}" at ${newMember.presence.game.url}`)
-      .setThumbnail('https://pbs.twimg.com/profile_images/2349866958/m9pjwl1x1n3nvzf8x8rc.png')
+      .setFooter(`${response.stream.game}`)
+      .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
+      .setThumbnail(`${response.channel.logo}`)
     bot.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
       }
     );
   }
+}
 });
 
 client.login(sesame);
