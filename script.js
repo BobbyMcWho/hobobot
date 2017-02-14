@@ -863,12 +863,12 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
 console.log(response);
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
-      .setURL(response.channel.url)
+      .setURL(response.stream.channel.url)
       .setAuthor(newMember,newUser.user.avatarURL)
       .setColor(6570404)
       .setFooter(`${response.stream.game}`)
-      .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
-      .setThumbnail(`${response.channel.logo}`)
+      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
+      .setThumbnail(`${response.stream.channel.logo}`)
     client.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
