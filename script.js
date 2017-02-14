@@ -845,7 +845,6 @@ client.on('message', message => {
   //****************END TEST
 
 else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
-   let response;
    let newMember = client.guilds.get('164791530614161408').members.find('nickname','Abyss');
   if (
     //(!oldMember.presence.game.streaming) && 
@@ -857,10 +856,8 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
         request(url, (error, response, body) => {
           console.log(body);  
           if (!error && response.statusCode === 200) {                   
-            response = JSON.parse(body);
-          }
-        }); //end of request function
-console.log(response);
+            const response = JSON.parse(body);
+            console.log(response);
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
       .setURL(response.stream.channel.url)
@@ -874,6 +871,9 @@ console.log(response);
         disableEveryone: true
       }
     );
+          }
+        }); //end of request function
+
 }
 }
 });
