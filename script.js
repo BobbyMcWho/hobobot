@@ -849,7 +849,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
    let newMember = client.guilds.get('164791530614161408').members.find('nickname','Abyss');
   if (
     //(!oldMember.presence.game.streaming) && 
-    (newMember.presence.game != null && newMember.presence.game.streaming)) {
+    (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
