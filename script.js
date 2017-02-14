@@ -843,7 +843,37 @@ client.on('message', message => {
     }
   }
   //****************END TEST
+else if(message.content.toLowerCase().startsWith(prefix + "qwerty")){
+  let newMember = message.author;
+  if (
+    (newMember.presence.game && newMember.presence.game.streaming)) {
+      let temp = newMember.presence.game.url.split('/');
+      let userName = temp[temp.length-1];
+      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
+      console.log(url);
+        request(url, (error, response, body) => {
+          console.log(body);  
+          if (!error && response.statusCode === 200) {                   
+            const response = JSON.parse(body);
+            console.log(response);
+    const embed = new Discord.RichEmbed()
+      .setTitle(`Now Streaming`)
+      .setURL(response.stream.channel.url)
+      .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
+      .setColor(6570404)
+      .setFooter(`${response.stream.channel.game}`)
+      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
+      .setThumbnail(`${response.stream.channel.logo}`)
+    client.channels.get('187346688497680385').sendEmbed(
+      embed, {
+        disableEveryone: true
+      }
+    );
+          }
+        }); //end of request function
 
+}
+}
 });
 //client.on('guildMemberRemove', (member) => {
 // setTimeout(() => {member.guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
@@ -876,12 +906,12 @@ client.on('presenceUpdate', (oldMember, newMember) => {
             console.log(response);
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
-      .setURL(response.channel.url)
+      .setURL(response.stream.channel.url)
       .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
       .setColor(6570404)
-      .setFooter(`${response.stream.game}`)
-      .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
-      .setThumbnail(`${response.channel.logo}`)
+      .setFooter(`${response.stream.channel.game}`)
+      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
+      .setThumbnail(`${response.stream.channel.logo}`)
     client.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
