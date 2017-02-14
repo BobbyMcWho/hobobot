@@ -861,7 +861,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
       .setURL(response.stream.channel.url)
-      .setAuthor(newMember,newUser.user.avatarURL)
+      .setAuthor(newMember,newMember.user.avatarURL)
       .setColor(6570404)
       .setFooter(`${response.stream.game}`)
       .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
