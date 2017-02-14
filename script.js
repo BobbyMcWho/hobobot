@@ -845,7 +845,7 @@ client.on('message', message => {
   //****************END TEST
 
 else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
-   let response = "";
+   let response;
    let newMember = client.guilds.get('164791530614161408').members.find('nickname','Abyss');
   if (
     //(!oldMember.presence.game.streaming) && 
@@ -855,9 +855,9 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
       console.log(url);
         request(url, (error, response, body) => {
-          if (!error && response.statusCode === 200) { 
-            console.log(body);          
-            response += JSON.parse(body);
+          console.log(body);  
+          if (!error && response.statusCode === 200) {                   
+            response = JSON.parse(body);
           }
         }); //end of request function
 console.log(response);
