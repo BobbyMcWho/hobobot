@@ -876,12 +876,12 @@ client.on('presenceUpdate', (oldMember, newMember) => {
             console.log(response);
     const embed = new Discord.RichEmbed()
       .setTitle(`Now Streaming`)
-      .setURL(response.stream.channel.url)
+      .setURL(response.channel.url)
       .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
       .setColor(6570404)
       .setFooter(`${response.stream.game}`)
-      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
-      .setThumbnail(`${response.stream.channel.logo}`)
+      .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
+      .setThumbnail(`${response.channel.logo}`)
     client.channels.get('279381704274214923').sendEmbed(
       embed, {
         disableEveryone: true
