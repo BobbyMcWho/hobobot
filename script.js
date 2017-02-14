@@ -852,7 +852,7 @@ else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
     (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
-      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
+      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}?callback=foo`;
       console.log(url);
         request(url, (error, response, body) => {
           if (!error && response.statusCode === 200) { 
