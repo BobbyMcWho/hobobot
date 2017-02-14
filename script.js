@@ -895,7 +895,7 @@ client.on('disconnect', () =>
 );
 client.on('presenceUpdate', (oldMember, newMember) => {
   let response;
-  if ((!oldMember.presence.game.streaming) && (newMember.presence.game != null && newMember.presence.game.streaming)) {
+  if ((newMember.presence.game != null && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
