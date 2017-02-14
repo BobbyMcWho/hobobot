@@ -844,7 +844,37 @@ client.on('message', message => {
   }
   //****************END TEST
 
-
+else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
+   let response;
+   let newMember = client.guilds.get('164791530614161408').members.find('nickname','Abyss');
+  if (
+    //(!oldMember.presence.game.streaming) && 
+    (newMember.presence.game != null && newMember.presence.game.streaming)) {
+      let temp = newMember.presence.game.url.split('/');
+      let userName = temp[temp.length-1];
+      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
+      console.log(url);
+        request(url, (error, response, body) => {
+          if (!error && response.statusCode === 200) {           
+            response = JSON.parse(body);
+          }
+        }); //end of request function
+console.log(response);
+    const embed = new Discord.RichEmbed()
+      .setTitle(`Now Streaming`)
+      .setURL(response.channel.url)
+      .setAuthor(newMember,newUser.user.avatarURL)
+      .setColor(6570404)
+      .setFooter(`${response.stream.game}`)
+      .setDescription(`${response.channel.display_name} is now streaming "${response.channel.status}" at ${response.channel.url}`)
+      .setThumbnail(`${response.channel.logo}`)
+    client.channels.get('279381704274214923').sendEmbed(
+      embed, {
+        disableEveryone: true
+      }
+    );
+}
+}
 });
 //client.on('guildMemberRemove', (member) => {
 // setTimeout(() => {member.guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
@@ -864,11 +894,10 @@ client.on('disconnect', () =>
 );
 client.on('presenceUpdate', (oldMember, newMember) => {
   let response;
-  if ((oldMember.presence.game == null || !oldMember.presence.game.streaming) && (newMember.presence.game != null && newMember.presence.game.streaming)) {
+  if ((!oldMember.presence.game.streaming) && (newMember.presence.game != null && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
-      function loop() {
         request(url, (error, response, body) => {
           if (!error && response.statusCode === 200) {           
             response = JSON.parse(body);
@@ -888,7 +917,6 @@ client.on('presenceUpdate', (oldMember, newMember) => {
         disableEveryone: true
       }
     );
-  }
 }
 });
 
