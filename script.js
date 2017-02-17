@@ -893,7 +893,7 @@ client.on('disconnect', () =>
 );
 client.on('presenceUpdate', (oldMember, newMember) => {
   if (
-    (newMember.guild.channels.has('279381704274214923') && !oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming)) && 
+    (newMember.guild.channels.has('279381704274214923') && (!oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming))) && 
     (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
