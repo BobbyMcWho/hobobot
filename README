@@ -1,3 +1,5 @@
 Hobobot is a bot written using the Node.js module Discord.js. 
 
 It mainly contains some useful commands and inside jokes for the gaming community that I frequent. 
+
+Code in this repo is not pretty, and not well formatted. The bulk of this bot was written on the fly, while I was self teaching myself Javascript.
