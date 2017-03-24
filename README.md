@@ -7,7 +7,7 @@ Code in this repo is not pretty, and not well formatted. The bulk of this bot wa
 
 I have stopped new development on the bot until I can rewrite it for V2.0, and plan to include a web interface for managing custom per server commands at that time. 
 
-### So acknowledging that this code is a bit of a mess, what can it do?
+### So acknowledging that this code would best be served with some parmesan and garlic bread, what can it do?
 
 * Music! The bot can connect to a discord voice channel and stream songs from youtube queries. 
   ```
@@ -26,3 +26,16 @@ I have stopped new development on the bot until I can rewrite it for V2.0, and p
   volume+(+++): "Increases the volume by 5% per +"
   volume-(---): "Decreases the volume by 5% per -"
   ```
+* Custom commands, various things that users requested to be attached to their tags, usually image replies or text replies.
+* D&D Dice Rolling! You can enter commands such as $roll 3d20k1 to roll 3 d20's keeping the top 1 roll. 
+* Urban Dictionary lookups - query the Urban Dictionary API. 
+* YouTube lookups, return the top result for your query.
+* Weather lookups, return the current weather in whatever city you enter. 
+* Wikipedia lookups, return the top wikipedia result for your query. 
+* Oxford Dictionary lookups, returns the definition for your query.
+* 8Ball - get a random 8Ball response! 
+* Kick and Ban users
+* Stock data - ex. $stock AAPL - No API here, the bot will scrape data from Google Finance and return current value. 
+* Twitch notifications, watches guild members and alerts a specified channel if one starts streaming on Twitch.
+
+### What would I improve?
