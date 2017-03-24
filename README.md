@@ -39,3 +39,4 @@ I have stopped new development on the bot until I can rewrite it for V2.0, and p
 * Twitch notifications, watches guild members and alerts a specified channel if one starts streaming on Twitch.
 
 ### What would I improve?
+(Coming soon)
