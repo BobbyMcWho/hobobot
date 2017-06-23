@@ -220,13 +220,13 @@ client.on('message', message => {
   } else if (message.content.toLowerCase().startsWith(prefix + 'hoblet')) {
 
     message.channel.sendMessage(`It's a boy! Lucas Michael Taffe was born 11/10 at 10:29pm weighing 5lbs 12.5oz`);
-  } else if (message.content.toLowerCase().startsWith(prefix + 'lily')) {
-    timeUntil("a lily blooms", 2017, 3, 9);
-    message.channel.sendMessage(babybaby);
   } else if (message.content.toLowerCase().startsWith(prefix + 'yetiwedding')) {
     timeUntil("the Yeti Wedding", 2017, 6, 29);
     message.channel.sendMessage(babybaby);
-  } else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
+  } else if (message.content.toLowerCase().startsWith(prefix + 'babymcwho')) {
+    timeUntil("a McWho baby is born", 2017, 8, 8);
+    message.channel.sendMessage(babybaby);
+  }else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
     if (message.author.id === '161210376812363776') {
       message.channel.sendMessage("Yes, Master?");
     } else {
