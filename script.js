@@ -897,7 +897,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
     (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
-      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}&api_version=5`;
+      let url = `https://api.twitch.tv/helix/streams?user_login=${userName}&client_id=${twitchClient}`;
       console.log(url);
         request(url, (error, response, body) => {
           console.log(body);  
