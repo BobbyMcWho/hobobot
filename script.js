@@ -897,9 +897,15 @@ client.on('presenceUpdate', (oldMember, newMember) => {
     (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
       let userName = temp[temp.length-1];
-      let url = `https://api.twitch.tv/helix/streams?user_login=${userName}&client_id=${twitchClient}`;
+      let url = `https://api.twitch.tv/helix/streams?user_login=${userName}`;
       console.log(url);
-        request(url, (error, response, body) => {
+        request({
+          url: url,
+          headers: {
+          'Client-Id':`${twitchClient}`
+          }
+        }
+        , (error, response, body) => {
           console.log(body);  
           if (!error && response.statusCode === 200) {                   
             const response = JSON.parse(body);
