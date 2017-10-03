@@ -21,6 +21,8 @@
     "cleverbot.io": "^1.0.4",
     "discord.js": "11.0.0",
     "erlpack": "git://github.com/hammerandchisel/erlpack.git#master",
-    "node-opus": "^0.2.4"
+    "node-opus": "^0.2.4",
+    "request-promise": "^4.1.1",
+    "ytdl-core": "^0.8.1"
   }
 }
