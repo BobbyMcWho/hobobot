@@ -891,36 +891,36 @@ client.on('error', (error) => {
 client.on('disconnect', () =>
   process.exit(100)
 );
-client.on('presenceUpdate', (oldMember, newMember) => {
-  if (
-    (newMember.guild.channels.has('279381704274214923') && (!oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming))) && 
-    (newMember.presence.game && newMember.presence.game.streaming)) {
-      let temp = newMember.presence.game.url.split('/');
-      let userName = temp[temp.length-1];
-      let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
-      console.log(url);
-        request(url, (error, response, body) => {
-          console.log(body);  
-          if (!error && response.statusCode === 200) {                   
-            const response = JSON.parse(body);
-            console.log(response);
-    const embed = new Discord.RichEmbed()
-      .setTitle(`Now Streaming`)
-      .setURL(response.stream.channel.url)
-      .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
-      .setColor(6570404)
-      .setFooter(`${response.stream.channel.game}`)
-      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
-      .setThumbnail(`${response.stream.channel.logo}`)
-    client.channels.get('279381704274214923').sendEmbed(
-      embed, {
-        disableEveryone: true
-      }
-    );
-          }
-        }); //end of request function
+// client.on('presenceUpdate', (oldMember, newMember) => {
+//   if (
+//     (newMember.guild.channels.has('279381704274214923') && (!oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming))) && 
+//     (newMember.presence.game && newMember.presence.game.streaming)) {
+//       let temp = newMember.presence.game.url.split('/');
+//       let userName = temp[temp.length-1];
+//       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
+//       console.log(url);
+//         request(url, (error, response, body) => {
+//           console.log(body);  
+//           if (!error && response.statusCode === 200) {                   
+//             const response = JSON.parse(body);
+//             console.log(response);
+//     const embed = new Discord.RichEmbed()
+//       .setTitle(`Now Streaming`)
+//       .setURL(response.stream.channel.url)
+//       .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
+//       .setColor(6570404)
+//       .setFooter(`${response.stream.channel.game}`)
+//       .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
+//       .setThumbnail(`${response.stream.channel.logo}`)
+//     client.channels.get('279381704274214923').sendEmbed(
+//       embed, {
+//         disableEveryone: true
+//       }
+//     );
+//           }
+//         }); //end of request function
 
-}
-});
+// }
+// });
 
 client.login(sesame);
