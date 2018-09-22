@@ -144,7 +144,7 @@ const commands = {
   },
   'shuffle': (message) => {
     if (playlist[message.guild.id] === undefined) return message.channel.sendMessage(`Add some songs to the playlist first with ${musicPrefix}add`);
-    //Durstenfeld Shuffle, modified to always leave the first song at index 0. 
+    //Durstenfeld Shuffle, modified to always leave the first song at index 0.
     for (let i = playlist[message.guild.id].songs.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (playlist[message.guild.id].songs.length - 1)) + 1;
       let temp = playlist[message.guild.id].songs[i];
@@ -226,7 +226,7 @@ client.on('message', message => {
   } else if (message.content.toLowerCase().startsWith(prefix + 'babymcwho')) {
     timeUntil("a McWho baby is born", 2017, 8, 8);
     message.channel.sendMessage(babybaby);
-  }else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
+  } else if (message.content.toLowerCase().startsWith(prefix + 'hobo')) {
     if (message.author.id === '161210376812363776') {
       message.channel.sendMessage("Yes, Master?");
     } else {
@@ -843,37 +843,65 @@ client.on('message', message => {
     }
   }
   //****************END TEST
-else if(message.content.toLowerCase().startsWith(prefix + "qwerty")){
-  let newMember = message.author;
-  if (
-    (newMember.presence.game && newMember.presence.game.streaming)) {
+  else if (message.content.toLowerCase().startsWith(prefix + "qwerty")) {
+    let newMember = message.author;
+    if (
+      (newMember.presence.game && newMember.presence.game.streaming)) {
       let temp = newMember.presence.game.url.split('/');
-      let userName = temp[temp.length-1];
+      let userName = temp[temp.length - 1];
       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
       console.log(url);
-        request(url, (error, response, body) => {
-          console.log(body);  
-          if (!error && response.statusCode === 200) {                   
-            const response = JSON.parse(body);
-            console.log(response);
-    const embed = new Discord.RichEmbed()
-      .setTitle(`Now Streaming`)
-      .setURL(response.stream.channel.url)
-      .setAuthor(newMember.nickname||newMember.user.username,newMember.user.avatarURL)
-      .setColor(6570404)
-      .setFooter(`${response.stream.channel.game}`)
-      .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
-      .setThumbnail(`${response.stream.channel.logo}`)
-    client.channels.get('187346688497680385').sendEmbed(
-      embed, {
-        disableEveryone: true
-      }
-    );
-          }
-        }); //end of request function
+      request(url, (error, response, body) => {
+        console.log(body);
+        if (!error && response.statusCode === 200) {
+          const response = JSON.parse(body);
+          console.log(response);
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Now Streaming`)
+            .setURL(response.stream.channel.url)
+            .setAuthor(newMember.nickname || newMember.user.username, newMember.user.avatarURL)
+            .setColor(6570404)
+            .setFooter(`${response.stream.channel.game}`)
+            .setDescription(`${response.stream.channel.display_name} is now streaming "${response.stream.channel.status}" at ${response.stream.channel.url}`)
+            .setThumbnail(`${response.stream.channel.logo}`)
+          client.channels.get('187346688497680385').sendEmbed(
+            embed, {
+              disableEveryone: true
+            }
+          );
+        }
+      }); //end of request function
 
-}
-}
+    }
+  } else if (message.content.toLowerCase().startsWith(prefix + "wowhead")) {
+
+    let searchTerm = params.join('-');
+    let url = `https://www.wowhead.com/search&q=${searchTerm}`;
+
+    request(url, (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        let $ = cheerio.load(body);
+
+        let itemImage = $('link[rel="image_src"]').attr('href');
+        let title = $('meta[property="og:title"]').attr('content');
+        let pageURL = $('meta[property="og:url"]').attr('content');
+        let description = $('meta[name="description"]').attr('content')
+        let color = 0xa71a19;
+        const embed = new Discord.RichEmbed()
+          .setTitle(title)
+          .setURL(pageURL)
+          .setAuthor('Wowhead')
+          .setColor(color)
+          .setDescription(description)
+          .setThumbnail(itemImage)
+          message.channel.sendEmbed(
+            embed, {
+              disableEveryone: true
+            }
+          );
+        }
+      })
+    }
 });
 //client.on('guildMemberRemove', (member) => {
 // setTimeout(() => {member.guild.defaultChannel.sendMessage(`See ya ${member.user.username}, never thought much of you anyways!`)},500);
@@ -893,15 +921,15 @@ client.on('disconnect', () =>
 );
 // client.on('presenceUpdate', (oldMember, newMember) => {
 //   if (
-//     (newMember.guild.channels.has('279381704274214923') && (!oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming))) && 
+//     (newMember.guild.channels.has('279381704274214923') && (!oldMember.presence.game || (oldMember.presence.game && !oldMember.presence.game.streaming))) &&
 //     (newMember.presence.game && newMember.presence.game.streaming)) {
 //       let temp = newMember.presence.game.url.split('/');
 //       let userName = temp[temp.length-1];
 //       let url = `https://api.twitch.tv/kraken/streams/${userName}?client_id=${twitchClient}`;
 //       console.log(url);
 //         request(url, (error, response, body) => {
-//           console.log(body);  
-//           if (!error && response.statusCode === 200) {                   
+//           console.log(body);
+//           if (!error && response.statusCode === 200) {
 //             const response = JSON.parse(body);
 //             console.log(response);
 //     const embed = new Discord.RichEmbed()
