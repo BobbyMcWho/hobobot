@@ -882,41 +882,45 @@ client.on('message', message => {
       if (!error && response.statusCode === 200) {
         let $ = cheerio.load(body, {xmlMode: true});
         // let innerHTML = $('htmlTooltip').innerHTML;
-
-        let itemImage = `https://wow.zamimg.com/images/wow/icons/large/${$('icon').text()}.jpg`;
-        let title = $('name').text();
-        let pageURL = $('link').text();
-        let description = 'foo';
-        let colorNode = $('quality');
-        let klass = $('class').text();
-        let subClass = $('subclass').text();
-        let colors = {
-          "14": 0xffffff,
-          "13": 0xffff98,
-          "12": 0xbd5f00,
-          "11": 0xffffff,
-          "10": 0xff4040,
-           "9": 0x71d5ff,
-           "8": 0x00ccff,
-           "7": 0x00ccff,
-           "6": 0xe5cc80,
-           "5": 0xff8000,
-           "4": 0xa335ee,
-           "3": 0x0070dd,
-           "2": 0x1eff00,
-           "1": 0xffffff,
-           "0": 0xffd100
-        };
-        const embed = new Discord.RichEmbed()
-          .setAuthor(title, null, pageURL)
-          .setColor(colors[colorNode.attr('id')])
-          .setDescription(`${ klass } | ${ subClass }`)
-          .setThumbnail(itemImage)
-          message.channel.sendEmbed(
-            embed, {
-              disableEveryone: true
-            }
-          );
+        if($('error').text() == "Item not found!"){
+          message.channel.sendMessage("Item not found! Try using the full name!");
+        }
+        else {
+          let itemImage = `https://wow.zamimg.com/images/wow/icons/large/${$('icon').text()}.jpg`;
+          let title = $('name').text();
+          let pageURL = $('link').text();
+          let description = 'foo';
+          let colorNode = $('quality');
+          let klass = $('class').text();
+          let subClass = $('subclass').text();
+          let colors = {
+            "14": 0xffffff,
+            "13": 0xffff98,
+            "12": 0xbd5f00,
+            "11": 0xffffff,
+            "10": 0xff4040,
+            "9": 0x71d5ff,
+            "8": 0x00ccff,
+            "7": 0x00ccff,
+            "6": 0xe5cc80,
+            "5": 0xff8000,
+            "4": 0xa335ee,
+            "3": 0x0070dd,
+            "2": 0x1eff00,
+            "1": 0xffffff,
+            "0": 0xffd100
+          };
+          const embed = new Discord.RichEmbed()
+            .setAuthor(title, null, pageURL)
+            .setColor(colors[colorNode.attr('id')])
+            .setDescription(`${ klass } | ${ subClass }`)
+            .setThumbnail(itemImage)
+            message.channel.sendEmbed(
+              embed, {
+                disableEveryone: true
+              }
+            );
+          }
         }
       })
     }
