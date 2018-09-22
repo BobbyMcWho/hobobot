@@ -873,7 +873,7 @@ client.on('message', message => {
       }); //end of request function
 
     }
-  } else if (message.content.toLowerCase().startsWith(prefix + "wowheap")) {
+  } else if (message.content.toLowerCase().startsWith(prefix + "wow")) {
 
     let searchTerm = params.join('%20');
     let url = `https://www.wowhead.com/?item=${searchTerm}&xml`;
