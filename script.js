@@ -873,26 +873,44 @@ client.on('message', message => {
       }); //end of request function
 
     }
-  } else if (message.content.toLowerCase().startsWith(prefix + "wowhead")) {
+  } else if (message.content.toLowerCase().startsWith(prefix + "wowheap")) {
 
-    let searchTerm = params.join('-');
-    let url = `https://www.wowhead.com/search&q=${searchTerm}`;
+    let searchTerm = params.join('%20');
+    let url = `https://www.wowhead.com/?item=${searchTerm}&xml`;
 
     request(url, (error, response, body) => {
       if (!error && response.statusCode === 200) {
-        let $ = cheerio.load(body);
+        let $ = cheerio.load(body, {xmlMode: true});
+        // let innerHTML = $('htmlTooltip').innerHTML;
 
-        let itemImage = $('link[rel="image_src"]').attr('href');
-        let title = $('meta[property="og:title"]').attr('content');
-        let pageURL = $('meta[property="og:url"]').attr('content');
-        let description = $('meta[name="description"]').attr('content')
-        let color = 0xa71a19;
+        let itemImage = `https://wow.zamimg.com/images/wow/icons/large/${$('icon').text()}.jpg`;
+        let title = $('name').text();
+        let pageURL = $('link').text();
+        let description = 'foo';
+        let colorNode = $('quality');
+        let klass = $('class').text();
+        let subClass = $('subclass').text();
+        let colors = {
+          "14": 0xffffff,
+          "13": 0xffff98,
+          "12": 0xbd5f00,
+          "11": 0xffffff,
+          "10": 0xff4040,
+           "9": 0x71d5ff,
+           "8": 0x00ccff,
+           "7": 0x00ccff,
+           "6": 0xe5cc80,
+           "5": 0xff8000,
+           "4": 0xa335ee,
+           "3": 0x0070dd,
+           "2": 0x1eff00,
+           "1": 0xffffff,
+           "0": 0xffd100
+        };
         const embed = new Discord.RichEmbed()
-          .setTitle(title)
-          .setURL(pageURL)
-          .setAuthor('Wowhead')
-          .setColor(color)
-          .setDescription(description)
+          .setAuthor(title, null, pageURL)
+          .setColor(colors[colorNode.attr('id')])
+          .setDescription(`${ klass } | ${ subClass }`)
           .setThumbnail(itemImage)
           message.channel.sendEmbed(
             embed, {
